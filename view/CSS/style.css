@@ -1,0 +1,380 @@
+/*Made by Joan Marc Martínez Motis
+ Here I will save some propeties so that I can change them in an easier way */
+
+
+
+/* Tutorials i have used
+ https://piccalil.li/blog/a-more-modern-css-reset/ 
+ https://www.youtube.com/watch?v=3K6zr1CdZy8&list=PL4-IK0AVhVjNDRHoXGort7sDWcna8cGPA&index=2
+*/
+
+html {
+    overflow-y: scroll;
+    /* Asegura que el contenido se pueda desplazar */
+    scrollbar-width: none;
+    /* Oculta la scrollbar en Firefox */
+}
+
+body::-webkit-scrollbar {
+    display: none;
+    /* Oculta la scrollbar en Chrome, Edge y Safari */
+}
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+
+
+/* Remove default margin in favour of better control in authored CSS */
+* {
+    margin: 0;
+    padding: 0;
+    font: inherit;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+    list-style: none;
+}
+
+/* Set core body defaults */
+html,
+body {
+    height: 100%;
+    min-height: 100vh;
+}
+
+body {
+
+    line-height: 1.5;
+}
+
+/* Set shorter line heights on headings and interactive elements */
+h1,
+h2,
+h3,
+h4,
+button,
+input,
+label {
+    line-height: 1.1;
+}
+
+/* Balance text wrapping on headings */
+h1,
+h2,
+h3,
+h4 {
+    text-wrap: balance;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+    text-decoration-skip-ink: auto;
+    color: currentColor;
+}
+
+/* Make images easier to work with */
+img,
+picture,
+svg {
+    max-width: 100%;
+    display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+    font-family: inherit;
+    font-size: inherit;
+}
+
+/* Make sure textareas without a rows attribute are not tiny */
+textarea:not([rows]) {
+    min-height: 10em;
+}
+
+/* Anything that has been anchored to should have extra scroll margin */
+:target {
+    scroll-margin-block: 5ex;
+}
+
+/*
+Tutorial used https://www.youtube.com/watch?v=U8smiWQ8Seg
+*/
+html,
+body {
+    overflow-x: hidden;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
+
+
+.main-nav {
+    background-color: rgb(0, 0, 0, 0.2);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    position: relative;
+}
+
+.main-menu {
+    width: 100%;
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    color: white;
+
+}
+
+.main-nav li {
+    height: 60px;
+    margin-top: .5%;
+
+}
+
+.main-nav a {
+    height: 100%;
+    text-decoration: none;
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+
+
+
+}
+
+.main-nav a:hover {
+    color: #8B6A9C;
+}
+
+.main-nav li:nth-child(4) {
+    margin-right: auto;
+}
+
+.logo-nav {
+    width: 100%;
+    height: 100%;
+
+}
+
+.sidebar {
+    z-index: 9999;
+    color: black;
+    border-radius: 20px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 250px;
+    list-style: none;
+    background-color: rgb(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.menu-button {
+    display: none;
+}
+
+
+
+
+
+
+
+
+@media(max-width:1000px) {
+    .main-nav li {
+        font-size: 90%;
+
+    }
+
+}
+
+@media(max-width:860px) {
+
+    .hideOnMobile {
+        display: none;
+    }
+
+    .menu-button {
+        display: block;
+    }
+
+    .main-nav li:nth-child(1) {
+        margin-right: auto;
+    }
+
+
+}
+
+
+
+
+.footer {
+
+    height: 25vh;
+    background-color: #181414;
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+
+
+.footer-container {
+    display: grid;
+    height: 100%;
+    width: 100%;
+    grid-template-columns: 5% 30% 30% 30% 5%;
+    grid-template-rows: 5% 45% 45% 5%;
+}
+
+.footer-container-1-1 {
+    font-size: 3em;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+.footer-container-1-2 {
+    font-size: 1.2em;
+    text-align: center;
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+.footer-container-1-3 {
+    font-size: 1.2em;
+    text-align: center;
+    grid-column-start: 4;
+    grid-column-end: 5;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+.footer-container-2 {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    grid-column-start: 2;
+    grid-column-end: 5;
+
+
+}
+
+.footer-container-2 ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    gap: 4%;
+    padding: 0%;
+    margin: 0%;
+}
+
+.footer-container-2 li:last-child {
+    margin-left: auto !important;
+}
+
+.ul-apps {
+    width: 100%;
+    height: 100%;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+}
+
+.ul-apps li>a>img {
+    margin-top: 5%;
+    width: 50%;
+    height: 92%;
+}
+
+.ul-apps p {
+    margin-top: 4%;
+    width: 50%;
+    height: 92%;
+
+
+}
+
+.ul-download {
+    width: 100%;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 0;
+}
+
+.ul-download li {
+    display: flex;
+}
+
+.ul-download li>a>img {
+    width: auto;
+    height: 50px;
+    margin: 0;
+   
+}
+
+@media(max-width:800px) {
+    .footer {
+        height: 55vh;
+    }
+
+    .ul-download {
+        flex-direction: column;
+    }
+
+    .ul-apps {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: center; 
+
+    }
+
+    .ul-apps li {
+    width: 40%;
+    justify-content: flex-end;
+    }
+
+ 
+
+    .footer-container-1-1 {
+        font-size: 1.7em;
+
+    }
+
+    .footer-container-1-2 {
+        font-size: 1em;
+    }
+
+    .footer-container-1-3 {
+        font-size: 1em;
+    }
+
+}
