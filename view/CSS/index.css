@@ -1,90 +1,40 @@
-.search-section {
-    min-height: 80vh;
-    background-image: url(../images/homePage2.jpg);
-    background-size: cover;
+
+
+/*------------------------------------------------------main carroussel----------------------------------------------------*/
+.main-section {
+    height: 80vh;
+    margin: 0 auto;
+    overflow: hidden; /* Evita que el contenido sobresalga */
     position: relative;
-    z-index: 10;
-    background-repeat: no-repeat;
-    background-position: center;
+}
+#carouselDemo {
+    width: 100%;
+    height: 100%;
+}
 
+.carousel-inner,
+.carousel-item {
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta la imagen sin deformarla */
 }
 
 
-.grid-container {
-    height: 94vh;
-    width: 100vw;
-    display: grid;
-    grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
-    grid-template-rows: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
-
-
-
-}
-
-.explorer {
-    grid-column-start: 4;
-    grid-column-end: 8;
-    grid-row-start: 6;
-    grid-row-end: 7;
-    background-color: white;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    border-radius: 20px;
-}
-
-
-
-.title-container {
-    grid-column-start: 3;
-    grid-column-end: 9;
-    grid-row-start: 4;
-    grid-row-end: 5;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    justify-content: flex-end;
-    align-items: center;
-
-
-}
-
-.title-logo {
-    width: 30%;
-    height: 55%
-}
-
-@import url('https://fonts.googleapis.com/css2?family=Slabo+27px&display=swap');
-
-.title-text {
-    margin-top: 5px;
-    font-family: 'Slabo 27px', serif;
-    font-weight: bold;
-    font-size: 4em;
-    padding: 20px;
-    color: white;
-}
-
-
-.search-box {
-    margin-left: 3%;
-    padding: 10px;
-    width: 80%;
-    border-color: #B891CB;
-    border-radius: 20px;
-
-}
-/*------------------------------------------------------RECOMENDACIONES----------------------------------------------------*/
+/*------------------------------------------------------bestsellers----------------------------------------------------*/
 .info-1 {
-    background-color: white;
+    margin-top: 4%;
     height: 110vh;
     width: 100%;
     display: flex;
     flex-direction:row;
     justify-content: center;
     align-items: center;
-    min-height: 70vh;
+
 
     
 }
@@ -94,21 +44,21 @@
     height: 100%;
     display: flex;
     flex-direction:column;
-    justify-content: center;
+    
     align-items: center;
 }
 
 .queda-poco-display{
-
+    background-color: white;
     display: flex;
-    height: 90%;
+    height: 95%;
     width: 80%;
     flex-direction:column;
     justify-content: center;
     align-items: center; 
     gap: 20px;
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
-    border-radius: 10px; 
+    border-radius: 5px; 
     
 }
 
@@ -120,10 +70,15 @@
     align-items: center;
 
 }
-
+.queda-poco h1 {
+    font-size: 3em;
+    font-weight: bold;
+    color: black;
+    font-family: 'Slabo 27px', sans-serif;
+}
 .best-sellers{
 
-    width: 70%;
+    width: 90%;
     height: 100%;
     text-align: center;
     display: flex;
@@ -132,20 +87,26 @@
     align-items: center;
 }
 
-.info-1 h1 {
+.title{
+width: 95%;
+    text-align: center;
+    background-color: black;
+}
+
+.best-sellers h1 {
     font-size: 3em;
+    color: white;
     font-family: 'Slabo 27px', sans-serif;
 }
 .info-1-grid {
-    background-color: white;
-    height: 90%;
-    width: 90%;
+
+    height: 100%;
+    width: 100%;
     display: grid;
-    grid-template-columns: 5% 27% 4% 27% 4% 27% 5%;
-    grid-template-rows: 5% 26% 3% 26% 3% 26% 10%;
+    grid-template-columns: 5% 28% 3% 28% 3% 28% 4%;
+    grid-template-rows: 5% 28% 3% 28% 3% 28% 4%;
+
     
-    min-height: 70vh;
-    border-top: solid 1px black;
 }
 
 .cont1{
@@ -227,10 +188,124 @@
     height: 100%;
 }
 
+@media(max-width:900px) {
 
-/*--------------------------------------------------------POPULAR TICKETS----------------------------------------------------*/
+    .info-1-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .info-1{
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .info-1 h1 {
+        font-size: 1.5em;
+        color: white;
+        font-family: 'Slabo 27px', sans-serif;
+    }
+
+    
+
+}
+
+/* 📌 Para pantallas menores a 1200px */
+@media (max-width: 1200px) {
+    .title{
+       margin-bottom: 30px;
+        }
+
+             
+    .info-1 {
+        flex-direction: column; /* Apila los elementos en columna */
+        align-items: center;
+        height: auto;
+    }
+    .best-sellers {
+        width: 100%;
+    }
+    .info-1-grid {
+        grid-template-columns: 1fr 1fr; /* Reduce la cantidad de columnas */
+        grid-template-rows: auto;
+    }
+    .queda-poco {
+        width: 100%;
+        margin-top: 20px;
+    }
+}
+
+
+@media (max-width: 900px) {
+    .info-1-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+    }
+    .info-1 h1 {
+        font-size: 2em;
+    }
+    .queda-poco {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .queda-poco-display {
+        width: 90%;
+        height: auto;
+        padding: 20px;
+    }
+    .queda-poco-img {
+        height: auto;
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .info-1 {
+        padding: 10px;
+    }
+    .best-sellers h1, .queda-poco h1 {
+        font-size: 1.3em;
+    }
+    .info-1-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+    .queda-poco-display {
+        width: 100%;
+        padding: 15px;
+        gap: 10px;
+    }
+    .queda-poco-img {
+        height: auto;
+        width: 100%;
+    }
+    .cont-img {
+        width: 90%;
+        height: auto;
+    }
+}
+
+
+@media (max-width: 400px) {
+    .best-sellers h1, .queda-poco h1 {
+        font-size: 1.5em;
+    }
+    .info-1 {
+        margin-top: 2%;
+    }
+    .cont-img {
+        width: 85%;
+    }
+}
+
+/*--------------------------------------------------------RECOMENDACIONES----------------------------------------------------*/
 .info-2 {
-    background-color: white;
+
     height: 70vh;
     display: flex;
     flex-direction: column;
@@ -252,114 +327,133 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-
-.popular-container {
-    border-top: solid 1px black;
-    width: 80%;}
-
-.card-list .card-item {
-    list-style: none;
-}
-
-.card-wrapper {
-    max-width: 100%;
-    margin: 0 60px 35px;
-    padding: 20px 10px;
-    overflow: hidden;
-
-}
-
-.card-list .card-item .card-link {
-    user-select: none;
-    display: block;
-    padding: 18px;
-    border-radius: 12px;
-    text-decoration: none;
-    background-color: white;
-    box-shadow: 0 10px 10px rgb(0, 0, 0, 0.2);
-    border: solid 2px black;
-    transition: 0.2s ease;
-}
-
-.card-list .card-item .card-link:hover {
-
-    border: solid 2px #8B6A9C;
-}
-
-.card-list .card-link .card-image {
-    width: 100%;
-    aspect-ratio: 16/9;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-.card-list .card-link .badge {
-    color: #8B6A9C;
-    padding: 8px 16px;
-    font-size: 0.95rem;
-    font-weight: 500;
-    margin: 16px 18 px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    background-color: #d3a1ef;
-    width: fit-content;
-    border-radius: 50px;
-}
-
-.card-list .card-link .badge.culture {
-    color: #205C20;
-    background-color: #D6F8D6;
-}
-
-.card-list .card-link .badge.videogames {
-    color: #8B6A9C;
-    background-color: #d3a1ef;
-}
-
-.card-list .card-link .badge.entertainment {
-    color: #B22485;
-    background-color: #F7DFF5;
-}
-
-.card-list .card-link .badge.technology {
-    color: #856404;
-    background-color: #FFF3CD;
-}
-
-.card-list .card-link .badge.food {
-    color: #C12042;
-    background-color: #E8718A;
-}
-
-.card-list .card-link .card-title {
-    font-size: 1.5rem;
-    color: black;
-    font-weight: 600;
-}
-
-.card-list .card-link .card-text {
-    font-size: 0.8rem;
-    color: black;
-    font-weight: 600;
-}
-
-.card-list .card-link .card-button {
-    height: 35px;
-    width: 35px;
-    color: #d3a1ef;
-    border-radius: 50%;
-    margin: 30px 0 5px;
-    background: none;
-    cursor: pointer;
-    border: 2px solid #d3a1ef;
-    transform: rotate(-45deg);
-    transition: 0.4s ease;
-}
-
-.card-list .card-link:hover .card-button {
+.title-recomendations{
+    width: 95%;
     color: white;
-    background: #d3a1ef;
-}
+        text-align: center;
+        background-color: black;
+    }
+
+.title-recomendations{
+    width: 95%;
+    
+        text-align: center;
+        background-color: black;
+    }
+
+    .popular-container {
+        
+        width: 80%;}
+    
+    .card-list .card-item {
+        list-style: none;
+        
+        
+    }
+    
+    .card-wrapper {
+        max-width: 100%;
+        margin-top: 20px;
+        overflow: hidden;
+        
+        
+    
+    }
+    
+    .card-list .card-item .card-link {
+        user-select: none;
+        display: block;
+        padding: 18px;
+        border-radius: 12px;
+        text-decoration: none;
+        background-color: white;
+        box-shadow: 0 10px 10px rgb(0, 0, 0, 0.2);
+        border: solid 2px black;
+        transition: 0.2s ease;
+    }
+    
+    .card-list .card-item .card-link:hover {
+    
+        border: solid 2px #8B6A9C;
+    }
+    
+    .card-list .card-link .card-image {
+        width: 100%;
+        aspect-ratio: 16/9;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+    
+    .card-list .card-link .badge {
+        color: #8B6A9C;
+        padding: 8px 16px;
+        font-size: 0.95rem;
+        font-weight: 500;
+        margin: 16px 18 px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        background-color: #d3a1ef;
+        width: fit-content;
+        border-radius: 50px;
+    }
+    
+    .card-list .card-link .badge.culture {
+        color: #205C20;
+        background-color: #D6F8D6;
+    }
+    
+    .card-list .card-link .badge.videogames {
+        color: #8B6A9C;
+        background-color: #d3a1ef;
+    }
+    
+    .card-list .card-link .badge.entertainment {
+        color: #B22485;
+        background-color: #F7DFF5;
+    }
+    
+    .card-list .card-link .badge.technology {
+        color: #856404;
+        background-color: #FFF3CD;
+    }
+    
+    .card-list .card-link .badge.food {
+        color: #C12042;
+        background-color: #E8718A;
+    }
+    
+    .card-list .card-link .card-title {
+        font-size: 1.5rem;
+        color: black;
+        font-weight: 600;
+    }
+    
+    .card-list .card-link .card-text {
+        font-size: 0.8rem;
+        color: black;
+        font-weight: 600;
+    }
+    
+    .card-list .card-link .card-button {
+        height: 35px;
+        width: 35px;
+        color: #d3a1ef;
+        border-radius: 50%;
+        margin: 30px 0 5px;
+        background: none;
+        cursor: pointer;
+        border: 2px solid #d3a1ef;
+        transform: rotate(-45deg);
+        transition: 0.4s ease;
+    }
+    
+    .card-list .card-link:hover .card-button {
+        color: white;
+        background: #d3a1ef;
+    }
+    
+ 
+
 
 @media(max-width:768px) {
     .card-wrapper {
@@ -369,66 +463,15 @@
     .card-wrapper .swiper-slide-button {
         display: none;
     }
-}
-
-
-@media(max-width:900px) {
-
-    .search-section {
-        background-image: url(../images/homePage3.jpg);
-    }
-
-    .explorer {
-        grid-column-start: 2;
-        grid-column-end: 10;
-
-    }
-
-    .title-text {
-        margin-top: 5px;
-        font-family: 'Slabo 27px', serif;
-        font-weight: bold;
-        font-size: 3.7em;
-        padding: 20px;
-        color: white;
-    }
-
-    .title-container {
-        grid-column-start: 2;
-        grid-column-end: 10;
-        grid-row-start: 1;
-        grid-row-end: 5;
-        display: flex;
-        flex-direction: column;
+    .title-recomendations h1 {
+        margin-top: 20px;
+        font-size: 1.5em;
         text-align: center;
-        justify-content: flex-end;
-        align-items: center;
-    }
-}
-
-@media(max-width:700px) {
-
-
-    .title-text {
-        margin-top: 5px;
-        font-family: 'Slabo 27px', serif;
-        font-weight: bold;
-        font-size: 3em;
-        padding: 20px;
         color: white;
-    }
-
-}
-
-@media(max-height:725px) {
-
-    .title-container {
-        grid-column-start: 1;
-        grid-column-end: 11;
-
-    }
-
-    .title-text {
-        font-size: 3em;
+        font-family: 'Slabo 27px', sans-serif;
     }
 }
+
+
+
+
