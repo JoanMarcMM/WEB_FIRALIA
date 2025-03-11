@@ -28,7 +28,7 @@ session_start();
 <body>
     <section class="search-section">
         <nav class="main-nav">
-
+            <!-- ------------------------------------------------------------------ SIDE BAR --------------------------------------------------------------------------------->
             <ul class="sidebar">
                 <li onclick="hideSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
                             viewBox="0 -960 960 960" width="24px" fill="#e8eaed">
@@ -39,27 +39,50 @@ session_start();
                 <li><a href="events.php">Eventos</a></li>
                 <li><a href="support.php">Soporte</a></li>
                 <?php if (isset($_SESSION["user_id"])): ?>
-                <li><a href="login.php">Perfil</a></li>
+                    <li><a href="login.php">Perfil</a></li>
                 <?php else: ?>
-                <li><a href="login.php">Iniciar Sesión</a></li>
-                <li><a href="register.php">Registrarse</a></li>
+                    <li><a href="login.php">Iniciar Sesión</a></li>
+                    <li><a href="register.php">Registrarse</a></li>
                 <?php endif; ?>
             </ul>
-
+            <!-- ------------------------------------------------------------------ MAIN MENU --------------------------------------------------------------------------------->
             <ul class="main-menu">
-                <li><a href="index.html"><img class="logo-nav" src="images/IMG_0037.PNG" alt="Logo"></a></li>
-                <li class="hideOnMobile"><a href="concerts.php">Conciertos</a></li>
-                <li class="hideOnMobile"><a href="events.php">Eventos</a></li>
-                <li class="hideOnMobile"><a href="support.php">Soporte</a></li>
+                <li>
+                    <a href="index.php">
+                        <img class="logo-nav" src="images/logo2-modified.png" alt="logo" id="logo-nav">
+                        <script>
+                            const img = document.getElementById('logo-nav');
 
+                            img.addEventListener('mouseenter', () => {
+                                img.src = 'images/logo2.png';
+                            });
+
+                            img.addEventListener('mouseleave', () => {
+                                img.src = 'images/logo2-modified.png';
+                            });
+                        </script>
+
+
+                    </a>
+
+                </li>
+                <li class="hideOnMobile"><a href="concerts.php">CONCIERTOS</a></li>
+                <li class="hideOnMobile"><a href="events.php">EVENTOS</a></li>
+                <li class="hideOnMobile"><a href="support.php">SOPORTE</a></li>
+                <li>
+                    <form class="nav-form">
+                        <input type="text" class="search-bx" placeholder="">
+                        <input type="image" class="search-icon" src="images/search.svg" alt="Submit" width="100" height="50">
+                    </form>
+                </li>
                 <?php if (isset($_SESSION["user_id"])): ?>
 
                     <li><a href="login.php">foto</a></li>
 
                 <?php else: ?>
 
-                    <li class="hideOnMobile"><a href="login.php">Iniciar Sesión</a></li>
-                    <li class="hideOnMobile"><a href="register.php">Registrarse</a></li>
+                    <li class="hideOnMobile"><a href="login.php">INICIAR SESIÓN</a></li>
+                    <li class="hideOnMobile"><a href="register.php">REGISTRARSE</a></li>
 
                 <?php endif; ?>
 
@@ -69,6 +92,7 @@ session_start();
                         </svg></a></li>
             </ul>
         </nav>
+        <!-- ------------------------------------------------------------------ MAIN  --------------------------------------------------------------------------------->
         <div class="grid-container">
             <div class="title-container">
                 <p class="title-text">Explora, descubre y disfruta </p>
@@ -84,17 +108,30 @@ session_start();
         </div>
     </section>
 
-
+    <!-- ------------------------------------------------------------------ RECOMENDATIONS Y QUEDA POCO --------------------------------------------------------------------------------->
     <section class="info-1">
-        <h1>RECOMENDATIONS</h1>
-        <div class="info-1-grid">
-                    <div class="cont1"><img class="cont-img" src="images/salomanga.jpg" alt="imagen"></div>
-                    <div class="cont2"><img class="cont-img" src="images/salomanga.jpg" alt="imagen"></div>
-                    <div class="cont3"><img class="cont-img" src="images/salomanga.jpg" alt="imagen"></div>
-                    <div class="cont4"><img class="cont-img" src="images/salomanga.jpg" alt="imagen"></div>
-                    <div class="cont5"><img class="cont-img" src="images/salomanga.jpg" alt="imagen"></div>
-                    <div class="cont6"><img class="cont-img" src="images/salomanga.jpg" alt="imagen"></div>
+        <div class="best-sellers">
+            <h1>BEST SELLERS</h1>
+            <div class="info-1-grid">
+                <div class="cont1"><img class="cont-img" src="images/salomanga.jpg" alt="imagen"></div>
+                <div class="cont2"><img class="cont-img" src="images/salomanga.jpg" alt="imagen"></div>
+                <div class="cont3"><img class="cont-img" src="images/salomanga.jpg" alt="imagen"></div>
+                <div class="cont4"><img class="cont-img" src="images/salomanga.jpg" alt="imagen"></div>
+                <div class="cont5"><img class="cont-img" src="images/salomanga.jpg" alt="imagen"></div>
+                <div class="cont6"><img class="cont-img" src="images/salomanga.jpg" alt="imagen"></div>
+            </div>
         </div>
+        <div class="queda-poco">
+        
+            <div class="queda-poco-display">
+                <h1>QUEDA POCO</h1>
+                <div class="queda-poco-img" ><img class="cont-img" src="images/salomanga.jpg" alt="imagen"></div>
+                <div class="queda-poco-img"><img class="cont-img" src="images/salomanga.jpg" alt="imagen"></div>
+                <div class="queda-poco-img"><img class="cont-img" src="images/salomanga.jpg" alt="imagen"></div>
+                <div class="queda-poco-img"><img class="cont-img" src="images/salomanga.jpg" alt="imagen"></div>
+            </div>
+        </div>
+
     </section>
 
     <!-- https://www.youtube.com/watch?v=VUtJ7FWCfZA&list=PLpwngcHZlPae68z_mLFNfbJFIJVJ_Zcx2 -->

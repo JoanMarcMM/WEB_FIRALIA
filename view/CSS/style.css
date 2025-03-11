@@ -114,30 +114,35 @@ body {
     overflow-x: hidden;
 }
 
+
+/*-- ------------------------------------------------------------------ NAV ---------------------------------------------------------------------------------*/
+
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_forward');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
 
 
 .main-nav {
-    background-color: rgb(0, 0, 0, 0.2);
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    font-family: 'Roboto', sans-serif;
-    font-weight: 500;
+    background-color: rgb(0, 0, 0);
+    font-family: 'Slabo 27px', sans-serif;
+    font-weight: 600;
     position: relative;
+    height: 10vh;
+    
 }
 
 .main-menu {
     width: 100%;
+    height: 100%;
     list-style: none;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     color: white;
-
 }
 
 .main-nav li {
-    height: 60px;
-    margin-top: .5%;
+    height: 100%;
+
 
 }
 
@@ -156,14 +161,24 @@ body {
     color: #8B6A9C;
 }
 
-.main-nav li:nth-child(4) {
-    margin-right: auto;
+.main-nav li:nth-child(5) {
+    margin-left: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center; 
+    align-items: center; 
+    width: 30%;
 }
 
 .logo-nav {
-    width: 100%;
-    height: 100%;
+    width: 80%;
+    height: 70%;
+    margin-bottom: 6%;
 
+}
+
+.logo-nav:hover {
+    content: src('images/logo2.png');
 }
 
 .sidebar {
@@ -187,6 +202,23 @@ body {
 .menu-button {
     display: none;
 }
+.nav-form {
+    display: flex;
+    align-items: center; 
+    gap: 5px; 
+    width: 100%;
+    height: 100%;
+}
+.search-bx {
+    margin-right: 3%;
+    width: 80%;
+    height:50%;
+    border: solid 1px white;
+    border-radius: 3px;
+}
+.search-icon:hover{
+    filter: invert(48%) sepia(17%) saturate(880%) hue-rotate(236deg) brightness(90%) contrast(90%);
+}
 
 
 
@@ -203,7 +235,7 @@ body {
 
 }
 
-@media(max-width:860px) {
+@media(max-width:1600px) {
 
     .hideOnMobile {
         display: none;
@@ -216,12 +248,19 @@ body {
     .main-nav li:nth-child(1) {
         margin-right: auto;
     }
-
+    .main-nav li:nth-child(5) {
+        margin-left: auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: center; 
+        align-items: center; 
+        width: 60%;
+    }
 
 }
 
 
-
+/*-- ------------------------------------------------------------------ FOOTER---------------------------------------------------------------------------------*/
 
 .footer {
 
