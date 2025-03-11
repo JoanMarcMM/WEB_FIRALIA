@@ -35,22 +35,26 @@ session_start();
                             <path
                                 d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
                         </svg></a></li>
-                <li><a href="recomendations.html">Recomendaciones</a></li>
-                <li><a href="soon.html">Queda Poco</a></li>
-                <li><a href="support.html">Soporte</a></li>
+                <li><a href="concerts.php">Conciertos</a></li>
+                <li><a href="events.php">Eventos</a></li>
+                <li><a href="support.php">Soporte</a></li>
+                <?php if (isset($_SESSION["user_id"])): ?>
+                <li><a href="login.php">Perfil</a></li>
+                <?php else: ?>
                 <li><a href="login.php">Iniciar Sesión</a></li>
                 <li><a href="register.php">Registrarse</a></li>
+                <?php endif; ?>
             </ul>
 
             <ul class="main-menu">
                 <li><a href="index.html"><img class="logo-nav" src="images/IMG_0037.PNG" alt="Logo"></a></li>
-                <li class="hideOnMobile"><a href="recomendations.html">Recomendaciones</a></li>
-                <li class="hideOnMobile"><a href="soon.html">Queda Poco</a></li>
-                <li class="hideOnMobile"><a href="support.html">Soporte</a></li>
+                <li class="hideOnMobile"><a href="concerts.php">Conciertos</a></li>
+                <li class="hideOnMobile"><a href="events.php">Eventos</a></li>
+                <li class="hideOnMobile"><a href="support.php">Soporte</a></li>
 
                 <?php if (isset($_SESSION["user_id"])): ?>
 
-                    <li><a href="login.php">foto</a></li>ot
+                    <li><a href="login.php">foto</a></li>
 
                 <?php else: ?>
 
@@ -82,8 +86,15 @@ session_start();
 
 
     <section class="info-1">
-
-
+        <h1>RECOMENDATIONS</h1>
+        <div class="info-1-grid">
+                    <div class="cont1"><img class="cont-img" src="images/salomanga.jpg" alt="imagen"></div>
+                    <div class="cont2"><img class="cont-img" src="images/salomanga.jpg" alt="imagen"></div>
+                    <div class="cont3"><img class="cont-img" src="images/salomanga.jpg" alt="imagen"></div>
+                    <div class="cont4"><img class="cont-img" src="images/salomanga.jpg" alt="imagen"></div>
+                    <div class="cont5"><img class="cont-img" src="images/salomanga.jpg" alt="imagen"></div>
+                    <div class="cont6"><img class="cont-img" src="images/salomanga.jpg" alt="imagen"></div>
+        </div>
     </section>
 
     <!-- https://www.youtube.com/watch?v=VUtJ7FWCfZA&list=PLpwngcHZlPae68z_mLFNfbJFIJVJ_Zcx2 -->
