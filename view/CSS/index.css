@@ -187,7 +187,14 @@ width: 95%;
     width: 100%;
     height: 100%;
 }
-
+@media (max-width: 1600px) {
+    .queda-poco h1 {
+        font-size: 2.4em;
+        font-weight: bold;
+        color: black;
+        font-family: 'Slabo 27px', sans-serif;
+    }
+}
 @media(max-width:900px) {
 
     .info-1-grid {

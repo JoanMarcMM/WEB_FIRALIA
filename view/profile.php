@@ -1,47 +1,17 @@
 <?php
 
-$is_invalid = false;
+//link to database
+include '../controller/database.php';
+session_start();
 
-if ($_SERVER['REQUEST_METHOD']=== "POST"){
+$user_id = $_SESSION["user_id"];
 
-    $mysqli = require __DIR__."/../controller/database.php";
-
-    //Creo la query
-
-    $sql = sprintf("SELECT * FROM users 
-            WHERE user = '%s'",
-            $mysqli->real_escape_string($_POST["user"]));
-
-    //Ejecuto la query
-
-    $result = $mysqli->query($sql);
-
-    $user = $result->fetch_assoc();
-
-    if($user){
-    
-        if(password_verify($_POST["password"],$user["PASSWORD"])){
-            
-            session_start();
-
-            $_SESSION["user_id"] = $user["ID"];
-
-            header("Location: index.php");
-            exit();
-            
-
-        }
-    
-    }
-
-    $is_valid = true;
+if (!isset($user_id)) {
+    header("location: login.php");
 }
 
-
-
-
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -49,26 +19,39 @@ if ($_SERVER['REQUEST_METHOD']=== "POST"){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar Sesión</title>
+    <title>Home Page</title>
 
-    <link rel="stylesheet" href="CSS/style.css">
-    <link rel="stylesheet" href="CSS/login.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_forward" />
+
+    <!-- Swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- Archivos CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 </head>
 
-<body>
-    <section class="login-section">
+<body style="background-color: #F2F0EF !important;">
+
     <nav class="main-nav">
         <!-- ------------------------------------------------------------------ SIDE BAR --------------------------------------------------------------------------------->
         <ul class="sidebar">
-            <li onclick="hideSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></a></li>
+            <li onclick="hideSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
+                        viewBox="0 -960 960 960" width="24px" fill="#">
+                        <path
+                            d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                    </svg></a></li>
             <li><a href="concerts.php">Conciertos</a></li>
             <li><a href="events.php">Eventos</a></li>
             <li><a href="support.php">Soporte</a></li>
             <?php if (isset($_SESSION["user_id"])): ?>
-                <li><a href="login.php">Perfil</a></li>
+            <li><a href="login.php">Perfil</a></li>
             <?php else: ?>
-                <li><a href="login.php">Iniciar Sesión</a></li>
-                <li><a href="register.php">Registrarse</a></li>
+            <li><a href="login.php">Iniciar Sesión</a></li>
+            <li><a href="register.php">Registrarse</a></li>
             <?php endif; ?>
         </ul>
         <!-- ------------------------------------------------------------------ MAIN MENU --------------------------------------------------------------------------------->
@@ -103,12 +86,12 @@ if ($_SERVER['REQUEST_METHOD']=== "POST"){
             </li>
             <?php if (isset($_SESSION["user_id"])): ?>
 
-                <li><a href="login.php">foto</a></li>
+            <li><a href="login.php">foto</a></li>
 
             <?php else: ?>
 
-                <li class="hideOnMobile"><a href="login.php">INICIAR SESIÓN</a></li>
-                <li class="hideOnMobile"><a href="register.php">REGISTRARSE</a></li>
+            <li class="hideOnMobile"><a href="login.php">INICIAR SESIÓN</a></li>
+            <li class="hideOnMobile"><a href="register.php">REGISTRARSE</a></li>
 
             <?php endif; ?>
 
@@ -118,38 +101,39 @@ if ($_SERVER['REQUEST_METHOD']=== "POST"){
                     </svg></a></li>
         </ul>
     </nav>
-        <div class="login-grid">
-            <div class="login-container">
-                <h2>Iniciar Sesión</h2>
+    <!-- ------------------------------------------------------------------ Profile body --------------------------------------------------------------------------------->
+    <!-- https://www.youtube.com/watch?v=KZHF2FKJtK8 -->
 
-                <?php if ($is_invalid): ?>
-                    <em>Invalid Credentials</em>
-                <?php endif;?>
+    <section class="main-section">
 
-                <form  method="POST">
-                    <div class="input-box">
-                        <input type="text" name="user" id="user" placeholder="Username" required>
-                    </div>
+ <!--       <div class="container">
 
-                    <div class="input-box">
-                        <input type="password" name="password" id="password" placeholder="Password" required>
-                    </div>
+            <div class="profile">
+                <?php
+                
+                //$select = mysqli_query($conn, "SELECT * FROM `user_form` WHERE id = '$user_id' ") or 
+                //die('query failed');
+                //if(mysqli_num_rows($select) > 0){
+                    //$fetch = mysqli_fetch_assoc($select);
+                //}
+                ?>
+                <h3> <?php //echo $fetch['name']; ?> </h3>
+                
+                
 
-                    <div class="remember-forgot">
-                        <label><input type="checkbox">Recuerdame</label>
-                        <a href="#">Restablecer contraseña</a>
-                    </div>
-
-                    <button type="submit" class="btn">Login</button>
-
-                    <div class="register-box">
-                        <p>No tiene cuenta? <a href="#">Regístrate</a></p>
-                  <div>
-                </form>
             </div>
-        </div>
+
+        </div> -->
+
+
+
+
+
 
     </section>
+
+    <!-- --------------------------------------------------------------------- Footer  --------------------------------------------------------------------------------->
+
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-container-1-1">
@@ -181,7 +165,7 @@ if ($_SERVER['REQUEST_METHOD']=== "POST"){
                 <ul>
                     <li><a href="#">Política de Privacidad</a></li>
                     <li><a href="#">Política de Compra</a></li>
-                    <li><a href="#">Terminos de Uso</a></li>
+                    <li><a href="#">Términos de Uso</a></li>
                     <li><a href="#">Política de Cookies</a></li>
                     <li><a href="#">Control de Cookies</a></li>
                     <li>
@@ -191,17 +175,23 @@ if ($_SERVER['REQUEST_METHOD']=== "POST"){
             </div>
         </div>
     </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="js/swiper.js"></script>
+
     <script>
         function showSidebar() {
-            const sidebar = document.querySelector('.sidebar')
-            sidebar.style.display = 'flex'
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.style.display = 'flex';
         }
+
         function hideSidebar() {
-            const sidebar = document.querySelector('.sidebar')
-            sidebar.style.display = 'none'
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.style.display = 'none';
         }
     </script>
-
 
 </body>
 

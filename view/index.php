@@ -74,7 +74,7 @@ session_start();
             </li>
             <?php if (isset($_SESSION["user_id"])): ?>
 
-                <li><a href="login.php">foto</a></li>
+                <li><a href="profile.php">foto</a></li>
 
             <?php else: ?>
 
