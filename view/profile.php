@@ -1,6 +1,14 @@
 <?php
 
+//link to database
+include '../controller/database.php';
 session_start();
+
+$user_id = $_SESSION["user_id"];
+
+if (!isset($user_id)) {
+    header("location: login.php");
+}
 
 ?>
 
@@ -22,7 +30,7 @@ session_start();
 
     <!-- Archivos CSS -->
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/profile.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 </head>
 
@@ -31,15 +39,19 @@ session_start();
     <nav class="main-nav">
         <!-- ------------------------------------------------------------------ SIDE BAR --------------------------------------------------------------------------------->
         <ul class="sidebar">
-            <li onclick="hideSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></a></li>
+            <li onclick="hideSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
+                        viewBox="0 -960 960 960" width="24px" fill="#">
+                        <path
+                            d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                    </svg></a></li>
             <li><a href="concerts.php">Conciertos</a></li>
             <li><a href="events.php">Eventos</a></li>
             <li><a href="support.php">Soporte</a></li>
             <?php if (isset($_SESSION["user_id"])): ?>
-                <li><a href="login.php">Perfil</a></li>
+            <li><a href="login.php">Perfil</a></li>
             <?php else: ?>
-                <li><a href="login.php">Iniciar Sesión</a></li>
-                <li><a href="register.php">Registrarse</a></li>
+            <li><a href="login.php">Iniciar Sesión</a></li>
+            <li><a href="register.php">Registrarse</a></li>
             <?php endif; ?>
         </ul>
         <!-- ------------------------------------------------------------------ MAIN MENU --------------------------------------------------------------------------------->
@@ -74,12 +86,12 @@ session_start();
             </li>
             <?php if (isset($_SESSION["user_id"])): ?>
 
-                <li><a href="login.php">foto</a></li>
+            <li><a href="login.php">foto</a></li>
 
             <?php else: ?>
 
-                <li class="hideOnMobile"><a href="login.php">INICIAR SESIÓN</a></li>
-                <li class="hideOnMobile"><a href="register.php">REGISTRARSE</a></li>
+            <li class="hideOnMobile"><a href="login.php">INICIAR SESIÓN</a></li>
+            <li class="hideOnMobile"><a href="register.php">REGISTRARSE</a></li>
 
             <?php endif; ?>
 
@@ -89,17 +101,38 @@ session_start();
                     </svg></a></li>
         </ul>
     </nav>
-    <!-- ------------------------------------------------------------------ MAIN carrousel  --------------------------------------------------------------------------------->
-    <!-- https://www.youtube.com/watch?v=1XXY_5k8Nok -->
+    <!-- ------------------------------------------------------------------ Profile body --------------------------------------------------------------------------------->
+    <!-- https://www.youtube.com/watch?v=KZHF2FKJtK8 -->
+
     <section class="main-section">
-    
-</section>
+
+ <!--       <div class="container">
+
+            <div class="profile">
+                <?php
+                
+                //$select = mysqli_query($conn, "SELECT * FROM `user_form` WHERE id = '$user_id' ") or 
+                //die('query failed');
+                //if(mysqli_num_rows($select) > 0){
+                    //$fetch = mysqli_fetch_assoc($select);
+                //}
+                ?>
+                <h3> <?php //echo $fetch['name']; ?> </h3>
+                
+                
+
+            </div>
+
+        </div> -->
 
 
 
 
 
 
+    </section>
+
+    <!-- --------------------------------------------------------------------- Footer  --------------------------------------------------------------------------------->
 
     <footer class="footer">
         <div class="footer-container">
