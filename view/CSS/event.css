@@ -1,0 +1,184 @@
+.main-image {
+    height: 80vh;
+    margin: 0 auto;
+    position: relative;
+    /* Necesario para que el .caption se posicione respecto a este contenedor */
+}
+
+.main-image img {
+    width: 100%;
+    /* Ajusta la imagen al contenedor */
+    height: 100%;
+    /* Para que llene el espacio definido */
+    object-fit: cover;
+    /* Recorta la imagen manteniendo su relación de aspecto */
+}
+
+.caption {
+    position: absolute;
+    /* Para colocarla sobre la imagen */
+    top: 50%;
+    /* Centrado vertical */
+    left: 50%;
+    /* Centrado horizontal */
+    transform: translate(-50%, -50%);
+    /* Centrar exactamente */
+    color: white;
+    background: rgba(0, 0, 0, 0.6);
+    /* Fondo semitransparente */
+    padding: 20px;
+    text-align: center;
+}
+
+.main-body {
+    min-height: 80vh;
+    border: solid 1px red;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.sections-container {
+    width: 90%;
+    padding-top: 3%;
+}
+
+.sections-container h1 {
+    font-size: 3em;
+    font-weight: bold;
+    font-family: 'Slabo 27px', sans-serif;
+}
+
+/* ------------------------------------------------------PAGE NAV--------------------------------------------------------------------------------- */
+
+.page-nav {
+    background-color: white;
+    font-family: 'Slabo 27px', sans-serif;
+    font-weight: 400;
+    position: relative;
+    width: 100%;
+    height: 8vh;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    font-weight: bold;
+    color: grey;
+}
+
+.page-nav ul {
+    margin-left: 5%;
+    width: 80%;
+    height: 100%;
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+}
+
+.page-nav li {
+    height: 100%;
+}
+
+.page-nav a {
+    height: 100%;
+    text-decoration: none;
+    padding: 0 30px;
+    display: flex;
+    align-items: center;
+}
+
+.page-nav a:hover {
+    color: black;
+    text-decoration: underline;
+    background-color: #ededed;
+}
+
+.page-nav li:nth-child(1) {
+    border-bottom: solid 3px black;
+    font-weight: bold;
+    color: black;
+}
+
+/* ------------------------------------------------------EVENTOS--------------------------------------------------------------------------------- */
+
+
+.upcoming {
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    background-color: white;
+    margin-top: 1%;
+    margin-bottom: 3%;
+    min-height: auto;
+
+}
+
+.upcoming-events{
+    height: 10vh;
+    background-color: #ededed;
+    display: flex;
+    align-items: center;
+    padding-left: 2%;
+    font-size: 1em;
+    font-weight: bold;
+    font-family: 'Slabo 27px', sans-serif;
+}
+
+.events-container{
+    min-height: 20vh;
+    padding-bottom: 3vh;
+}
+.subtitle{
+    display: flex;
+    flex-direction: column; 
+    padding: 2%;
+}
+
+.p1{
+    font-size: 1.2em;
+    font-weight: bold;
+    font-family: 'Slabo 27px', sans-serif;
+}
+
+.p2{
+    font-size: 1.2em;
+
+    font-family: 'Slabo 27px', sans-serif;
+    color: gray;
+}
+
+.entry{
+    margin-left: 2%;
+    margin-right: 2%;
+    border: solid 1px red;
+    min-height: 15vh;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.date{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 10%;
+    font-family: 'Slabo 27px', sans-serif;
+    font-size: 1.2em;
+    border: solid 1px red;
+}
+.description{
+    
+    width: 90%;
+    border: solid 1px red;
+}
+
+.p4{
+    font-size: 1.2em;
+    font-family: 'Slabo 27px', sans-serif;
+    color: gray;
+}
+
+.p5{
+    font-size: 1.2em;
+    font-family: 'Slabo 27px', sans-serif;
+    font-weight: bold;
+}
