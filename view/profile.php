@@ -1,16 +1,33 @@
 <?php
 
-//link to database
-include '../controller/database.php';
 session_start();
+$mysqli = require '../controller/database.php';
 
-$user_id = $_SESSION["user_id"];
-
-if (!isset($user_id)) {
-    header("location: login.php");
+// Verifica si el usuario está autenticado
+if (!isset($_SESSION["user_id"])) {
+    die("Error: No has iniciado sesión.");
 }
 
+$id = $_SESSION["user_id"];
+
+// Consulta segura con `prepare()`
+$select = $mysqli->prepare("SELECT * FROM users WHERE id = ?");
+$select->bind_param("i", $id);
+$select->execute();
+$result = $select->get_result();
+
+$fetch = $result->fetch_assoc();
+$select->close();
+
+// Si no encuentra usuario, muestra un mensaje
+if (!$fetch) {
+    die("Error: Usuario no encontrado en la base de datos.");
+}
 ?>
+
+
+
+
 
 
 <!DOCTYPE html>
@@ -105,25 +122,18 @@ if (!isset($user_id)) {
     <!-- https://www.youtube.com/watch?v=KZHF2FKJtK8 -->
 
     <section class="main-section">
-
- <!--       <div class="container">
-
+        <div class="container">
             <div class="profile">
-                <?php
-                
-                //$select = mysqli_query($conn, "SELECT * FROM `user_form` WHERE id = '$user_id' ") or 
-                //die('query failed');
-                //if(mysqli_num_rows($select) > 0){
-                    //$fetch = mysqli_fetch_assoc($select);
-                //}
-                ?>
-                <h3> <?php //echo $fetch['name']; ?> </h3>
-                
-                
-
+                <?php if ($fetch): ?>
+                    <h3><?php echo htmlspecialchars($fetch['NAME']); ?></h3>
+                    <a href="update_profile.php" class="btn-profile">Actualizar Perfil</a>
+                    <a href="../controller/logout.php" class="delete-btn">Logout</a>
+                <?php else: ?>
+                    <h3>Usuario no encontrado</h3>
+                <?php endif; ?>
             </div>
-
-        </div> -->
+        </div>
+    </section>
 
 
 
