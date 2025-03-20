@@ -17,8 +17,6 @@ session_start();
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_forward" />
 
-    <!-- Swiper -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <!-- Archivos CSS -->
     <link rel="stylesheet" href="css/style.css">
@@ -114,16 +112,30 @@ session_start();
     <section class="main-body">
         <div class="sections-container">
 
-            <div class="events" id="events">
+            <div>
                 <h1>EVENTS</h1>
                 <div class="upcoming">
                     <div class="upcoming-events">
-
+                        <p>Upcoming Events</p>
                     </div>
-                    <div class="event-list">
+                    <div class="events-container">
+                        <div class="subtitle">
+                            <p class="p1">Barcelona</p>
+                            <p class="p2">2 Eventos</p>
+                        </div>
                         <ul>
-                            <li class="event"></li>
-                            <li class="event"></li>
+                            <li>
+                                <div class="entry">
+                                    <div class="date"><p>13</p><p>MARZ</p></div>
+                                    <div class="description"><p class="p4">Jueves · 19:00</p><p class="p5">Barcelona · Palau Sant Jordi</p><p class="p4">BLACKPINK</p></div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="entry">
+                                <div class="date"><p>14</p><p>MARZ</p></div>
+                                <div class="description"><p class="p4">Viernes · 19:00</p><p class="p5">Barcelona · Palau Sant Jordi</p><p class="p4">BLACKPINK</p></div>
+                                </div>
+                            </li>
                         </ul>
                     </div>
 
@@ -131,11 +143,11 @@ session_start();
             </div>
 
             <div class="gallery" id="gallery">
-            <h1>GALLERY</h1>
+                <h1>GALLERY</h1>
             </div>
 
             <div class="about" id="about">
-            <h1>ABOUT</h1>
+                <h1>ABOUT</h1>
             </div>
 
 
@@ -191,9 +203,6 @@ session_start();
     </footer>
 
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="js/swiper.js"></script>
 
     <script>
         function showSidebar() {

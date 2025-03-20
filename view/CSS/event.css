@@ -1,29 +1,37 @@
 .main-image {
     height: 80vh;
     margin: 0 auto;
-    position: relative; /* Necesario para que el .caption se posicione respecto a este contenedor */
+    position: relative;
+    /* Necesario para que el .caption se posicione respecto a este contenedor */
 }
 
 .main-image img {
-    width: 100%; /* Ajusta la imagen al contenedor */
-    height: 100%; /* Para que llene el espacio definido */
-    object-fit: cover; /* Recorta la imagen manteniendo su relación de aspecto */
+    width: 100%;
+    /* Ajusta la imagen al contenedor */
+    height: 100%;
+    /* Para que llene el espacio definido */
+    object-fit: cover;
+    /* Recorta la imagen manteniendo su relación de aspecto */
 }
 
 .caption {
-    position: absolute;  /* Para colocarla sobre la imagen */
-    top: 50%;  /* Centrado vertical */
-    left: 50%;  /* Centrado horizontal */
-    transform: translate(-50%, -50%);  /* Centrar exactamente */
+    position: absolute;
+    /* Para colocarla sobre la imagen */
+    top: 50%;
+    /* Centrado vertical */
+    left: 50%;
+    /* Centrado horizontal */
+    transform: translate(-50%, -50%);
+    /* Centrar exactamente */
     color: white;
-    background: rgba(0, 0, 0, 0.6); /* Fondo semitransparente */
+    background: rgba(0, 0, 0, 0.6);
+    /* Fondo semitransparente */
     padding: 20px;
     text-align: center;
 }
 
 .main-body {
     min-height: 80vh;
-    height: fit-content;
     border: solid 1px red;
     width: 100%;
     display: flex;
@@ -35,22 +43,15 @@
     padding-top: 3%;
 }
 
-.sections-container h1{
+.sections-container h1 {
     font-size: 3em;
     font-weight: bold;
     font-family: 'Slabo 27px', sans-serif;
 }
 
-.sections-container div{
-    min-height: 50vh;
-    
-}
-
-
-
 /* ------------------------------------------------------PAGE NAV--------------------------------------------------------------------------------- */
 
-.page-nav{
+.page-nav {
     background-color: white;
     font-family: 'Slabo 27px', sans-serif;
     font-weight: 400;
@@ -61,7 +62,8 @@
     font-weight: bold;
     color: grey;
 }
-.page-nav ul{
+
+.page-nav ul {
     margin-left: 5%;
     width: 80%;
     height: 100%;
@@ -98,26 +100,85 @@
 
 /* ------------------------------------------------------EVENTOS--------------------------------------------------------------------------------- */
 
-.upcoming{
+
+.upcoming {
     border-radius: 5px;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
     background-color: white;
     margin-top: 1%;
     margin-bottom: 3%;
-    height: fit-content;
+    min-height: auto;
+
 }
 
 .upcoming-events{
-    width: 100%;
-
+    height: 10vh;
+    background-color: #ededed;
+    display: flex;
+    align-items: center;
+    padding-left: 2%;
+    font-size: 1em;
+    font-weight: bold;
+    font-family: 'Slabo 27px', sans-serif;
 }
-.event-list{
-    width: 100%;
-    height: 80%;
+
+.events-container{
+    min-height: 20vh;
+    padding-bottom: 3vh;
+}
+.subtitle{
+    display: flex;
+    flex-direction: column; 
+    padding: 2%;
+}
+
+.p1{
+    font-size: 1.2em;
+    font-weight: bold;
+    font-family: 'Slabo 27px', sans-serif;
+}
+
+.p2{
+    font-size: 1.2em;
+
+    font-family: 'Slabo 27px', sans-serif;
+    color: gray;
+}
+
+.entry{
+    margin-left: 2%;
+    margin-right: 2%;
+    border: solid 1px red;
+    min-height: 15vh;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.date{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 10%;
+    font-family: 'Slabo 27px', sans-serif;
+    font-size: 1.2em;
+    border: solid 1px red;
+}
+.description{
+    
+    width: 90%;
     border: solid 1px red;
 }
 
-.event{
-    height: 1vh;
-    border: solid 1px red;
+.p4{
+    font-size: 1.2em;
+    font-family: 'Slabo 27px', sans-serif;
+    color: gray;
+}
+
+.p5{
+    font-size: 1.2em;
+    font-family: 'Slabo 27px', sans-serif;
+    font-weight: bold;
 }
