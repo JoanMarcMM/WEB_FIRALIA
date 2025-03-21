@@ -31,14 +31,16 @@ session_start();
     <nav class="main-nav">
         <!-- ------------------------------------------------------------------ SIDE BAR --------------------------------------------------------------------------------->
         <ul class="sidebar">
-            <li onclick="hideSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></a></li>
+            <li onclick="hideSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#">
+                        <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                    </svg></a></li>
             <li><a href="concerts.php">Conciertos</a></li>
             <li><a href="events.php">Eventos</a></li>
             <li><a href="support.php">Soporte</a></li>
             <?php if (isset($_SESSION["user_id"])): ?>
                 <li><a href="login.php">Perfil</a></li>
             <?php else: ?>
-                <li><a href="login.php">Iniciar Sesión</a></li>
+                <li onclick="showLogin()"><a>Iniciar Sesión</a></li>
                 <li><a href="register.php">Registrarse</a></li>
             <?php endif; ?>
         </ul>
@@ -78,8 +80,7 @@ session_start();
 
             <?php else: ?>
 
-                <li class="hideOnMobile"><a href="login.php">INICIAR SESIÓN</a></li>
-                <li class="hideOnMobile"><a href="register.php">REGISTRARSE</a></li>
+                <li class="hideOnMobile"><button id="open-popup">INICIAR SESION</button></li>
 
             <?php endif; ?>
 
@@ -89,52 +90,76 @@ session_start();
                     </svg></a></li>
         </ul>
     </nav>
+    <!-- -------------------------------------------------------------------------- LOG IN  --------------------------------------------------------------------------------->
+    <div class="popup" id="popup">
+        <div class="overlay"></div>
+        <div class="popup-content">
+        <h2>Login</h2>
+        <form >
+        <div class="login-box">
+                        <input type="text" name="user" id="user" placeholder="Username" required>
+                  
+
+                    
+                        <input type="password" name="password" id="password" placeholder="Password" required>
+                        <a href="register.php" class="atext">Problemas con la contraseña?</a>
+                        <a href="register.php" class="atext">No tienes cuenta? Registrate!</a>
+                        </div>           
+        <div class="controls">
+            <button class="close-btn">Cancelar</button>
+            <button class="submit-btn" type="submit">Iniciar Sesión</button>
+        </div>
+        </form>
+        </div>
+    </div>
+
+
     <!-- ------------------------------------------------------------------ MAIN carrousel  --------------------------------------------------------------------------------->
     <!-- https://www.youtube.com/watch?v=1XXY_5k8Nok -->
     <section class="main-section">
-    <div class="carousel slide" id="carouselDemo">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="images/blackpink.jpg" class="w-100">
-                <div class="carousel-caption">
-                    <h1>BLACKPINK</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
+        <div class="carousel slide" id="carouselDemo">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="images/blackpink.jpg" class="w-100">
+                    <div class="carousel-caption">
+                        <h1>BLACKPINK</h1>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <img src="images/sabrinacarpenter.jpg" class="w-100">
+                    <div class="carousel-caption">
+                        <h1>SABRINA CARPENTER</h1>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <img src="images/postmalone.jpg" class="w-100">
+                    <div class="carousel-caption">
+                        <h1>POST MALONE</h1>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="carousel-item">
-                <img src="images/sabrinacarpenter.jpg" class="w-100">
-                <div class="carousel-caption">
-                    <h1>SABRINA CARPENTER</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
-                </div>
-            </div>
+            <!-- Controles del carrusel -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselDemo" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
 
-            <div class="carousel-item">
-                <img src="images/postmalone.jpg" class="w-100">
-                <div class="carousel-caption">
-                    <h1>POST MALONE</h1>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
-                </div>
-            </div>
-        </div>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselDemo" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
 
-        <!-- Controles del carrusel -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselDemo" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-        </button>
-
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselDemo" data-bs-slide="next">
-            <span class="carousel-control-next-icon"></span>
-        </button>
-
-        <div class="carousel-indicators">
+            <div class="carousel-indicators">
                 <button type="button" class="active" data-bs-target="#carouselDemo" data-bs-slide-to="0"></button>
                 <button type="button" class="active" data-bs-target="#carouselDemo" data-bs-slide-to="1"></button>
                 <button type="button" class="active" data-bs-target="#carouselDemo" data-bs-slide-to="2"></button>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
 
 
@@ -159,9 +184,9 @@ session_start();
         <div class="queda-poco">
 
             <div class="queda-poco-display">
-            <div class="title-queda-poco">
-                <h1>QUEDA POCO</h1>
-            </div>
+                <div class="title-queda-poco">
+                    <h1>QUEDA POCO</h1>
+                </div>
                 <div class="queda-poco-img"><img class="cont-img" src="images/mobileworldcongrss.jpg" alt="imagen"></div>
                 <div class="queda-poco-img"><img class="cont-img" src="images/blackpink.jpg" alt="imagen"></div>
                 <div class="queda-poco-img"><img class="cont-img" src="images/championsburguer.jpg" alt="imagen"></div>
@@ -174,9 +199,9 @@ session_start();
     <!-- https://www.youtube.com/watch?v=VUtJ7FWCfZA&list=PLpwngcHZlPae68z_mLFNfbJFIJVJ_Zcx2 -->
 
     <section class="info-2">
-    <div class="title-recomendations">
-                <h1>RECOMENDACIONES</h1>
-    </div>
+        <div class="title-recomendations">
+            <h1>RECOMENDACIONES</h1>
+        </div>
         <div class="popular-container swiper">
             <div class="card-wrapper">
                 <ul class="card-list swiper-wrapper">
@@ -272,10 +297,10 @@ session_start();
 
 
 
-                <div class="swiper-slide-button swiper-button-prev"></div>
-                <div class="swiper-slide-button swiper-button-next"></div>
+                <div class="swiper-slide-button swiper-button-prev" style="color:black;"></div>
+                <div class="swiper-slide-button swiper-button-next" style="color:black;"></div>
 
-                <div class="swiper-pagination"></div>
+                <div class="swiper-pagination" style="color:black;"></div>
 
             </div>
         </div>
@@ -338,6 +363,28 @@ session_start();
             const sidebar = document.querySelector('.sidebar');
             sidebar.style.display = 'none';
         }
+
+        function createPopup(id) {
+            let popupNode = document.querySelector(id);
+            let overlay = popupNode.querySelector(".overlay");
+            let closeBtn = popupNode.querySelector(".close-btn");
+
+            function openPopup() {
+                popupNode.classList.add("active");
+            }
+
+            function closePopup() {
+                popupNode.classList.remove("active");
+            }
+
+            overlay.addEventListener("click", closePopup);
+            closeBtn.addEventListener("click", closePopup);
+
+            return openPopup;
+        }
+
+        let popup = createPopup("#popup");
+        document.querySelector("#open-popup").addEventListener("click", popup);
     </script>
 
 </body>
