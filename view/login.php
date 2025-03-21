@@ -1,47 +1,4 @@
-<?php
 
-$is_invalid = false;
-
-if ($_SERVER['REQUEST_METHOD']=== "POST"){
-
-    $mysqli = require __DIR__."/../controller/database.php";
-
-    //Creo la query
-
-    $sql = sprintf("SELECT * FROM users 
-            WHERE user = '%s'",
-            $mysqli->real_escape_string($_POST["user"]));
-
-    //Ejecuto la query
-
-    $result = $mysqli->query($sql);
-
-    $user = $result->fetch_assoc();
-
-    if($user){
-    
-        if(password_verify($_POST["password"],$user["PASSWORD"])){
-            
-            session_start();
-
-            $_SESSION["user_id"] = $user["ID"];
-
-            header("Location: index.php");
-            exit();
-            
-
-        }
-    
-    }
-
-    $is_valid = true;
-}
-
-
-
-
-
-?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -126,7 +83,9 @@ if ($_SERVER['REQUEST_METHOD']=== "POST"){
                     <em>Invalid Credentials</em>
                 <?php endif;?>
 
-                <form  method="POST">
+                <form  method="POST" action="../controller/UserController.php">
+                <input type="hidden" name="redirect" value="<?php echo basename($_SERVER['PHP_SELF']); ?>">
+                <input type="hidden" name="login" value="login">
                     <div class="input-box">
                         <input type="text" name="user" id="user" placeholder="Username" required>
                     </div>

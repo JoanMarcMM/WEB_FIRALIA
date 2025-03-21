@@ -95,19 +95,19 @@ session_start();
         <div class="overlay"></div>
         <div class="popup-content">
         <h2>Login</h2>
-        <form >
+        <form method="POST" action="../controller/UserController.php">
         <div class="login-box">
                         <input type="text" name="user" id="user" placeholder="Username" required>
-                  
-
-                    
+                        <input type="hidden" name="login" value="login">
                         <input type="password" name="password" id="password" placeholder="Password" required>
+                        <input type="hidden" name="redirect" value="<?php echo basename($_SERVER['PHP_SELF']); ?>">
                         <a href="register.php" class="atext">Problemas con la contraseña?</a>
                         <a href="register.php" class="atext">No tienes cuenta? Registrate!</a>
+
                         </div>           
         <div class="controls">
             <button class="close-btn">Cancelar</button>
-            <button class="submit-btn" type="submit">Iniciar Sesión</button>
+            <button class="submit-btn" type="submit" >Iniciar Sesión</button>
         </div>
         </form>
         </div>
