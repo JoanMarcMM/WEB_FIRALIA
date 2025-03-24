@@ -32,7 +32,6 @@
 
 .main-body {
     min-height: 80vh;
-    border: solid 1px red;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -148,11 +147,35 @@
 .entry{
     margin-left: 2%;
     margin-right: 2%;
-    border: solid 1px red;
+    border-top: solid 1px lightgray;
     min-height: 15vh;
     display: flex;
     flex-direction: row;
-    align-items: stretch;
+    align-items: center;
+}
+.ticket-btn-container{
+    width:20%;
+    height: 100%;
+}
+
+.ticket-btn{
+    color: white;
+    background-color: black;
+    font-family: 'Slabo 27px', sans-serif;
+    width: 100%;
+    height: 7vh;
+    transition: all 300ms ease-in-out;
+}
+
+.ticket-btn:hover{
+    color: black;
+    background-color: white;
+    border: solid 1px black;
+    font-family: 'Slabo 27px', sans-serif;
+    width: 100%;
+
+    transition: all 300ms ease-in-out;
+    cursor: pointer;
 }
 
 .date{
@@ -163,12 +186,12 @@
     width: 10%;
     font-family: 'Slabo 27px', sans-serif;
     font-size: 1.2em;
-    border: solid 1px red;
+   
 }
 .description{
     
-    width: 90%;
-    border: solid 1px red;
+    width: 70%;
+    
 }
 
 .p4{
