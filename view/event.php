@@ -123,17 +123,19 @@ session_start();
                             <p class="p1">Barcelona</p>
                             <p class="p2">2 Eventos</p>
                         </div>
-                        <ul>
+                        <ul style="list-style-type: none;">
                             <li>
                                 <div class="entry">
                                     <div class="date"><p>13</p><p>MARZ</p></div>
                                     <div class="description"><p class="p4">Jueves · 19:00</p><p class="p5">Barcelona · Palau Sant Jordi</p><p class="p4">BLACKPINK</p></div>
+                                    <div class="ticket-btn-container"><button class="ticket-btn" href="#">COMPRAR TICKETS</button></div>
                                 </div>
                             </li>
                             <li>
                                 <div class="entry">
                                 <div class="date"><p>14</p><p>MARZ</p></div>
                                 <div class="description"><p class="p4">Viernes · 19:00</p><p class="p5">Barcelona · Palau Sant Jordi</p><p class="p4">BLACKPINK</p></div>
+                                <div class="ticket-btn-container"><button class="ticket-btn" href="#">COMPRAR TICKETS</button></div>
                                 </div>
                             </li>
                         </ul>
