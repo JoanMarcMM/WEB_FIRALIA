@@ -94,7 +94,7 @@
                     </div>
 
                     <div class="input-box">
-                        <input type="text" name="rol" id="rol"" placeholder="Rol" required formnovalidate>
+                        <input type="text" name="rol" id="rol" placeholder="Rol" required formnovalidate>
                     </div>
 
                     <div class="input-box">
@@ -106,7 +106,9 @@
                     </div>
 
                     <div class="input-box">
-                        <input type="image" name="user_image" id="user_image" placeholder="Imagen Usuario">
+                        
+                        <input type="file" name="user_image" id="user_image" placeholder="Imagen Usuario">
+
                     </div>
 
 
@@ -114,7 +116,7 @@
                     <button type="submit" class="btn">Register</button>
 
                     <div class="register-box">
-                        <p>Eres una empresa? <a href="#">Registro para empresas</a></p>
+                        <p>Eres una empresa? <a href="#">Registro para empresas</a></p> 
                     </div>
                 </form>
             </div>
