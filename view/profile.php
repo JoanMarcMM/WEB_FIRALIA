@@ -126,6 +126,7 @@ if (!$fetch) {
             <div class="profile">
                 <?php if ($fetch): ?>
                     <h3><?php echo htmlspecialchars($fetch['NAME']); ?></h3>
+                
                     <a href="update_profile.php" class="btn-profile">Actualizar Perfil</a>
                     <a href="../controller/logout.php" class="delete-btn">Logout</a>
                 <?php else: ?>
