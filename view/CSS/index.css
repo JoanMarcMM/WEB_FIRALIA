@@ -27,7 +27,7 @@
 
 /*------------------------------------------------------bestsellers----------------------------------------------------*/
 .info-1 {
-    margin-top: 4%;
+    margin-top: 2%;
     height: 110vh;
     width: 100%;
     display: flex;
@@ -70,14 +70,14 @@
 
 }
 .queda-poco h1 {
-    font-size: 3em;
+    font-size: 1em;
     font-weight: bold;
     color: black;
     font-family: 'Slabo 27px', sans-serif;
 }
 .best-sellers{
 
-    width: 90%;
+    width: 100%;
     height: 100%;
     text-align: center;
     display: flex;
@@ -187,6 +187,8 @@ width: 91%;
     width: 100%;
     height: 100%;
 }
+
+
 @media (max-width: 1600px) {
     .queda-poco h1 {
         font-size: 2.4em;
@@ -218,7 +220,7 @@ width: 91%;
 
 }
 
-/* 📌 Para pantallas menores a 1200px */
+/*  Para pantallas menores a 1200px */
 @media (max-width: 1200px) {
     .title{
        margin-bottom: 30px;

@@ -93,14 +93,14 @@
                         <input type="text" name="user" id="user" placeholder="Username" required>
                     </div>
 
-                        <input type="text" name="rol" id="rol" placeholder="Rol" required formnovalidate>
+                        <input type="hidden" name="rol" id="rol" value="2">
 
                     <div class="input-box">
                         <input type="password" name="password" id="password" placeholder="Constraseña" required formnovalidate>
                     </div>
 
                     <div class="input-box">
-                        <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Confirmación Constraseña" required formnovalidate>
+                        <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Confirmación Contraseña" required formnovalidate>
                     </div>
 
 

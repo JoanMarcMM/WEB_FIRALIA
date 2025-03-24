@@ -40,7 +40,7 @@ session_start();
             <?php if (isset($_SESSION["user_id"])): ?>
                 <li><a href="login.php">Perfil</a></li>
             <?php else: ?>
-                <li onclick="showLogin()"><a>Iniciar Sesión</a></li>
+                <li ><a href="login.php">Iniciar Sesión</a></li>
                 <li><a href="register.php">Registrarse</a></li>
             <?php endif; ?>
         </ul>
@@ -176,7 +176,12 @@ session_start();
                 <h1>BEST SELLERS</h1>
             </div>
             <div class="info-1-grid">
-                <div class="cont1"><img class="cont-img" src="images/blackpink.jpg" alt="imagen"></div>
+                <div class="cont1">
+                    <img href="event.php" class="cont-img" src="images/blackpink.jpg" alt="imagen">
+                    <div class="contt">
+
+                    </div>
+                </div>
                 <div class="cont2"><img class="cont-img" src="images/salomanga.jpg" alt="imagen"></div>
                 <div class="cont3"><img class="cont-img" src="images/championsburguer.jpg" alt="imagen"></div>
                 <div class="cont4"><img class="cont-img" src="images/postmalone.jpg" alt="imagen"></div>
