@@ -116,7 +116,7 @@
                     <button type="submit" class="btn">Register</button>
 
                     <div class="register-box">
-                        <p>Eres una empresa? <a href="#">Registro para empresas</a></p> 
+                        <p>Eres un administrador? <a href="#">Registro para administradores</a></p> 
                     </div>
                 </form>
             </div>

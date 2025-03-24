@@ -117,9 +117,10 @@ session_start();
     <!-- ------------------------------------------------------------------ MAIN carrousel  --------------------------------------------------------------------------------->
     <!-- https://www.youtube.com/watch?v=1XXY_5k8Nok -->
     <section class="main-section">
-        <div class="carousel slide" id="carouselDemo">
+        <div class="carousel slide" id="carouselDemo" data-bs-ride="carousel">
             <div class="carousel-inner">
-                <div class="carousel-item active">
+                <div class="carousel-item active"
+                data-bs-interval="4000">
                     <img src="images/blackpink.jpg" class="w-100">
                     <div class="carousel-caption">
                         <h1>BLACKPINK</h1>
@@ -127,7 +128,8 @@ session_start();
                     </div>
                 </div>
 
-                <div class="carousel-item">
+                <div class="carousel-item"
+                data-bs-interval="4000">
                     <img src="images/sabrinacarpenter.jpg" class="w-100">
                     <div class="carousel-caption">
                         <h1>SABRINA CARPENTER</h1>
@@ -135,7 +137,8 @@ session_start();
                     </div>
                 </div>
 
-                <div class="carousel-item">
+                <div class="carousel-item"
+                data-bs-interval="4000">
                     <img src="images/postmalone.jpg" class="w-100">
                     <div class="carousel-caption">
                         <h1>POST MALONE</h1>
