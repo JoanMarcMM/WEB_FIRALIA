@@ -93,7 +93,9 @@
                         <input type="text" name="user" id="user" placeholder="Username" required>
                     </div>
 
-                        <input type="text" name="rol" id="rol" placeholder="Rol" required formnovalidate>
+                    <div class="input-box">
+                        <input type="text" name="rol" id="rol"" placeholder="Rol" required formnovalidate>
+                    </div>
 
                     <div class="input-box">
                         <input type="password" name="password" id="password" placeholder="Constraseña" required formnovalidate>
@@ -102,14 +104,21 @@
                     <div class="input-box">
                         <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Confirmación Constraseña" required formnovalidate>
                     </div>
-                    
+
+                    <div class="input-box">
+                        <input type="image" name="user_image" id="user_image" placeholder="Imagen Usuario">
+                    </div>
+                    <div class="input-box">
+                        
+                    </div>
                     
 
+                    
 
                     <button type="submit" class="btn">Register</button>
 
                     <div class="register-box">
-                        <p>Eres un administrador? <a href="registerAdmin.php">Registro para administradores</a></p> 
+                        <p>Eres un Usuario? <a href="register.php">Registro para Usuarios</a></p> 
                     </div>
                 </form>
             </div>
