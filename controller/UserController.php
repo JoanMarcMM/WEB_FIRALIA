@@ -1,11 +1,4 @@
 <?php
-class UserController
-{
-
-    private $conn;
-
-   
-}
 session_start();
 
 
