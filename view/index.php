@@ -220,7 +220,7 @@ session_start();
                         <a href="#" class="card-link">
                             <img src="images/championsburguer.jpg" alt="" class="card-image">
                             <p class="badge food">Comida</p>
-                            <h2 class="card-title">Champions Burguer</h2>
+                            <h2 class="card-title">Champ. Burguer</h2>
                             <p class="card-text"></p>
                             <button class="card-button
                         material-symbols-outlined">arrow_forward</button>
@@ -231,7 +231,7 @@ session_start();
                         <a href="#" class="card-link">
                             <img src="images/mobileworldcongrss.jpg" alt="" class="card-image">
                             <p class="badge technology">Tecnologia</p>
-                            <h2 class="card-title">Mobile World Congress</h2>
+                            <h2 class="card-title">MWC</h2>
                             <p class="card-text"></p>
                             <button class="card-button
                         material-symbols-outlined">arrow_forward</button>
@@ -264,7 +264,7 @@ session_start();
                         <a href="#" class="card-link">
                             <img src="images/bgw.jpg" alt="" class="card-image">
                             <p class="badge videogames">Videojuegos</p>
-                            <h2 class="card-title">Barcelona Games World</h2>
+                            <h2 class="card-title">BGW</h2>
                             <p class="card-text"></p>
                             <button class="card-button
                         material-symbols-outlined">arrow_forward</button>
@@ -275,7 +275,7 @@ session_start();
                         <a href="#" class="card-link">
                             <img src="images/bbf.jpg" alt="" class="card-image">
                             <p class="badge entertainment">Musica</p>
-                            <h2 class="card-title">Barcelona Beach Festival</h2>
+                            <h2 class="card-title">BBF</h2>
                             <p class="card-text"></p>
                             <button class="card-button
                         material-symbols-outlined">arrow_forward</button>
