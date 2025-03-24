@@ -7,7 +7,7 @@
     <title>Registrarse</title>
 
     <link rel="stylesheet" href="CSS/style.css">
-    <link rel="stylesheet" href="CSS/REGISTER.css">
+    <link rel="stylesheet" href="CSS/registerAdmin.css">
 </head>
 
 <body>
@@ -93,9 +93,6 @@
                         <input type="text" name="user" id="user" placeholder="Username" required>
                     </div>
 
-                    <div class="input-box">
-                        <input type="text" name="rol" id="rol"" placeholder="Rol" required formnovalidate>
-                    </div>
 
                     <div class="input-box">
                         <input type="password" name="password" id="password" placeholder="Constraseña" required formnovalidate>
@@ -108,12 +105,6 @@
                     <div class="input-box">
                         <input type="image" name="user_image" id="user_image" placeholder="Imagen Usuario">
                     </div>
-                    <div class="input-box">
-                        
-                    </div>
-                    
-
-                    
 
                     <button type="submit" class="btn">Register</button>
 
