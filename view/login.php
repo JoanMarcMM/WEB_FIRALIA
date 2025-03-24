@@ -126,7 +126,7 @@ if ($_SERVER['REQUEST_METHOD']=== "POST"){
                     <em>Invalid Credentials</em>
                 <?php endif;?>
 
-                <form  method="POST">
+                <form  method="POST" >
                     <div class="input-box">
                         <input type="text" name="user" id="user" placeholder="Username" required>
                     </div>
