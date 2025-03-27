@@ -124,7 +124,6 @@ if (!$fetch) {
    
     <section class="grid">
     <div class="profile-container">
-        <!-- Imagen al lado del perfil -->
         <a href="#"><img src="images/icons/estandarPfp.jpg" alt="Pfp" class="pfp"></a>
         <div class="profile">
             <?php if ($fetch): ?>
