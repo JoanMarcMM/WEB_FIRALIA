@@ -24,6 +24,24 @@
     object-fit: cover; /* Ajusta la imagen sin deformarla */
 }
 
+@media (max-width: 900px) {
+    .main-section{
+        height: 60vh;
+    }
+}
+
+@media (max-width: 600px) {
+    .main-section{
+        height: 40vh;
+    }
+}
+
+
+@media (max-width: 400px) {
+    .main-section{
+        height: 20vh;
+    }
+}
 
 /*------------------------------------------------------bestsellers----------------------------------------------------*/
 .info-1 {

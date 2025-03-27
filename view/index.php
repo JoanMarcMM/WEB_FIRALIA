@@ -131,7 +131,7 @@ session_start();
                     <img src="images/blackpink.jpg" class="w-100">
                     <div class="carousel-caption">
                         <h1>BLACKPINK</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
+                        <p> Icono global del K-pop con potentes coreografías y una presencia audaz.</p>
                     </div>
                 </div>
 
@@ -140,7 +140,7 @@ session_start();
                     <img src="images/sabrinacarpenter.jpg" class="w-100">
                     <div class="carousel-caption">
                         <h1>SABRINA CARPENTER</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
+                        <p>Cantante pop con letras profundas y estilo juvenil.</p>
                     </div>
                 </div>
 
@@ -149,7 +149,7 @@ session_start();
                     <img src="images/postmalone.jpg" class="w-100">
                     <div class="carousel-caption">
                         <h1>POST MALONE</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
+                        <p>Artista que fusiona rap, rock y pop con una voz única y melancólica.</p>
                     </div>
                 </div>
             </div>
