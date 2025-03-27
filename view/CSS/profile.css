@@ -1,21 +1,117 @@
-.main-section .profile {
+/* Establece el contenedor principal como grid */
+.grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    background-image: url(../images/fondoperfil.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* Contenedor para la imagen y el perfil */
+.profile-container {
+    display: grid;
+    grid-template-columns: auto 1fr; /* Imagen en la primera columna, perfil en la segunda */
+    align-items: center;
+    gap: 30px;
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 90%;
+    position: relative;
+}
+
+/* Imagen de perfil */
+.pfp {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto 15px;
+}
+
+/* Estilos para el perfil */
+.profile {
     display: flex;
     flex-direction: column;
-    align-items: center; 
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
 }
 
-.main-section .profile a {
-    margin-bottom: 10px; 
-    width: 100%; 
-    text-align: center; 
+.profile h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.profile a {
     text-decoration: none;
-    color: inherit;
+    font-size: 16px;
 }
 
-.main-section .profile a:last-child {
-    margin-bottom: 0; 
-}
-
+/* Botones */
 .btn-profile {
-    
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.btn-profile:hover {
+    background-color: #45a049;
+}
+
+.delete-btn {
+    position: absolute;
+    bottom: 40px;
+    right: 15px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 16px;
+    background-color: red;
+    color: white;
+}
+
+.delete-btn:hover {
+    background-color: darkred;
+}
+
+/* Media query para pantallas pequeñas */
+@media screen and (max-width: 768px) {
+    .profile-container {
+        grid-template-columns: 1fr; /* Apilar la imagen encima del perfil en móviles */
+        text-align: center;
+        padding: 20px;
+    }
+
+    .profile {
+        align-items: center;
+    }
+
+    .pfp {
+        width: 120px;
+        height: 120px;
+    }
+
+    .delete-btn {
+        position: static;
+        margin-top: 20px;
+        width: 100%;
+    }
 }

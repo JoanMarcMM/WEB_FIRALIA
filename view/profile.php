@@ -120,28 +120,27 @@ if (!$fetch) {
     </nav>
     <!-- ------------------------------------------------------------------ Profile body --------------------------------------------------------------------------------->
     <!-- https://www.youtube.com/watch?v=KZHF2FKJtK8 -->
-
-    <section class="main-section">
-        <div class="container">
-            <div class="profile">
-                <?php if ($fetch): ?>
-                    <h3><?php echo htmlspecialchars($fetch['NAME']); ?></h3>
-                
-                    <a href="update_profile.php" class="btn-profile">Actualizar Perfil</a>
-                    <a href="../controller/logout.php" class="delete-btn">Logout</a>
-                <?php else: ?>
-                    <h3>Usuario no encontrado</h3>
-                <?php endif; ?>
-            </div>
+   
+   
+    <section class="grid">
+    <div class="profile-container">
+        <!-- Imagen al lado del perfil -->
+        <a href="#"><img src="images/icons/estandarPfp.jpg" alt="Pfp" class="pfp"></a>
+        <div class="profile">
+            <?php if ($fetch): ?>
+                <h3><?php echo "Usuario: " . htmlspecialchars($fetch['USER']); ?></h3>
+                <h3><?php echo "Nombre: " . htmlspecialchars($fetch['NAME']); ?></h3>
+                <h3><?php echo "Apellidos: " . htmlspecialchars($fetch['LASTNAME']); ?></h3>
+                <h3><?php echo "Correo: " . htmlspecialchars($fetch['EMAIL']); ?></h3>
+                <a href="update_profile.php" class="btn-profile">Actualizar Perfil</a>
+                <a href="../controller/logout.php" class="delete-btn">Logout</a>
+            <?php else: ?>
+                <h3>Usuario no encontrado</h3>
+            <?php endif; ?>
         </div>
-    </section>
-
-
-
-
-
-
-    </section>
+    </div>
+</section>
+  
 
     <!-- --------------------------------------------------------------------- Footer  --------------------------------------------------------------------------------->
 
