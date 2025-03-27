@@ -106,7 +106,7 @@
                         <input type="image" name="user_image" id="user_image" placeholder="Imagen Usuario">
                     </div>
 
-                    <button type="submit" class="btn">Register</button>
+                    <button type="submit" class="btn">Registrarme</button>
 
                     <div class="register-box">
                         <p>Eres un Usuario? <a href="register.php">Registro para Usuarios</a></p> 

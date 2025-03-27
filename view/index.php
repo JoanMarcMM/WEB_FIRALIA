@@ -35,7 +35,7 @@ session_start();
                         <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
                     </svg></a></li>
             <li><a href="concerts.php">Conciertos</a></li>
-            <li><a href="events.php">Eventos</a></li>
+            <li><a href="event.php">Eventos</a></li>
             <li><a href="support.php">Soporte</a></li>
             <?php if (isset($_SESSION["user_id"])): ?>
                 <li><a href="login.php">Perfil</a></li>
@@ -66,7 +66,7 @@ session_start();
 
             </li>
             <li class="hideOnMobile"><a href="concerts.php">CONCIERTOS</a></li>
-            <li class="hideOnMobile"><a href="events.php">EVENTOS</a></li>
+            <li class="hideOnMobile"><a href="event.php">EVENTOS</a></li>
             <li class="hideOnMobile"><a href="support.php">SOPORTE</a></li>
             <li>
                 <form class="nav-form">

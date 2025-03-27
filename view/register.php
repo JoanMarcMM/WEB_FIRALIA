@@ -106,7 +106,7 @@
                     
 
 
-                    <button type="submit" class="btn">Register</button>
+                    <button type="submit" class="btn">Registrarme</button>
 
                     <div class="register-box">
                         <p>Eres un administrador? <a href="registerAdmin.php">Registro para administradores</a></p> 
