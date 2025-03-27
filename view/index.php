@@ -40,7 +40,7 @@ session_start();
             <?php if (isset($_SESSION["user_id"])): ?>
                 <li><a href="login.php">Perfil</a></li>
             <?php else: ?>
-                <li ><a href="login.php">Iniciar Sesión</a></li>
+                <li><a href="login.php">Iniciar Sesión</a></li>
                 <li><a href="register.php">Registrarse</a></li>
             <?php endif; ?>
         </ul>
@@ -76,7 +76,7 @@ session_start();
             </li>
             <?php if (isset($_SESSION["user_id"])): ?>
 
-                <li><a href="profile.php">foto</a></li>
+                <li><a href="profile.php"><img src="images/icons/estandarPfp.jpg" alt="Pfp" class="pfpNav"></a></li>
 
             <?php else: ?>
 
@@ -94,22 +94,29 @@ session_start();
     <div class="popup" id="popup">
         <div class="overlay"></div>
         <div class="popup-content">
-        <h2>Login</h2>
-        <form method="POST" action="../controller/UserController.php">
-        <div class="login-box">
-                        <input type="text" name="user" id="user" placeholder="Username" required>
-                        <input type="hidden" name="login" value="login">
-                        <input type="password" name="password" id="password" placeholder="Password" required>
-                        <input type="hidden" name="redirect" value="<?php echo basename($_SERVER['PHP_SELF']); ?>">
-                        <a href="register.php" class="atext">Problemas con la contraseña?</a>
-                        <a href="register.php" class="atext">No tienes cuenta? Registrate!</a>
+            <h2>Login</h2>
+            <form method="POST" action="../controller/UserController.php">
+                <div class="login-box">
+                    <?php
 
-                        </div>           
-        <div class="controls">
-            <button class="close-btn">Cancelar</button>
-            <button class="submit-btn" type="submit" >Iniciar Sesión</button>
-        </div>
-        </form>
+                    if (isset($_SESSION["error_message"])) {
+                        echo "<p class='error-message'>" . $_SESSION["error_message"] . "</p>";
+                        unset($_SESSION["error_message"]); // Eliminar mensaje tras mostrarlo
+                    }
+                    ?>
+                    <input type="text" name="user" id="user" placeholder="Username" required>
+                    <input type="hidden" name="login" value="login">
+                    <input type="password" name="password" id="password" placeholder="Password" required>
+                    <input type="hidden" name="redirect" value="<?php echo basename($_SERVER['PHP_SELF']); ?>">
+                    <a href="register.php" class="atext">Problemas con la contraseña?</a>
+                    <a href="register.php" class="atext">No tienes cuenta? Registrate!</a>
+
+                </div>
+                <div class="controls">
+                    <button class="close-btn">Cancelar</button>
+                    <button class="submit-btn" type="submit">Iniciar Sesión</button>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -120,7 +127,7 @@ session_start();
         <div class="carousel slide" id="carouselDemo" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active"
-                data-bs-interval="4000">
+                    data-bs-interval="4000">
                     <img src="images/blackpink.jpg" class="w-100">
                     <div class="carousel-caption">
                         <h1>BLACKPINK</h1>
@@ -129,7 +136,7 @@ session_start();
                 </div>
 
                 <div class="carousel-item"
-                data-bs-interval="4000">
+                    data-bs-interval="4000">
                     <img src="images/sabrinacarpenter.jpg" class="w-100">
                     <div class="carousel-caption">
                         <h1>SABRINA CARPENTER</h1>
@@ -138,7 +145,7 @@ session_start();
                 </div>
 
                 <div class="carousel-item"
-                data-bs-interval="4000">
+                    data-bs-interval="4000">
                     <img src="images/postmalone.jpg" class="w-100">
                     <div class="carousel-caption">
                         <h1>POST MALONE</h1>
@@ -379,6 +386,10 @@ session_start();
 
             function openPopup() {
                 popupNode.classList.add("active");
+            }
+
+            if (document.querySelector(".error-message")) {
+                openPopup();
             }
 
             function closePopup() {

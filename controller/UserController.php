@@ -7,46 +7,46 @@ class UserController
 {
     function login()
     {
+        session_start(); // Asegurar que la sesión está iniciada
         $mysqli = conn();
-
-        // Validar el parámetro redirect y asegurar URL relativa
-        $redirect = "../view/index.php"; // Redirección por defecto
+        
+        $redirect = "../view/index.php"; 
         if (isset($_POST["redirect"]) && preg_match("/^[a-zA-Z0-9\/\-_]+\.php$/", $_POST["redirect"])) {
             $redirect = "../view/" . $_POST["redirect"];
         }
-
-        // Validar que se reciban los campos necesarios
+        
         if (empty($_POST["user"]) || empty($_POST["password"])) {
+            $_SESSION["error_message"] = "Usuario o contraseña vacíos.";
             header("Location: $redirect");
             exit();
         }
-
-        // Consulta preparada para evitar inyecciones SQL
+        
         $sql = "SELECT * FROM users WHERE user = ?";
         $stmt = $mysqli->prepare($sql);
-
+        
         if (!$stmt) {
             die("Error en la preparación de la consulta: " . $mysqli->error);
         }
-
+        
         $stmt->bind_param("s", $_POST["user"]);
         $stmt->execute();
         $result = $stmt->get_result();
-
+        
         if (!$result) {
             die("Error en la ejecución de la consulta: " . $stmt->error);
         }
-
+        
         $user = $result->fetch_assoc();
-
+        
         // Verificación de contraseña
         if ($user && password_verify($_POST["password"], $user["PASSWORD"])) {
             $_SESSION["user_id"] = $user["ID"];
             header("Location: ../view/profile.php");
             exit();
         }
-
-        // Login inválido, redirigir
+        
+        // Si el login falla, guardar mensaje en sesión y redirigir
+        $_SESSION["error_message"] = "Usuario o contraseña incorrectos.";
         header("Location: $redirect");
         exit();
     }
