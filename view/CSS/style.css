@@ -246,6 +246,14 @@ body {
     width: 30%;
 }
 
+.pfpNav {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    margin-top: 1%;
+}
 
 
 /* Media Queries */
@@ -475,7 +483,8 @@ body {
     left: 50%;
     transform: translate(-50%,-50%);
     width:95%;
-    height: 50vh;
+    min-height: 50vh;
+    height: auto;
     max-width: 350px;
     background: white;
     padding: 25px;
