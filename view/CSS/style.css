@@ -441,6 +441,7 @@ body {
 
 
 .popup{
+    display: none;
     position:absolute;
     top: 100vh;
     left: 0px;
@@ -540,6 +541,7 @@ body {
 }
 
 .popup.active{
+    display: flex;
     top:0px;
     transition: top 0ms ease-in-out 0ms;
 }
