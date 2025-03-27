@@ -27,7 +27,7 @@
 
 /*------------------------------------------------------bestsellers----------------------------------------------------*/
 .info-1 {
-    margin-top: 4%;
+    margin-top: 2%;
     height: 110vh;
     width: 100%;
     display: flex;
@@ -44,19 +44,18 @@
     height: 100%;
     display: flex;
     flex-direction:column;
-    
     align-items: center;
 }
 
 .queda-poco-display{
     background-color: white;
     display: flex;
-    height: 95%;
+    height: 100%;
     width: 80%;
     flex-direction:column;
     justify-content: center;
     align-items: center; 
-    gap: 20px;
+    gap: 16px;
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
     border-radius: 5px; 
     
@@ -71,24 +70,25 @@
 
 }
 .queda-poco h1 {
-    font-size: 3em;
+    font-size: 1em;
     font-weight: bold;
     color: black;
     font-family: 'Slabo 27px', sans-serif;
 }
 .best-sellers{
 
-    width: 90%;
+    width: 100%;
     height: 100%;
     text-align: center;
     display: flex;
     flex-direction:column;
     justify-content: center;
     align-items: center;
+    border-right: solid 1px gray;
 }
 
 .title{
-width: 95%;
+width: 91%;
     text-align: center;
     background-color: black;
 }
@@ -103,8 +103,8 @@ width: 95%;
     height: 100%;
     width: 100%;
     display: grid;
-    grid-template-columns: 5% 28% 3% 28% 3% 28% 4%;
-    grid-template-rows: 5% 28% 3% 28% 3% 28% 4%;
+    grid-template-columns: 4% 30% 1% 30% 1% 30% 4%;
+    grid-template-rows: 4% 30% 1% 30% 1% 30% 4%;
 
     
 }
@@ -187,6 +187,8 @@ width: 95%;
     width: 100%;
     height: 100%;
 }
+
+
 @media (max-width: 1600px) {
     .queda-poco h1 {
         font-size: 2.4em;
@@ -218,7 +220,7 @@ width: 95%;
 
 }
 
-/* 📌 Para pantallas menores a 1200px */
+/*  Para pantallas menores a 1200px */
 @media (max-width: 1200px) {
     .title{
        margin-bottom: 30px;
@@ -341,11 +343,11 @@ width: 95%;
         background-color: black;
     }
 
-.title-recomendations{
+.title-queda-poco{
     width: 95%;
     
         text-align: center;
-        background-color: black;
+
     }
 
     .popular-container {
@@ -404,30 +406,12 @@ width: 95%;
         border-radius: 50px;
     }
     
-    .card-list .card-link .badge.culture {
-        color: #205C20;
-        background-color: #D6F8D6;
+    .card-list .card-link .badge {
+        color: white;
+        background-color: black;
     }
     
-    .card-list .card-link .badge.videogames {
-        color: #8B6A9C;
-        background-color: #d3a1ef;
-    }
-    
-    .card-list .card-link .badge.entertainment {
-        color: #B22485;
-        background-color: #F7DFF5;
-    }
-    
-    .card-list .card-link .badge.technology {
-        color: #856404;
-        background-color: #FFF3CD;
-    }
-    
-    .card-list .card-link .badge.food {
-        color: #C12042;
-        background-color: #E8718A;
-    }
+   
     
     .card-list .card-link .card-title {
         font-size: 1.5rem;

@@ -35,12 +35,12 @@ session_start();
                         <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
                     </svg></a></li>
             <li><a href="concerts.php">Conciertos</a></li>
-            <li><a href="events.php">Eventos</a></li>
+            <li><a href="event.php">Eventos</a></li>
             <li><a href="support.php">Soporte</a></li>
             <?php if (isset($_SESSION["user_id"])): ?>
                 <li><a href="login.php">Perfil</a></li>
             <?php else: ?>
-                <li onclick="showLogin()"><a>Iniciar Sesión</a></li>
+                <li ><a href="login.php">Iniciar Sesión</a></li>
                 <li><a href="register.php">Registrarse</a></li>
             <?php endif; ?>
         </ul>
@@ -66,7 +66,7 @@ session_start();
 
             </li>
             <li class="hideOnMobile"><a href="concerts.php">CONCIERTOS</a></li>
-            <li class="hideOnMobile"><a href="events.php">EVENTOS</a></li>
+            <li class="hideOnMobile"><a href="event.php">EVENTOS</a></li>
             <li class="hideOnMobile"><a href="support.php">SOPORTE</a></li>
             <li>
                 <form class="nav-form">
@@ -117,9 +117,10 @@ session_start();
     <!-- ------------------------------------------------------------------ MAIN carrousel  --------------------------------------------------------------------------------->
     <!-- https://www.youtube.com/watch?v=1XXY_5k8Nok -->
     <section class="main-section">
-        <div class="carousel slide" id="carouselDemo">
+        <div class="carousel slide" id="carouselDemo" data-bs-ride="carousel">
             <div class="carousel-inner">
-                <div class="carousel-item active">
+                <div class="carousel-item active"
+                data-bs-interval="4000">
                     <img src="images/blackpink.jpg" class="w-100">
                     <div class="carousel-caption">
                         <h1>BLACKPINK</h1>
@@ -127,7 +128,8 @@ session_start();
                     </div>
                 </div>
 
-                <div class="carousel-item">
+                <div class="carousel-item"
+                data-bs-interval="4000">
                     <img src="images/sabrinacarpenter.jpg" class="w-100">
                     <div class="carousel-caption">
                         <h1>SABRINA CARPENTER</h1>
@@ -135,7 +137,8 @@ session_start();
                     </div>
                 </div>
 
-                <div class="carousel-item">
+                <div class="carousel-item"
+                data-bs-interval="4000">
                     <img src="images/postmalone.jpg" class="w-100">
                     <div class="carousel-caption">
                         <h1>POST MALONE</h1>
@@ -173,7 +176,12 @@ session_start();
                 <h1>BEST SELLERS</h1>
             </div>
             <div class="info-1-grid">
-                <div class="cont1"><img class="cont-img" src="images/blackpink.jpg" alt="imagen"></div>
+                <div class="cont1">
+                    <img href="event.php" class="cont-img" src="images/blackpink.jpg" alt="imagen">
+                    <div class="contt">
+
+                    </div>
+                </div>
                 <div class="cont2"><img class="cont-img" src="images/salomanga.jpg" alt="imagen"></div>
                 <div class="cont3"><img class="cont-img" src="images/championsburguer.jpg" alt="imagen"></div>
                 <div class="cont4"><img class="cont-img" src="images/postmalone.jpg" alt="imagen"></div>
@@ -220,7 +228,7 @@ session_start();
                         <a href="#" class="card-link">
                             <img src="images/championsburguer.jpg" alt="" class="card-image">
                             <p class="badge food">Comida</p>
-                            <h2 class="card-title">Champions Burguer</h2>
+                            <h2 class="card-title">Champ. Burguer</h2>
                             <p class="card-text"></p>
                             <button class="card-button
                         material-symbols-outlined">arrow_forward</button>
@@ -231,7 +239,7 @@ session_start();
                         <a href="#" class="card-link">
                             <img src="images/mobileworldcongrss.jpg" alt="" class="card-image">
                             <p class="badge technology">Tecnologia</p>
-                            <h2 class="card-title">Mobile World Congress</h2>
+                            <h2 class="card-title">MWC</h2>
                             <p class="card-text"></p>
                             <button class="card-button
                         material-symbols-outlined">arrow_forward</button>
@@ -264,7 +272,7 @@ session_start();
                         <a href="#" class="card-link">
                             <img src="images/bgw.jpg" alt="" class="card-image">
                             <p class="badge videogames">Videojuegos</p>
-                            <h2 class="card-title">Barcelona Games World</h2>
+                            <h2 class="card-title">BGW</h2>
                             <p class="card-text"></p>
                             <button class="card-button
                         material-symbols-outlined">arrow_forward</button>
@@ -275,7 +283,7 @@ session_start();
                         <a href="#" class="card-link">
                             <img src="images/bbf.jpg" alt="" class="card-image">
                             <p class="badge entertainment">Musica</p>
-                            <h2 class="card-title">Barcelona Beach Festival</h2>
+                            <h2 class="card-title">BBF</h2>
                             <p class="card-text"></p>
                             <button class="card-button
                         material-symbols-outlined">arrow_forward</button>
