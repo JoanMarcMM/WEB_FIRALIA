@@ -95,7 +95,7 @@ session_start();
         <img src="images/blackpink.jpg" alt="main image">
         <div class="caption">
             <h1>BLACKPINK</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
+            <p></p>
         </div>
     </section>
     <!-- ------------------------------------------------------------------ PAGE NAV  --------------------------------------------------------------------------------->
@@ -112,7 +112,7 @@ session_start();
     <section class="main-body">
         <div class="sections-container">
 
-            <div>
+            <div class="events">
                 <h1>EVENTS</h1>
                 <div class="upcoming">
                     <div class="upcoming-events">
@@ -126,16 +126,30 @@ session_start();
                         <ul style="list-style-type: none;">
                             <li>
                                 <div class="entry">
-                                    <div class="date"><p>13</p><p>MARZ</p></div>
-                                    <div class="description"><p class="p4">Jueves · 19:00</p><p class="p5">Barcelona · Palau Sant Jordi</p><p class="p4">BLACKPINK</p></div>
+                                    <div class="date">
+                                        <p>13</p>
+                                        <p>MARZ</p>
+                                    </div>
+                                    <div class="description">
+                                        <p class="p4">Jueves · 19:00</p>
+                                        <p class="p5">Barcelona · Palau Sant Jordi</p>
+                                        <p class="p4">BLACKPINK</p>
+                                    </div>
                                     <div class="ticket-btn-container"><button class="ticket-btn" href="#">COMPRAR TICKETS</button></div>
                                 </div>
                             </li>
                             <li>
                                 <div class="entry">
-                                <div class="date"><p>14</p><p>MARZ</p></div>
-                                <div class="description"><p class="p4">Viernes · 19:00</p><p class="p5">Barcelona · Palau Sant Jordi</p><p class="p4">BLACKPINK</p></div>
-                                <div class="ticket-btn-container"><button class="ticket-btn" href="#">COMPRAR TICKETS</button></div>
+                                    <div class="date">
+                                        <p>14</p>
+                                        <p>MARZ</p>
+                                    </div>
+                                    <div class="description">
+                                        <p class="p4">Viernes · 19:00</p>
+                                        <p class="p5">Barcelona · Palau Sant Jordi</p>
+                                        <p class="p4">BLACKPINK</p>
+                                    </div>
+                                    <div class="ticket-btn-container"><button class="ticket-btn" href="#">COMPRAR TICKETS</button></div>
                                 </div>
                             </li>
                         </ul>
@@ -146,10 +160,37 @@ session_start();
 
             <div class="gallery" id="gallery">
                 <h1>GALLERY</h1>
+                <div class="container">
+                <div class="slider-wrapper">
+                    <div class="image-list">
+                        <iframe class="image-item" width="560" height="315" src="https://www.youtube.com/embed/2S24-y0Ij3Y?si=kjHpcbtpMblz_eVg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe class="image-item" width="560" height="315" src="https://www.youtube.com/embed/IHNzOHi8sJs?si=UaIR-tYZuo96IAcO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe class="image-item" width="560" height="315" src="https://www.youtube.com/embed/gQlMMD8auMs?si=8r9E6lcCH08cO7Is" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe class="image-item" width="560" height="315" src="https://www.youtube.com/embed/POe9SOEKotk?si=uE-uUzjL9Fch2k-r" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe class="image-item" width="560" height="315" src="https://www.youtube.com/embed/dyRsYk0LyA8?si=tnWCZj4SGZDRBW-I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe class="image-item" width="560" height="315" src="https://www.youtube.com/embed/bwmSjveL3Lc?si=RCPISGXfp-Wjh7PM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                     </div>
+                </div>
+                </div>
             </div>
 
             <div class="about" id="about">
                 <h1>ABOUT</h1>
+                <div class="about-container">
+                    <div class="text">
+                        <p>BLACKPINK es un grupo femenino de K-pop formado por YG Entertainment en 2016. Está compuesto por cuatro miembros: Jisoo, Jennie, Rosé y Lisa. Desde su debut, se han convertido en uno de los grupos más influyentes de la industria musical a nivel global, rompiendo récords y ganándose un lugar en la cultura pop internacional. <br>
+                            <br> BLACKPINK debutó el 8 de agosto de 2016 con los sencillos "Boombayah" y "Whistle", que fueron un éxito inmediato. Con su estilo distintivo, que mezcla pop, hip-hop y EDM, el grupo ha lanzado éxitos como "DDU-DU DDU-DU", "Kill This Love", "How You Like That", y "Pink Venom". Su música ha dominado las listas de éxitos en Corea del Sur y en plataformas globales como Billboard y Spotify.
+                            <br> En 2020, lanzaron su primer álbum de estudio, "THE ALBUM", que incluía colaboraciones con artistas como Selena Gomez y Cardi B. Su impacto en la música global se consolidó con su gira mundial y su presentación en Coachella 2019, convirtiéndose en el primer grupo femenino de K-pop en actuar en el festival.<br>
+                            <br>BLACKPINK es reconocido por su poderosa presencia escénica, coreografías icónicas y una imagen vanguardista que ha redefinido la estética del K-pop. Cada miembro también ha desarrollado carreras individuales en la moda, la actuación y la música en solitario. Han sido embajadoras de marcas de lujo como Chanel, Dior, Celine y Bulgari, y han aparecido en portadas de revistas de renombre internacional.<br>
+                            <br>Los seguidores de BLACKPINK son conocidos como BLINKs. La base de fans es una de las más activas en redes sociales, apoyando al grupo en cada lanzamiento y consiguiendo récords en plataformas digitales.<br>
+                            <br>BLACKPINK ha demostrado ser más que un fenómeno pasajero en el K-pop. Su éxito ha abierto puertas para otros artistas asiáticos en la industria global y han sido reconocidas por la crítica y el público como una de las agrupaciones más influyentes del siglo XXI. Aunque su futuro es incierto debido a los contratos con YG Entertainment, su impacto en la música y la moda sigue siendo indiscutible.
+                        </p>
+
+                    </div>
+                    <div class="image">
+                        <img src="images/bp.jpg" alt="foto artista">
+                    </div>
+                </div>
             </div>
 
 
