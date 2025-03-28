@@ -95,7 +95,7 @@ session_start();
         <img src="images/blackpink.jpg" alt="main image">
         <div class="caption">
             <h1>BLACKPINK</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
+            <p></p>
         </div>
     </section>
     <!-- ------------------------------------------------------------------ PAGE NAV  --------------------------------------------------------------------------------->
