@@ -65,9 +65,9 @@ session_start();
                 </a>
 
             </li>
-            <li class="hideOnMobile"><a href="concerts.php">CONCIERTOS</a></li>
-            <li class="hideOnMobile"><a href="#">EVENTOS</a></li>
-            <li class="hideOnMobile"><a href="support.php">SOPORTE</a></li>
+            <li class="hideOnMobile"><a class="link" href="concerts.php">CONCIERTOS</a></li>
+            <li class="hideOnMobile"><a class="link" href="#">EVENTOS</a></li>
+            <li class="hideOnMobile"><a class="link" href="support.php">SOPORTE</a></li>
             <li>
                 <form class="nav-form">
                     <input type="text" class="search-bx" placeholder="">
@@ -80,7 +80,7 @@ session_start();
 
             <?php else: ?>
 
-                <li class="hideOnMobile"><button id="open-popup">INICIAR SESION</button></li>
+                <li class="hideOnMobile"><button id="open-popup" >LOG IN</button></li>
 
             <?php endif; ?>
 

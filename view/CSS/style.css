@@ -144,14 +144,15 @@ body {
 }
 
 .main-nav button {
+    font-size: small;
     height: 70%;
     width: 90%;
     padding: 15px;
-    margin-top: 5%;
+    margin-top: 10%;
     margin-right: 5vh;
 }
 
-.main-nav a {
+.link {
     height: 100%;
     text-decoration: none;
     padding: 0 30px;
@@ -166,10 +167,13 @@ body {
 
 /* Logo */
 .logo-nav {
-    width: 80%;
-    height: 70%;
+    margin-top: 5%;
+    width: 100%;
+    height: 80%;
     margin-bottom: 6%;
+
 }
+
 
 /* Sidebar */
 .sidebar {
@@ -213,6 +217,7 @@ body {
 /* Botón de menú */
 .menu-button {
     display: none;
+
 }
 
 /* Formulario de búsqueda */
@@ -242,8 +247,12 @@ body {
 }
 
 .main-menu li:nth-child(5) {
-    margin-left: auto;
+    margin-left: 30%;
     width: 30%;
+}
+
+.main-menu li:nth-child(1) {
+    padding: 0;
 }
 
 .pfpNav {
@@ -257,6 +266,46 @@ body {
 
 
 /* Media Queries */
+@media (max-width: 900px) {
+    
+    .main-nav {
+        background-color: rgb(0, 0, 0);
+        font-family: 'Slabo 27px', sans-serif;
+        font-weight: 600;
+        position: relative;
+        width: 100%;
+        height: 8vh;    
+    }
+    .main-nav a {
+        padding: 0px;
+    }
+
+}
+
+@media (max-width: 600px) {
+    .main-nav {
+        background-color: rgb(0, 0, 0);
+        font-family: 'Slabo 27px', sans-serif;
+        font-weight: 600;
+        position: relative;
+        width: 100%;
+        height: 7vh;
+    }
+    
+    
+}
+
+
+@media (max-width: 400px) {
+    .main-nav {
+        background-color: rgb(0, 0, 0);
+        font-family: 'Slabo 27px', sans-serif;
+        font-weight: 600;
+        position: relative;
+        width: 100%;
+        height: 6vh;
+    }
+}
 @media (max-width: 1000px) {
     .main-nav li {
         font-size: 90%;
@@ -270,11 +319,10 @@ body {
 
     .menu-button {
         display: block;
+        
     }
 
-    .main-menu li:nth-child(1) {
-        margin-right: auto;
-    }
+    
 
     .main-menu li:nth-child(5) {
         margin-left: auto;
