@@ -37,11 +37,7 @@
 }
 
 
-@media (max-width: 400px) {
-    .main-section{
-        height: 20vh;
-    }
-}
+
 
 /*------------------------------------------------------bestsellers----------------------------------------------------*/
 .info-1 {
@@ -225,6 +221,7 @@ width: 91%;
     .info-1{
         height: fit-content;
         display: flex;
+        flex-wrap: wrap;
         flex-direction: column;
         gap: 10px;
     }

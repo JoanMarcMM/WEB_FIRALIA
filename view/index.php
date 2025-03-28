@@ -65,9 +65,9 @@ session_start();
                 </a>
 
             </li>
-            <li class="hideOnMobile"><a href="concerts.php">CONCIERTOS</a></li>
-            <li class="hideOnMobile"><a href="event.php">EVENTOS</a></li>
-            <li class="hideOnMobile"><a href="support.php">SOPORTE</a></li>
+            <li class="hideOnMobile link"><a href="concerts.php">CONCIERTOS</a></li>
+            <li class="hideOnMobile link"><a href="event.php">EVENTOS</a></li>
+            <li class="hideOnMobile link"><a href="support.php">SOPORTE</a></li>
 
             <li>
                 <form class="nav-form">
