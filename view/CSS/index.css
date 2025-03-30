@@ -41,8 +41,8 @@
 
 /*------------------------------------------------------bestsellers----------------------------------------------------*/
 .info-1 {
-    margin-top: 2%;
-    height: 110vh;
+   
+    min-height: 110vh;
     width: 100%;
     display: flex;
     flex-direction:row;
@@ -213,117 +213,38 @@ width: 91%;
 }
 @media(max-width:900px) {
 
-    .info-1-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
     .info-1{
-        height: fit-content;
         display: flex;
-        flex-wrap: wrap;
         flex-direction: column;
-        gap: 10px;
     }
-    .info-1 h1 {
-        font-size: 1.5em;
-        color: white;
-        font-family: 'Slabo 27px', sans-serif;
+    .info-1-grid {
+        margin-top: 30px;
+        height: 70vh;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        gap: 20px;
+        align-items: center;
+
+    }
+    .info-1-grid div{
+        width: 40%;
+        
     }
 
     
 
 }
 
-/*  Para pantallas menores a 1200px */
-@media (max-width: 1200px) {
-    .title{
-       margin-bottom: 30px;
-        }
-
-             
-    .info-1 {
-        flex-direction: column; /* Apila los elementos en columna */
-        align-items: center;
-        height: auto;
-    }
-    .best-sellers {
-        width: 100%;
-    }
-    .info-1-grid {
-        grid-template-columns: 1fr 1fr; /* Reduce la cantidad de columnas */
-        grid-template-rows: auto;
-    }
-    .queda-poco {
-        width: 100%;
-        margin-top: 20px;
+@media(max-width:650px) {
+    .info-1-grid {   
+        height: 55vh;
     }
 }
 
-
-@media (max-width: 900px) {
-    .info-1-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        width: 100%;
-    }
-    .info-1 h1 {
-        font-size: 2em;
-    }
-    .queda-poco {
-        width: 100%;
-        margin-bottom: 20px;
-    }
-    .queda-poco-display {
-        width: 90%;
-        height: auto;
-        padding: 20px;
-    }
-    .queda-poco-img {
-        height: auto;
-        width: 100%;
-    }
-}
-
-@media (max-width: 600px) {
-    .info-1 {
-        padding: 10px;
-    }
-    .best-sellers h1, .queda-poco h1 {
-        font-size: 1.3em;
-    }
-    .info-1-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        width: 100%;
-    }
-    .queda-poco-display {
-        width: 100%;
-        padding: 15px;
-        gap: 10px;
-    }
-    .queda-poco-img {
-        height: auto;
-        width: 100%;
-    }
-    .cont-img {
-        width: 90%;
-        height: auto;
-    }
-}
-
-
-@media (max-width: 400px) {
-    .best-sellers h1, .queda-poco h1 {
-        font-size: 1.5em;
-    }
-    .info-1 {
-        margin-top: 2%;
-    }
-    .cont-img {
-        width: 85%;
+@media(max-width:450px) {
+    .info-1-grid {   
+        height: 42vh;
     }
 }
 

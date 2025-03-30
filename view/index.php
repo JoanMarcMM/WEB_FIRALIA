@@ -186,9 +186,7 @@ session_start();
             <div class="info-1-grid">
                 <div class="cont1">
                     <img href="event.php" class="cont-img" src="images/blackpink.jpg" alt="imagen">
-                    <div class="contt">
-
-                    </div>
+                   
                 </div>
                 <div class="cont2"><img class="cont-img" src="images/salomanga.jpg" alt="imagen"></div>
                 <div class="cont3"><img class="cont-img" src="images/championsburguer.jpg" alt="imagen"></div>
