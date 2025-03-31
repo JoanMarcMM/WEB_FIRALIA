@@ -1,9 +1,6 @@
 <?php
-
 session_start();
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="es">
@@ -49,21 +46,7 @@ session_start();
             <li>
                 <a href="index.php">
                     <img class="logo-nav" src="images/logo2-modified.png" alt="logo" id="logo-nav">
-                    <script>
-                        const img = document.getElementById('logo-nav');
-
-                        img.addEventListener('mouseenter', () => {
-                            img.src = 'images/logo2.png';
-                        });
-
-                        img.addEventListener('mouseleave', () => {
-                            img.src = 'images/logo2-modified.png';
-                        });
-                    </script>
-
-
                 </a>
-
             </li>
             <li class="hideOnMobile link"><a href="concerts.php">CONCIERTOS</a></li>
             <li class="hideOnMobile link"><a href="event.php">EVENTOS</a></li>
@@ -76,13 +59,9 @@ session_start();
                 </form>
             </li>
             <?php if (isset($_SESSION["user_id"])): ?>
-
                 <li><a href="profile.php"><img src="images/icons/estandarPfp.jpg" alt="Pfp" class="pfpNav"></a></li>
-
             <?php else: ?>
-
-                <li class="hideOnMobile"><button id="open-popup" >LOG IN</button></li>
-
+                <li class="hideOnMobile"><button id="open-popup">LOG IN</button></li>
             <?php endif; ?>
 
             <li class="menu-button" onclick="showSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg"
@@ -99,10 +78,9 @@ session_start();
             <form method="POST" action="../controller/UserController.php">
                 <div class="login-box">
                     <?php
-
                     if (isset($_SESSION["error_message"])) {
                         echo "<p class='error-message'>" . $_SESSION["error_message"] . "</p>";
-                        unset($_SESSION["error_message"]); // Eliminar mensaje tras mostrarlo
+                        unset($_SESSION["error_message"]);
                     }
                     ?>
                     <input type="text" name="user" id="user" placeholder="Username" required>
@@ -111,7 +89,6 @@ session_start();
                     <input type="hidden" name="redirect" value="<?php echo basename($_SERVER['PHP_SELF']); ?>">
                     <a href="register.php" class="atext">Problemas con la contraseña?</a>
                     <a href="register.php" class="atext">No tienes cuenta? Registrate!</a>
-
                 </div>
                 <div class="controls">
                     <button class="close-btn">Cancelar</button>
@@ -121,33 +98,28 @@ session_start();
         </div>
     </div>
 
-
     <!-- ------------------------------------------------------------------ MAIN carrousel  --------------------------------------------------------------------------------->
-    <!-- https://www.youtube.com/watch?v=1XXY_5k8Nok -->
     <section class="main-section">
         <div class="carousel slide" id="carouselDemo" data-bs-ride="carousel">
             <div class="carousel-inner">
-                <div class="carousel-item active"
-                    data-bs-interval="4000">
-                    <img src="images/blackpink.jpg" class="w-100">
+                <div class="carousel-item active" data-bs-interval="4000">
+                    <img src="images/blackpink.jpg" class="w-100" alt="BLACKPINK concert">
                     <div class="carousel-caption">
                         <h1>BLACKPINK</h1>
                         <p> Icono global del K-pop con potentes coreografías y una presencia audaz.</p>
                     </div>
                 </div>
 
-                <div class="carousel-item"
-                    data-bs-interval="4000">
-                    <img src="images/sabrinacarpenter.jpg" class="w-100">
+                <div class="carousel-item" data-bs-interval="4000">
+                    <img src="images/sabrinacarpenter.jpg" class="w-100" alt="Sabrina Carpenter concert">
                     <div class="carousel-caption">
                         <h1>SABRINA CARPENTER</h1>
                         <p>Cantante pop con letras profundas y estilo juvenil.</p>
                     </div>
                 </div>
 
-                <div class="carousel-item"
-                    data-bs-interval="4000">
-                    <img src="images/postmalone.jpg" class="w-100">
+                <div class="carousel-item" data-bs-interval="4000">
+                    <img src="images/postmalone.jpg" class="w-100" alt="Post Malone concert">
                     <div class="carousel-caption">
                         <h1>POST MALONE</h1>
                         <p>Artista que fusiona rap, rock y pop con una voz única y melancólica.</p>
@@ -165,17 +137,12 @@ session_start();
             </button>
 
             <div class="carousel-indicators">
-                <button type="button" class="active" data-bs-target="#carouselDemo" data-bs-slide-to="0"></button>
-                <button type="button" class="active" data-bs-target="#carouselDemo" data-bs-slide-to="1"></button>
-                <button type="button" class="active" data-bs-target="#carouselDemo" data-bs-slide-to="2"></button>
+                <button type="button" data-bs-target="#carouselDemo" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#carouselDemo" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#carouselDemo" data-bs-slide-to="2"></button>
             </div>
         </div>
     </section>
-
-
-
-
-
 
     <!-- ------------------------------------------------------------------ RECOMENDATIONS Y QUEDA POCO --------------------------------------------------------------------------------->
     <section class="info-1">
@@ -185,139 +152,136 @@ session_start();
             </div>
             <div class="info-1-grid">
                 <div class="cont1">
-                    <img href="event.php" class="cont-img" src="images/blackpink.jpg" alt="imagen">
-                   
+                    <div class="image-to-overlay">
+                        <img href="event.php" class="cont-img" src="images/blackpink.jpg" alt="BLACKPINK concert">
+                        <div class="content">
+                            <h2>BLACKPINK</h2>
+                            <p>World Tour 2024</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="cont2"><img class="cont-img" src="images/salomanga.jpg" alt="imagen"></div>
-                <div class="cont3"><img class="cont-img" src="images/championsburguer.jpg" alt="imagen"></div>
-                <div class="cont4"><img class="cont-img" src="images/postmalone.jpg" alt="imagen"></div>
-                <div class="cont5"><img class="cont-img" src="images/sabrinacarpenter.jpg" alt="imagen"></div>
-                <div class="cont6"><img class="cont-img" src="images/mobileworldcongrss.jpg" alt="imagen"></div>
+                <div class="cont2">
+                    <div class="image-to-overlay">
+                        <img class="cont-img" src="images/salomanga.jpg" alt="Salomanga event">
+                        <div class="content">
+                            <h2>Salomanga</h2>
+                            <p>Food Festival</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="cont3">
+                    <div class="image-to-overlay">
+                        <img class="cont-img" src="images/championsburguer.jpg" alt="Champions Burger event">
+                        <div class="content">
+                            <h2>Champions Burger</h2>
+                            <p>Food Competition</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="cont4">
+                    <div class="image-to-overlay">
+                        <img class="cont-img" src="images/postmalone.jpg" alt="Post Malone concert">
+                        <div class="content">
+                            <h2>Post Malone</h2>
+                            <p>If Y'all Weren't Here Tour</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="cont5">
+                    <div class="image-to-overlay">
+                        <img class="cont-img" src="images/sabrinacarpenter.jpg" alt="Sabrina Carpenter concert">
+                        <div class="content">
+                            <h2>Sabrina Carpenter</h2>
+                            <p>Emails I Can't Send Tour</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="cont6">
+                    <div class="image-to-overlay">
+                        <img class="cont-img" src="images/mobileworldcongrss.jpg" alt="Mobile World Congress">
+                        <div class="content">
+                            <h2>MWC</h2>
+                            <p>Tech Conference</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="queda-poco">
-
             <div class="queda-poco-display">
                 <div class="title-queda-poco">
                     <h1>QUEDA POCO</h1>
                 </div>
-                <div class="queda-poco-img"><img class="cont-img" src="images/mobileworldcongrss.jpg" alt="imagen"></div>
-                <div class="queda-poco-img"><img class="cont-img" src="images/blackpink.jpg" alt="imagen"></div>
-                <div class="queda-poco-img"><img class="cont-img" src="images/championsburguer.jpg" alt="imagen"></div>
-                <div class="queda-poco-img"><img class="cont-img" src="images/bbf.jpg" alt="imagen"></div>
+                <div class="queda-poco-img"><img src="images/mobileworldcongrss.jpg" alt="Mobile World Congress"></div>
+                <div class="queda-poco-img"><img  src="images/blackpink.jpg" alt="BLACKPINK concert"></div>
+                <div class="queda-poco-img"><img  src="images/championsburguer.jpg" alt="Champions Burger event"></div>
+                <div class="queda-poco-img"><img  src="images/postmalone.jpg" alt="Champions Burger event"></div>
+                
             </div>
         </div>
-
     </section>
-
-    <!-- https://www.youtube.com/watch?v=VUtJ7FWCfZA&list=PLpwngcHZlPae68z_mLFNfbJFIJVJ_Zcx2 -->
 
     <section class="info-2">
         <div class="title-recomendations">
             <h1>RECOMENDACIONES</h1>
         </div>
-        <div class="popular-container swiper">
-            <div class="card-wrapper">
-                <ul class="card-list swiper-wrapper">
-                    <li class="card-item swiper-slide">
-                        <a href="#" class="card-link">
-                            <img src="images/salomanga.jpg" alt="" class="card-image">
-                            <p class="badge culture">Cultura</p>
-                            <h2 class="card-title">Salo del manga</h2>
-                            <p class="card-text"></p>
-                            <button class="card-button
-                        material-symbols-outlined">arrow_forward</button>
-                        </a>
-                    </li>
-
-                    <li class="card-item swiper-slide">
-                        <a href="#" class="card-link">
-                            <img src="images/championsburguer.jpg" alt="" class="card-image">
-                            <p class="badge food">Comida</p>
-                            <h2 class="card-title">Champ. Burguer</h2>
-                            <p class="card-text"></p>
-                            <button class="card-button
-                        material-symbols-outlined">arrow_forward</button>
-                        </a>
-                    </li>
-
-                    <li class="card-item swiper-slide">
-                        <a href="#" class="card-link">
-                            <img src="images/mobileworldcongrss.jpg" alt="" class="card-image">
-                            <p class="badge technology">Tecnologia</p>
-                            <h2 class="card-title">MWC</h2>
-                            <p class="card-text"></p>
-                            <button class="card-button
-                        material-symbols-outlined">arrow_forward</button>
-                        </a>
-                    </li>
-
-                    <li class="card-item swiper-slide">
-                        <a href="#" class="card-link">
-                            <img src="images/tibidabo.jpg" alt="" class="card-image">
-                            <p class="badge entertainment">Entretenimiento</p>
-                            <h2 class="card-title">Tibidabo</h2>
-                            <p class="card-text"></p>
-                            <button class="card-button
-                        material-symbols-outlined">arrow_forward</button>
-                        </a>
-                    </li>
-
-                    <li class="card-item swiper-slide">
-                        <a href="#" class="card-link">
-                            <img src="images/japanweekend.jpg" alt="" class="card-image">
-                            <p class="badge culture">Cultura</p>
-                            <h2 class="card-title">Japan Weekend</h2>
-                            <p class="card-text"></p>
-                            <button class="card-button
-                        material-symbols-outlined">arrow_forward</button>
-                        </a>
-                    </li>
-
-                    <li class="card-item swiper-slide">
-                        <a href="#" class="card-link">
-                            <img src="images/bgw.jpg" alt="" class="card-image">
-                            <p class="badge videogames">Videojuegos</p>
-                            <h2 class="card-title">BGW</h2>
-                            <p class="card-text"></p>
-                            <button class="card-button
-                        material-symbols-outlined">arrow_forward</button>
-                        </a>
-                    </li>
-
-                    <li class="card-item swiper-slide">
-                        <a href="#" class="card-link">
-                            <img src="images/bbf.jpg" alt="" class="card-image">
-                            <p class="badge entertainment">Musica</p>
-                            <h2 class="card-title">BBF</h2>
-                            <p class="card-text"></p>
-                            <button class="card-button
-                        material-symbols-outlined">arrow_forward</button>
-                        </a>
-                    </li>
-
-                    <li class="card-item swiper-slide">
-                        <a href="#" class="card-link">
-                            <img src="images/firaapat.jpg" alt="" class="card-image">
-                            <p class="badge food">Comida</p>
-                            <h2 class="card-title">Àpat</h2>
-                            <p class="card-text"></p>
-                            <button class="card-button
-                        material-symbols-outlined">arrow_forward</button>
-                        </a>
-                    </li>
-
-                </ul>
-
-
-
-                <div class="swiper-slide-button swiper-button-prev" style="color:black;"></div>
-                <div class="swiper-slide-button swiper-button-next" style="color:black;"></div>
-
-                <div class="swiper-pagination" style="color:black;"></div>
-
+        <div class="recomendaciones">
+            <div class="container">
+                
+                    <div class="image-list">
+                        <iframe class="image-item" width="560" height="315" src="https://www.youtube.com/embed/2S24-y0Ij3Y?si=kjHpcbtpMblz_eVg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe class="image-item" width="560" height="315" src="https://www.youtube.com/embed/IHNzOHi8sJs?si=UaIR-tYZuo96IAcO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe class="image-item" width="560" height="315" src="https://www.youtube.com/embed/gQlMMD8auMs?si=8r9E6lcCH08cO7Is" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe class="image-item" width="560" height="315" src="https://www.youtube.com/embed/POe9SOEKotk?si=uE-uUzjL9Fch2k-r" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe class="image-item" width="560" height="315" src="https://www.youtube.com/embed/dyRsYk0LyA8?si=tnWCZj4SGZDRBW-I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe class="image-item" width="560" height="315" src="https://www.youtube.com/embed/bwmSjveL3Lc?si=RCPISGXfp-Wjh7PM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                
             </div>
         </div>
+        
+    </section>
+
+    <section class="info-2">
+        <div class="title-recomendations">
+            <h1>LO MEJOR DEL TEATRO</h1>
+        </div>
+        <div class="recomendaciones">
+            <div class="container">
+                
+                    <div class="image-list">
+                        <iframe class="image-item" width="560" height="315" src="https://www.youtube.com/embed/2S24-y0Ij3Y?si=kjHpcbtpMblz_eVg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe class="image-item" width="560" height="315" src="https://www.youtube.com/embed/IHNzOHi8sJs?si=UaIR-tYZuo96IAcO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe class="image-item" width="560" height="315" src="https://www.youtube.com/embed/gQlMMD8auMs?si=8r9E6lcCH08cO7Is" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe class="image-item" width="560" height="315" src="https://www.youtube.com/embed/POe9SOEKotk?si=uE-uUzjL9Fch2k-r" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe class="image-item" width="560" height="315" src="https://www.youtube.com/embed/dyRsYk0LyA8?si=tnWCZj4SGZDRBW-I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe class="image-item" width="560" height="315" src="https://www.youtube.com/embed/bwmSjveL3Lc?si=RCPISGXfp-Wjh7PM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                
+            </div>
+        </div>
+        
+    </section>
+
+    <section class="info-2">
+        <div class="title-recomendations">
+            <h1>LA MEJOR MUSICA EN DIRECTO</h1>
+        </div>
+        <div class="recomendaciones">
+            <div class="container">
+                
+                    <div class="image-list">
+                        <iframe class="image-item" width="560" height="315" src="https://www.youtube.com/embed/2S24-y0Ij3Y?si=kjHpcbtpMblz_eVg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe class="image-item" width="560" height="315" src="https://www.youtube.com/embed/IHNzOHi8sJs?si=UaIR-tYZuo96IAcO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe class="image-item" width="560" height="315" src="https://www.youtube.com/embed/gQlMMD8auMs?si=8r9E6lcCH08cO7Is" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe class="image-item" width="560" height="315" src="https://www.youtube.com/embed/POe9SOEKotk?si=uE-uUzjL9Fch2k-r" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe class="image-item" width="560" height="315" src="https://www.youtube.com/embed/dyRsYk0LyA8?si=tnWCZj4SGZDRBW-I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe class="image-item" width="560" height="315" src="https://www.youtube.com/embed/bwmSjveL3Lc?si=RCPISGXfp-Wjh7PM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                
+            </div>
+        </div>
+        
     </section>
 
     <footer class="footer">
@@ -365,46 +329,78 @@ session_start();
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="js/swiper.js"></script>
-
     <script>
-        function showSidebar() {
-            const sidebar = document.querySelector('.sidebar');
-            sidebar.style.display = 'flex';
-        }
-
-        function hideSidebar() {
-            const sidebar = document.querySelector('.sidebar');
-            sidebar.style.display = 'none';
-        }
-
-        function createPopup(id) {
-            let popupNode = document.querySelector(id);
-            let overlay = popupNode.querySelector(".overlay");
-            let closeBtn = popupNode.querySelector(".close-btn");
-
-            function openPopup() {
-                popupNode.classList.add("active");
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sidebar functionality
+            function showSidebar() {
+                const sidebar = document.querySelector('.sidebar');
+                sidebar.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
             }
 
-            if (document.querySelector(".error-message")) {
-                openPopup();
+            function hideSidebar() {
+                const sidebar = document.querySelector('.sidebar');
+                sidebar.style.display = 'none';
+                document.body.style.overflow = '';
             }
 
-            function closePopup() {
-                popupNode.classList.remove("active");
+            // Popup functionality
+            function createPopup(id) {
+                let popupNode = document.querySelector(id);
+                let overlay = popupNode.querySelector(".overlay");
+                let closeBtn = popupNode.querySelector(".close-btn");
+
+                function openPopup() {
+                    popupNode.classList.add("active");
+                    document.body.style.overflow = 'hidden';
+                }
+
+                function closePopup() {
+                    popupNode.classList.remove("active");
+                    document.body.style.overflow = '';
+                }
+
+                if (document.querySelector(".error-message")) {
+                    openPopup();
+                }
+
+                overlay.addEventListener("click", closePopup);
+                closeBtn.addEventListener("click", closePopup);
+
+                return openPopup;
             }
 
-            overlay.addEventListener("click", closePopup);
-            closeBtn.addEventListener("click", closePopup);
+            // Logo hover effect
+            const img = document.getElementById('logo-nav');
+            if (img) {
+                img.addEventListener('mouseenter', () => {
+                    img.src = 'images/logo2.png';
+                });
 
-            return openPopup;
-        }
+                img.addEventListener('mouseleave', () => {
+                    img.src = 'images/logo2-modified.png';
+                });
+            }
 
-        let popup = createPopup("#popup");
-        document.querySelector("#open-popup").addEventListener("click", popup);
+            // Event listeners
+            document.querySelector(".menu-button")?.addEventListener("click", showSidebar);
+            document.querySelector(".sidebar li:first-child")?.addEventListener("click", hideSidebar);
+            
+            const openPopupBtn = document.querySelector("#open-popup");
+            if (openPopupBtn) {
+                let popup = createPopup("#popup");
+                openPopupBtn.addEventListener("click", popup);
+            }
+
+            // Initialize Swiper
+            if (typeof Swiper !== 'undefined') {
+                new Swiper('.swiper', {
+                    slidesPerView: 'auto',
+                    spaceBetween: 20,
+                    freeMode: true,
+                });
+            }
+        });
     </script>
-
 </body>
-
 </html>
