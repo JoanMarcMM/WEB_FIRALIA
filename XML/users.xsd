@@ -8,6 +8,7 @@
                 <xs:element name="user" maxOccurs="unbounded">
                     <xs:complexType>
                         <xs:sequence>
+                        <xs:element name="id" type="xs:integer"/>
                             <xs:element name="name" type="xs:string"/>
                             <xs:element name="lastname" type="xs:string"/>
                             <xs:element name="age" type="xs:integer"/>
@@ -15,8 +16,8 @@
                             <xs:element name="register_date" type="xs:date"/>
                             <xs:element name="about" type="xs:string"/>
                         </xs:sequence>
-                        <!-- Añadimos el atributo "id" al elemento "user" -->
-                        <xs:attribute name="id" type="xs:integer" use="required"/>
+                       
+                        
                     </xs:complexType>
                 </xs:element>
             </xs:sequence>

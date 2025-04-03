@@ -85,6 +85,7 @@ $stmt->bind_param("sssssi", $username, $name, $lastname, $email, $password_hash,
 // Ejecutar consulta
 if ($stmt->execute()) {
     echo "Registro exitoso";
+    header("Location:../view/login.php");
 } else {
     echo "Error en el registro: " . $stmt->error;
 }
@@ -94,7 +95,7 @@ $stmt->close();
 $mysqli->close();
 
 ?>
-/*if ($stmt->execute()) {
+if ($stmt->execute()) {
 
   header("Location: signup-success.html");
    exit;                
@@ -106,4 +107,4 @@ $mysqli->close();
                die($mysqli->error . " " . $mysqli->errno);
                     }
                 }
-                  */
+                  

@@ -1,9 +1,6 @@
 <?php
-
 session_start();
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="es">
@@ -17,11 +14,12 @@ session_start();
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_forward" />
 
+   
 
     <!-- Archivos CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/event.css">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 </head>
 
 <body style="background-color: #F2F0EF !important;">
@@ -33,7 +31,7 @@ session_start();
                         <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
                     </svg></a></li>
             <li><a href="concerts.php">Conciertos</a></li>
-            <li><a href="events.php">Eventos</a></li>
+            <li><a href="event.php">Eventos</a></li>
             <li><a href="support.php">Soporte</a></li>
             <?php if (isset($_SESSION["user_id"])): ?>
                 <li><a href="login.php">Perfil</a></li>
@@ -47,25 +45,12 @@ session_start();
             <li>
                 <a href="index.php">
                     <img class="logo-nav" src="images/logo2-modified.png" alt="logo" id="logo-nav">
-                    <script>
-                        const img = document.getElementById('logo-nav');
-
-                        img.addEventListener('mouseenter', () => {
-                            img.src = 'images/logo2.png';
-                        });
-
-                        img.addEventListener('mouseleave', () => {
-                            img.src = 'images/logo2-modified.png';
-                        });
-                    </script>
-
-
                 </a>
-
             </li>
-            <li class="hideOnMobile"><a href="concerts.php">CONCIERTOS</a></li>
-            <li class="hideOnMobile"><a href="events.php">EVENTOS</a></li>
-            <li class="hideOnMobile"><a href="support.php">SOPORTE</a></li>
+            <li class="hideOnMobile link"><a href="concerts.php">CONCIERTOS</a></li>
+            <li class="hideOnMobile link"><a href="event.php">EVENTOS</a></li>
+            <li class="hideOnMobile link"><a href="support.php">SOPORTE</a></li>
+
             <li>
                 <form class="nav-form">
                     <input type="text" class="search-bx" placeholder="">
@@ -73,14 +58,9 @@ session_start();
                 </form>
             </li>
             <?php if (isset($_SESSION["user_id"])): ?>
-
-                <li><a href="login.php">foto</a></li>
-
+                <li><a href="profile.php"><img src="images/icons/estandarPfp.jpg" alt="Pfp" class="pfpNav"></a></li>
             <?php else: ?>
-
-                <li class="hideOnMobile"><a href="login.php">INICIAR SESIÓN</a></li>
-                <li class="hideOnMobile"><a href="register.php">REGISTRARSE</a></li>
-
+                <li class="hideOnMobile"><button id="open-popup">LOG IN</button></li>
             <?php endif; ?>
 
             <li class="menu-button" onclick="showSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg"
@@ -89,6 +69,34 @@ session_start();
                     </svg></a></li>
         </ul>
     </nav>
+    <!-- -------------------------------------------------------------------------- LOG IN  --------------------------------------------------------------------------------->
+    <div class="popup" id="popup">
+        <div class="overlay"></div>
+        <div class="popup-content">
+            <h2>Login</h2>
+            <form method="POST" action="../controller/UserController.php">
+                <div class="login-box">
+                    <?php
+                    if (isset($_SESSION["error_message"])) {
+                        echo "<p class='error-message'>" . $_SESSION["error_message"] . "</p>";
+                        unset($_SESSION["error_message"]);
+                    }
+                    ?>
+                    <input type="text" name="user" id="user" placeholder="Username" required>
+                    <input type="hidden" name="login" value="login">
+                    <input type="password" name="password" id="password" placeholder="Password" required>
+                    <input type="hidden" name="redirect" value="<?php echo basename($_SERVER['PHP_SELF']); ?>">
+                    <a href="register.php" class="atext">Problemas con la contraseña?</a>
+                    <a href="register.php" class="atext">No tienes cuenta? Registrate!</a>
+                </div>
+                <div class="controls">
+                    <button class="close-btn">Cancelar</button>
+                    <button class="submit-btn" type="submit">Iniciar Sesión</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- ------------------------------------------------------------------ MAIN IMAGE  --------------------------------------------------------------------------------->
 
     <section class="main-image">
@@ -246,17 +254,80 @@ session_start();
     </footer>
 
     <!-- Scripts -->
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        function showSidebar() {
-            const sidebar = document.querySelector('.sidebar');
-            sidebar.style.display = 'flex';
-        }
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sidebar functionality
+            function showSidebar() {
+                const sidebar = document.querySelector('.sidebar');
+                sidebar.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
 
-        function hideSidebar() {
-            const sidebar = document.querySelector('.sidebar');
-            sidebar.style.display = 'none';
-        }
+            function hideSidebar() {
+                const sidebar = document.querySelector('.sidebar');
+                sidebar.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+
+            // Popup functionality
+            function createPopup(id) {
+                let popupNode = document.querySelector(id);
+                let overlay = popupNode.querySelector(".overlay");
+                let closeBtn = popupNode.querySelector(".close-btn");
+
+                function openPopup() {
+                    popupNode.classList.add("active");
+                    document.body.style.overflow = 'hidden';
+                }
+
+                function closePopup() {
+                    popupNode.classList.remove("active");
+                    document.body.style.overflow = '';
+                }
+
+                if (document.querySelector(".error-message")) {
+                    openPopup();
+                }
+
+                overlay.addEventListener("click", closePopup);
+                closeBtn.addEventListener("click", closePopup);
+
+                return openPopup;
+            }
+
+            // Logo hover effect
+            const img = document.getElementById('logo-nav');
+            if (img) {
+                img.addEventListener('mouseenter', () => {
+                    img.src = 'images/logo2.png';
+                });
+
+                img.addEventListener('mouseleave', () => {
+                    img.src = 'images/logo2-modified.png';
+                });
+            }
+
+            // Event listeners
+            document.querySelector(".menu-button")?.addEventListener("click", showSidebar);
+            document.querySelector(".sidebar li:first-child")?.addEventListener("click", hideSidebar);
+
+            const openPopupBtn = document.querySelector("#open-popup");
+            if (openPopupBtn) {
+                let popup = createPopup("#popup");
+                openPopupBtn.addEventListener("click", popup);
+            }
+
+            // Initialize Swiper
+            if (typeof Swiper !== 'undefined') {
+                new Swiper('.swiper', {
+                    slidesPerView: 'auto',
+                    spaceBetween: 20,
+                    freeMode: true,
+                });
+            }
+        });
     </script>
 
 </body>

@@ -2,8 +2,9 @@
 <!-- Fet per: Joan Marc-->
 
 <users xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:noNamespaceSchemaLocation="users.xsd">
-    <user id="1">
+    xsi:noNamespaceSchemaLocation="users.xsd">
+    <user>
+        <id>1</id>
         <name>Juan</name>
         <lastname>Pérez</lastname>
         <age>28</age>
@@ -11,7 +12,8 @@ xsi:noNamespaceSchemaLocation="users.xsd">
         <register_date>2023-01-15</register_date>
         <about>Amante de la tecnología y los videojuegos.</about>
     </user>
-    <user id="2">
+    <user>
+        <id>2</id>
         <name>María</name>
         <lastname>Gómez</lastname>
         <age>34</age>
@@ -19,7 +21,8 @@ xsi:noNamespaceSchemaLocation="users.xsd">
         <register_date>2023-02-10</register_date>
         <about>Entusiasta de la lectura y la escritura creativa.</about>
     </user>
-    <user id="3">
+    <user>
+        <id>3</id>
         <name>Carlos</name>
         <lastname>López</lastname>
         <age>22</age>
@@ -27,7 +30,8 @@ xsi:noNamespaceSchemaLocation="users.xsd">
         <register_date>2023-03-05</register_date>
         <about>Estudiante de ingeniería en sistemas.</about>
     </user>
-    <user id="4">
+    <user>
+        <id>4</id>
         <name>Ana</name>
         <lastname>Martínez</lastname>
         <age>29</age>
@@ -35,7 +39,8 @@ xsi:noNamespaceSchemaLocation="users.xsd">
         <register_date>2023-04-20</register_date>
         <about>Diseñadora gráfica y amante del arte.</about>
     </user>
-    <user id="5">
+    <user>
+        <id>5</id>
         <name>Luis</name>
         <lastname>Rodríguez</lastname>
         <age>31</age>
@@ -43,7 +48,8 @@ xsi:noNamespaceSchemaLocation="users.xsd">
         <register_date>2023-05-12</register_date>
         <about>Programador y aficionado al ajedrez.</about>
     </user>
-    <user id="6">
+    <user>
+        <id>6</id>
         <name>Sofía</name>
         <lastname>Hernández</lastname>
         <age>26</age>
@@ -51,7 +57,8 @@ xsi:noNamespaceSchemaLocation="users.xsd">
         <register_date>2023-06-18</register_date>
         <about>Viajera y fotógrafa aficionada.</about>
     </user>
-    <user id="7">
+    <user>
+        <id>7</id>
         <name>Diego</name>
         <lastname>Díaz</lastname>
         <age>30</age>
@@ -59,7 +66,8 @@ xsi:noNamespaceSchemaLocation="users.xsd">
         <register_date>2023-07-22</register_date>
         <about>Ingeniero civil y amante de la arquitectura.</about>
     </user>
-    <user id="8">
+    <user>
+        <id>8</id>
         <name>Laura</name>
         <lastname>Fernández</lastname>
         <age>27</age>
@@ -67,7 +75,8 @@ xsi:noNamespaceSchemaLocation="users.xsd">
         <register_date>2023-08-30</register_date>
         <about>Psicóloga y apasionada por la mente humana.</about>
     </user>
-    <user id="9">
+    <user>
+        <id>9</id>
         <name>Javier</name>
         <lastname>Sánchez</lastname>
         <age>33</age>
@@ -75,7 +84,8 @@ xsi:noNamespaceSchemaLocation="users.xsd">
         <register_date>2023-09-14</register_date>
         <about>Chef profesional y amante de la gastronomía.</about>
     </user>
-    <user id="10">
+    <user>
+        <id>10</id>
         <name>Carmen</name>
         <lastname>Torres</lastname>
         <age>25</age>
@@ -83,7 +93,8 @@ xsi:noNamespaceSchemaLocation="users.xsd">
         <register_date>2023-10-05</register_date>
         <about>Estudiante de medicina y voluntaria en hospitales.</about>
     </user>
-    <user id="11">
+    <user>
+        <id>11</id>
         <name>Miguel</name>
         <lastname>Ramírez</lastname>
         <age>32</age>
@@ -91,7 +102,8 @@ xsi:noNamespaceSchemaLocation="users.xsd">
         <register_date>2023-11-11</register_date>
         <about>Empresario y amante de los deportes extremos.</about>
     </user>
-    <user id="12">
+    <user>
+        <id>12</id>
         <name>Elena</name>
         <lastname>Flores</lastname>
         <age>24</age>
@@ -99,7 +111,8 @@ xsi:noNamespaceSchemaLocation="users.xsd">
         <register_date>2023-12-25</register_date>
         <about>Artista plástica y amante de la naturaleza.</about>
     </user>
-    <user id="13">
+    <user>
+        <id>13</id>
         <name>Roberto</name>
         <lastname>Vargas</lastname>
         <age>29</age>
@@ -107,7 +120,8 @@ xsi:noNamespaceSchemaLocation="users.xsd">
         <register_date>2024-01-03</register_date>
         <about>Músico y compositor en formación.</about>
     </user>
-    <user id="14">
+    <user>
+        <id>14</id>
         <name>Patricia</name>
         <lastname>Castro</lastname>
         <age>35</age>
@@ -115,7 +129,8 @@ xsi:noNamespaceSchemaLocation="users.xsd">
         <register_date>2024-02-17</register_date>
         <about>Abogada y defensora de derechos humanos.</about>
     </user>
-    <user id="15">
+    <user>
+        <id>15</id>
         <name>Ricardo</name>
         <lastname>Ortega</lastname>
         <age>28</age>
@@ -123,7 +138,8 @@ xsi:noNamespaceSchemaLocation="users.xsd">
         <register_date>2024-03-08</register_date>
         <about>Ingeniero en telecomunicaciones y amante de la astronomía.</about>
     </user>
-    <user id="16">
+    <user>
+        <id>16</id>
         <name>Isabel</name>
         <lastname>Mendoza</lastname>
         <age>31</age>
@@ -131,7 +147,8 @@ xsi:noNamespaceSchemaLocation="users.xsd">
         <register_date>2024-04-19</register_date>
         <about>Periodista y corresponsal internacional.</about>
     </user>
-    <user id="17">
+    <user>
+        <id>17</id>
         <name>Oscar</name>
         <lastname>Guerrero</lastname>
         <age>26</age>
@@ -139,7 +156,8 @@ xsi:noNamespaceSchemaLocation="users.xsd">
         <register_date>2024-05-22</register_date>
         <about>Desarrollador web y amante de los gatos.</about>
     </user>
-    <user id="18">
+    <user>
+        <id>18</id>
         <name>Lucía</name>
         <lastname>Rojas</lastname>
         <age>30</age>
@@ -147,7 +165,8 @@ xsi:noNamespaceSchemaLocation="users.xsd">
         <register_date>2024-06-30</register_date>
         <about>Médico veterinario y protectora de animales.</about>
     </user>
-    <user id="19">
+    <user>
+        <id>19</id>
         <name>Fernando</name>
         <lastname>Silva</lastname>
         <age>27</age>
@@ -155,7 +174,8 @@ xsi:noNamespaceSchemaLocation="users.xsd">
         <register_date>2024-07-15</register_date>
         <about>Estudiante de filosofía y amante del debate.</about>
     </user>
-    <user id="20">
+    <user>
+        <id>20</id>
         <name>Adriana</name>
         <lastname>Morales</lastname>
         <age>29</age>

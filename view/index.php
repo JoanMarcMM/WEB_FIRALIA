@@ -212,11 +212,47 @@ session_start();
                 <div class="title-queda-poco">
                     <h1>QUEDA POCO</h1>
                 </div>
-                <div class="queda-poco-img"><img src="images/mobileworldcongrss.jpg" alt="Mobile World Congress"></div>
-                <div class="queda-poco-img"><img  src="images/blackpink.jpg" alt="BLACKPINK concert"></div>
-                <div class="queda-poco-img"><img  src="images/championsburguer.jpg" alt="Champions Burger event"></div>
-                <div class="queda-poco-img"><img  src="images/postmalone.jpg" alt="Champions Burger event"></div>
-                
+                <div class="queda-poco-img">
+
+                    <div class="image-to-overlay">
+                        <img src="images/mobileworldcongrss.jpg" alt="Mobile World Congress">
+                        <div class="content">
+                            <h2>MWC</h2>
+                            <p>Tech Conference</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="queda-poco-img">
+                    
+                    <div class="image-to-overlay">
+                    <img src="images/blackpink.jpg" alt="BLACKPINK concert">
+                        <div class="content">
+                            <h2>MWC</h2>
+                            <p>Tech Conference</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="queda-poco-img">
+                <div class="image-to-overlay">
+                <img src="images/championsburguer.jpg" alt="Champions Burger event">
+                        <div class="content">
+                            <h2>MWC</h2>
+                            <p>Tech Conference</p>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="queda-poco-img">
+                <div class="image-to-overlay">
+                <img src="images/postmalone.jpg" alt="Champions Burger event">
+                        <div class="content">
+                            <h2>MWC</h2>
+                            <p>Tech Conference</p>
+                        </div>
+                    </div>
+                    
+                </div>
+
             </div>
         </div>
     </section>
@@ -228,18 +264,19 @@ session_start();
         </div>
         <div class="recomendaciones">
             <div class="container">
-                
-                    <div class="image-list">
-                        <img class="image-item" width="560" height="315" src="images/circodusolei.jpg"></img>
-                        <img class="image-item" width="560" height="315" src="images/marcicel.jpg"></img>
-                        <img class="image-item" width="560" height="315" src="images/reyleon.jpg"></img>
-                        <img class="image-item" width="560" height="315" src="images/grease.jpg"></img>
-                        <img class="image-item" width="560" height="315" src="images/westsidestory.jpg"></img>
-                    </div>
-                
+
+                <div class="image-list">
+                    
+                    <img class="image-item" width="560" height="315" src="images/circodusolei.jpg"></img>
+                    <img class="image-item" width="560" height="315" src="images/marcicel.jpg"></img>
+                    <img class="image-item" width="560" height="315" src="images/reyleon.jpg"></img>
+                    <img class="image-item" width="560" height="315" src="images/grease.jpg"></img>
+                    <img class="image-item" width="560" height="315" src="images/westsidestory.jpg"></img>
+                </div>
+
             </div>
         </div>
-        
+
     </section>
 
     <section class="info-2">
@@ -248,18 +285,18 @@ session_start();
         </div>
         <div class="recomendaciones">
             <div class="container">
-                
-                    <div class="image-list">
+
+                <div class="image-list">
                     <img class="image-item" width="560" height="315" src="images/imaginedragons.jpg"></img>
-                        <img class="image-item" width="560" height="315" src="images/taylorswift.jpg"></img>
-                        <img class="image-item" width="560" height="315" src="images/ladygaga.jpg"></img>
-                        <img class="image-item" width="560" height="315" src="images/katyperry.jpg"></img>
-                        <img class="image-item" width="560" height="315" src="images/blackpink.jpg"></img>
-                    </div>
-                
+                    <img class="image-item" width="560" height="315" src="images/taylorswift.jpg"></img>
+                    <img class="image-item" width="560" height="315" src="images/ladygaga.jpg"></img>
+                    <img class="image-item" width="560" height="315" src="images/katyperry.jpg"></img>
+                    <img class="image-item" width="560" height="315" src="images/blackpink.jpg"></img>
+                </div>
+
             </div>
         </div>
-        
+
     </section>
 
     <section class="info-2">
@@ -268,18 +305,18 @@ session_start();
         </div>
         <div class="recomendaciones">
             <div class="container">
-                
-                    <div class="image-list">
-                        <img class="image-item" width="560" height="315" src="images/bbf.jpg"></img>
-                        <img class="image-item" width="560" height="315" src="images/taylorswift.jpg"></img>
-                        <img class="image-item" width="560" height="315" src="images/japanweekend.jpg"></img>
-                        <img class="image-item" width="560" height="315" src="images/katyperry.jpg"></img>
-                        <img class="image-item" width="560" height="315" src="images/imaginedragons.jpg"></img>
-                    </div>
-                
+
+                <div class="image-list">
+                    <img class="image-item" width="560" height="315" src="images/bbf.jpg"></img>
+                    <img class="image-item" width="560" height="315" src="images/taylorswift.jpg"></img>
+                    <img class="image-item" width="560" height="315" src="images/japanweekend.jpg"></img>
+                    <img class="image-item" width="560" height="315" src="images/katyperry.jpg"></img>
+                    <img class="image-item" width="560" height="315" src="images/imaginedragons.jpg"></img>
+                </div>
+
             </div>
         </div>
-        
+
     </section>
 
     <footer class="footer">
@@ -383,7 +420,7 @@ session_start();
             // Event listeners
             document.querySelector(".menu-button")?.addEventListener("click", showSidebar);
             document.querySelector(".sidebar li:first-child")?.addEventListener("click", hideSidebar);
-            
+
             const openPopupBtn = document.querySelector("#open-popup");
             if (openPopupBtn) {
                 let popup = createPopup("#popup");
@@ -401,4 +438,5 @@ session_start();
         });
     </script>
 </body>
+
 </html>
