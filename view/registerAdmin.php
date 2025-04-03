@@ -105,6 +105,7 @@
                     <div class="input-box">
                         <input type="image" name="user_image" id="user_image" placeholder="Imagen Usuario">
                     </div>
+                    <input type="hidden" name="rol" id="rol" value="1">
 
                     <button type="submit" class="btn">Registrarme</button>
 

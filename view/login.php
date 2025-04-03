@@ -1,4 +1,6 @@
-
+<?php
+session_start();
+?>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -91,7 +93,6 @@
     <div class="login-grid">
             <div class="login-container">
                 <h2>Iniciar Sesión</h2>
-
                 <form  method="POST" action="../controller/UserController.php">
                 <?php
                     if (isset($_SESSION["error_message"])) {
@@ -104,19 +105,14 @@
                     <div class="input-box">
                         <input type="text" name="user" id="user" placeholder="Username" required>
                     </div>
-
                     <div class="input-box">
-                    <input type="hidden" name="redirect" value="<?php echo basename($_SERVER['PHP_SELF']); ?>">
                         <input type="password" name="password" id="password" placeholder="Password" required>
                     </div>
-
                     <div class="remember-forgot">
                         <label><input type="checkbox">Recuerdame</label>
                         <a href="#">Problemas con la contraseña?</a>
                     </div>
-
                     <button type="submit" class="btn">Login</button>
-
                     <div class="register-box">
                         <p>No tiene cuenta? <a href="register.php">Regístrate!</a></p>
                   <div>
@@ -174,7 +170,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Sidebar functionality
+            
             function showSidebar() {
                 const sidebar = document.querySelector('.sidebar');
                 sidebar.style.display = 'flex';
@@ -187,7 +183,7 @@
                 document.body.style.overflow = '';
             }
 
-            // Popup functionality
+            
             function createPopup(id) {
                 let popupNode = document.querySelector(id);
                 let overlay = popupNode.querySelector(".overlay");
@@ -213,7 +209,7 @@
                 return openPopup;
             }
 
-            // Logo hover effect
+           
             const img = document.getElementById('logo-nav');
             if (img) {
                 img.addEventListener('mouseenter', () => {
@@ -225,7 +221,7 @@
                 });
             }
 
-            // Event listeners
+            
             document.querySelector(".menu-button")?.addEventListener("click", showSidebar);
             document.querySelector(".sidebar li:first-child")?.addEventListener("click", hideSidebar);
 
@@ -235,7 +231,7 @@
                 openPopupBtn.addEventListener("click", popup);
             }
 
-            // Initialize Swiper
+            
             if (typeof Swiper !== 'undefined') {
                 new Swiper('.swiper', {
                     slidesPerView: 'auto',

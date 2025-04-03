@@ -5,7 +5,7 @@ $mysqli = require '../controller/database.php';
 
 // Verifica si el usuario está autenticado
 if (!isset($_SESSION["user_id"])) {
-    die("Error: No has iniciado sesión.");
+    header("Location: ../view/index.php");
 }
 
 $id = $_SESSION["user_id"];
@@ -127,6 +127,11 @@ if (!$fetch) {
         <a href="#"><img src="images/icons/estandarPfp.jpg" alt="Pfp" class="pfp"></a>
         <div class="profile">
             <?php if ($fetch): ?>
+                <h3><?php if($fetch['ROL']==1){
+                    echo "PERFIL ADMINISTRADOR";
+                 }else{
+                    echo "PERFIL USUARIO";
+                 }?></h3>
                 <h3><?php echo "Usuario: " . htmlspecialchars($fetch['USER']); ?></h3>
                 <h3><?php echo "Nombre: " . htmlspecialchars($fetch['NAME']); ?></h3>
                 <h3><?php echo "Apellidos: " . htmlspecialchars($fetch['LASTNAME']); ?></h3>

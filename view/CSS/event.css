@@ -2,7 +2,7 @@
     height: 80vh;
     margin: 0 auto;
     position: relative;
-    /* Necesario para que el .caption se posicione respecto a este contenedor */
+ 
 }
 
 .main-image img {
@@ -14,16 +14,11 @@
 
 .caption {
     position: absolute;
-    /* Para colocarla sobre la imagen */
     top: 50%;
-    /* Centrado vertical */
     left: 50%;
-    /* Centrado horizontal */
     transform: translate(-50%, -50%);
-    /* Centrar exactamente */
     color: white;
     background: rgba(0, 0, 0, 0.6);
-    /* Fondo semitransparente */
     padding: 20px;
     text-align: center;
 }
