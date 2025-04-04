@@ -55,7 +55,7 @@ class UserController
     {
         session_destroy();
 
-        // Verifica si las cabeceras no han sido enviadas antes de la redirección
+        
         if (!headers_sent()) {
             header("Location: ../view/index.php");
             exit;
