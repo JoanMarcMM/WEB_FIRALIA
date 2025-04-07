@@ -288,6 +288,18 @@
 }
 
 @media (max-width: 750px) {
+    .page-nav a {
+
+        padding: 0 20px;
+
+    }
+    .page-nav ul {
+        margin-left: 0 !important;
+
+    }
+    .page-nav {
+        font-size: smaller;
+    }
     .description {
         margin-left: 10px;
     }

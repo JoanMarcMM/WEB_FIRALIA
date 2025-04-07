@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="CSS/style.css">
     <link rel="stylesheet" href="CSS/register.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -118,7 +119,7 @@
                     
 
 
-                    <button type="submit" class="btn">Registrarme</button>
+                    <button type="submit" class="btn-a">Registrarme</button>
 
                     <div class="register-box">
                         <p>Eres un administrador? <a href="registerAdmin.php">Registro para administradores</a></p> 
