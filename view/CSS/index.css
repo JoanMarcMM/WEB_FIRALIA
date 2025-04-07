@@ -206,7 +206,7 @@
     grid-row-end:7 !important ;
 }
 
-/* -----------------------Image overlay improvements --------------------*/
+
 .image-to-overlay {
     position: relative;
     overflow: hidden;
@@ -341,7 +341,6 @@
     font-family: 'Slabo 27px', sans-serif;
 }
 
-/* Swiper/slider improvements */
 .recomendaciones {
     width: 100%;
     height: auto;
@@ -388,7 +387,7 @@
     }
 }
 
-/* General improvements */
+
 html {
     scroll-behavior: smooth;
 }
@@ -407,7 +406,7 @@ button {
     z-index: 1000;
 }
 
-/* Fix for Bootstrap carousel */
+
 .carousel {
     z-index: 0;
 }

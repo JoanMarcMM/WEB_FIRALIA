@@ -10,13 +10,10 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
 
-    <!-- Google Fonts -->
+    
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_forward" />
 
-   
-
-    <!-- Archivos CSS -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/event.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
@@ -258,7 +255,7 @@ session_start();
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Sidebar functionality
+           
             function showSidebar() {
                 const sidebar = document.querySelector('.sidebar');
                 sidebar.style.display = 'flex';
@@ -271,7 +268,7 @@ session_start();
                 document.body.style.overflow = '';
             }
 
-            // Popup functionality
+            
             function createPopup(id) {
                 let popupNode = document.querySelector(id);
                 let overlay = popupNode.querySelector(".overlay");
@@ -297,7 +294,7 @@ session_start();
                 return openPopup;
             }
 
-            // Logo hover effect
+            
             const img = document.getElementById('logo-nav');
             if (img) {
                 img.addEventListener('mouseenter', () => {
@@ -309,7 +306,7 @@ session_start();
                 });
             }
 
-            // Event listeners
+            
             document.querySelector(".menu-button")?.addEventListener("click", showSidebar);
             document.querySelector(".sidebar li:first-child")?.addEventListener("click", hideSidebar);
 
@@ -319,7 +316,6 @@ session_start();
                 openPopupBtn.addEventListener("click", popup);
             }
 
-            // Initialize Swiper
             if (typeof Swiper !== 'undefined') {
                 new Swiper('.swiper', {
                     slidesPerView: 'auto',

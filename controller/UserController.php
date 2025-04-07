@@ -7,7 +7,7 @@ class UserController
 {
     function login()
     {
-        session_start(); // Asegurar que la sesión está iniciada
+        session_start(); 
         $mysqli = conn();
         
         $redirect = "../view/index.php"; 
@@ -38,14 +38,14 @@ class UserController
         
         $user = $result->fetch_assoc();
         
-        // Verificación de contraseña
+      
         if ($user && password_verify($_POST["password"], $user["PASSWORD"])) {
             $_SESSION["user_id"] = $user["ID"];
             header("Location: ../view/profile.php");
             exit();
         }
         
-        // Si el login falla, guardar mensaje en sesión y redirigir
+        
         $_SESSION["error_message"] = "Usuario o contraseña incorrectos.";
         header("Location: $redirect");
         exit();
@@ -55,7 +55,7 @@ class UserController
     {
         session_destroy();
 
-        // Verifica si las cabeceras no han sido enviadas antes de la redirección
+        
         if (!headers_sent()) {
             header("Location: ../view/index.php");
             exit;
@@ -71,12 +71,9 @@ class UserController
     }
 }
 
-//Inicializaión de userController() movida después de la creación
-//de la clase para evitar error de referencia(Marvin)
+
 $user = new UserController();
 
-//Manejo de solicitudes post movida despues de crear la clase 
-//para asegurar que esta ya esta creada antes de usarla (Marvin)
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (isset($_POST["login"])) {
         $user->login();
@@ -87,12 +84,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 }
 
-// Función de conexión a la base de datos
 function conn()
 {
     $host = "localhost";
     $dbname = "firalia";
-    $username = "root"; // Cambiar en producción para mayor seguridad
+    $username = "root"; 
     $password = "";
 
     $mysqli = new mysqli($host, $username, $password, $dbname);

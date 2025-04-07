@@ -10,17 +10,14 @@
 
 html {
     overflow-y: scroll;
-    /* Asegura que el contenido se pueda desplazar */
     scrollbar-width: none;
-    /* Oculta la scrollbar en Firefox */
 }
 
 body::-webkit-scrollbar {
     display: none;
-    /* Oculta la scrollbar en Chrome, Edge y Safari */
 }
 
-/* Box sizing rules */
+
 *,
 *::before,
 *::after {
@@ -28,21 +25,17 @@ body::-webkit-scrollbar {
 }
 
 
-
-/* Remove default margin in favour of better control in authored CSS */
 * {
     margin: 0;
     padding: 0;
     font: inherit;
 }
 
-/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
 ul[role='list'],
 ol[role='list'] {
     list-style: none;
 }
 
-/* Set core body defaults */
 html,
 body {
     height: 100%;
@@ -54,7 +47,7 @@ body {
     line-height: 1.5;
 }
 
-/* Set shorter line heights on headings and interactive elements */
+
 h1,
 h2,
 h3,
@@ -65,7 +58,7 @@ label {
     line-height: 1.1;
 }
 
-/* Balance text wrapping on headings */
+
 h1,
 h2,
 h3,
@@ -73,13 +66,11 @@ h4 {
     text-wrap: balance;
 }
 
-/* A elements that don't have a class get default styles */
 a:not([class]) {
     text-decoration-skip-ink: auto;
     color: currentColor;
 }
 
-/* Make images easier to work with */
 img,
 picture,
 svg {
@@ -87,7 +78,7 @@ svg {
     display: block;
 }
 
-/* Inherit fonts for inputs and buttons */
+
 input,
 button,
 textarea,
@@ -96,12 +87,12 @@ select {
     font-size: inherit;
 }
 
-/* Make sure textareas without a rows attribute are not tiny */
+
 textarea:not([rows]) {
     min-height: 10em;
 }
 
-/* Anything that has been anchored to should have extra scroll margin */
+
 :target {
     scroll-margin-block: 5ex;
 }
@@ -160,7 +151,7 @@ body {
     color: #8B6A9C;
 }
 
-/* Logo */
+
 .logo-nav {
     margin-top: 5%;
     width: 100%;
@@ -177,7 +168,7 @@ body {
     padding-left: 1%;
 }
 
-/* Sidebar */
+
 .sidebar {
     z-index: 9999;
     color: black;
@@ -202,7 +193,7 @@ body {
     
 }
 
-/* Asegura que los elementos estén alineados correctamente */
+
 .sidebar li {
     width: 100%;
     text-align: center;
@@ -221,13 +212,13 @@ body {
     color: #8B6A9C;
 }
 
-/* Botón de menú */
+
 .menu-button {
     display: none;
 
 }
 
-/* Formulario de búsqueda */
+
 .nav-form {
     display: flex;
     align-items: center; 
@@ -272,7 +263,6 @@ body {
 }
 
 
-/* Media Queries */
 @media (max-width: 900px) {
     
     .main-nav {
