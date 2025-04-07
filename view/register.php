@@ -7,11 +7,11 @@
     <title>Registrarse</title>
 
     <link rel="stylesheet" href="CSS/style.css">
-    <link rel="stylesheet" href="CSS/REGISTER.css">
+    <link rel="stylesheet" href="CSS/register.css">
 </head>
 
 <body>
-    <section class="login-section">
+    
     <nav class="main-nav">
         <!-- ------------------------------------------------------------------ SIDE BAR --------------------------------------------------------------------------------->
         <ul class="sidebar">
@@ -84,7 +84,7 @@
             </form>
         </div>
     </div>
-
+    <section class="login-section">
         <div class="login-grid">
             <div class="login-container">
                 <h2>Regístrate</h2>
