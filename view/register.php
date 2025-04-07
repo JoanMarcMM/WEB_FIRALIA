@@ -7,11 +7,12 @@
     <title>Registrarse</title>
 
     <link rel="stylesheet" href="CSS/style.css">
-    <link rel="stylesheet" href="CSS/REGISTER.css">
+    <link rel="stylesheet" href="CSS/register.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 </head>
 
 <body>
-    <section class="login-section">
+    
     <nav class="main-nav">
         <!-- ------------------------------------------------------------------ SIDE BAR --------------------------------------------------------------------------------->
         <ul class="sidebar">
@@ -84,7 +85,7 @@
             </form>
         </div>
     </div>
-
+    <section class="login-section">
         <div class="login-grid">
             <div class="login-container">
                 <h2>Regístrate</h2>
@@ -118,7 +119,7 @@
                     
 
 
-                    <button type="submit" class="btn">Registrarme</button>
+                    <button type="submit" class="btn-a">Registrarme</button>
 
                     <div class="register-box">
                         <p>Eres un administrador? <a href="registerAdmin.php">Registro para administradores</a></p> 

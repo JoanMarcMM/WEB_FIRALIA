@@ -380,7 +380,9 @@
         font-family: 'Slabo 27px', sans-serif;
     }
     .info-2 {
-        margin-top: 5px;
+        margin-top: 10px;
+        height: 45vh; 
+        min-height: 45vh;
     }
 }
 
