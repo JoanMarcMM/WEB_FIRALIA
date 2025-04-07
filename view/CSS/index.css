@@ -321,7 +321,6 @@
 
 /*--------------------------------------------------------RECOMENDACIONES----------------------------------------------------*/
 .info-2 {
-    border: solid 1px red;
     height: 70vh;
     display: flex;
     flex-direction: column;
