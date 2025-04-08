@@ -43,32 +43,6 @@ $rol = intval(value: $_POST["rol"]); // Convertir a número entero
 
 
 
-/* esto es Chat
-$user_image = null;
-
-if (isset($_FILES["user_image"]) && $_FILES["user_image"]["error"]== 0){
-    $image = $_FILES["user_image"];
-
-    $allowed_types = ["image/jpeg", "image/png", "image/gif"];
-    $max_size = 5 * 1024 * 1024;
-
-    if (!in_array($image["type"], $allowed_types)) {
-        die("Formato de imagen no permitido (solo JPG, PNG, GIF)");
-    }
-
-    if ($image["size"] > $max_size) {
-        die("La imagen excede el tamaño máximo permitido (5MB)");
-    }
-
-    $upload_dir = __DIR__ . "/../uploads/"; // Ruta donde se guardarán las imágenes
-    if (!is_dir($upload_dir)) {
-        mkdir($upload_dir, 0777, true); // Crear directorio si no existe
-    }
-
-
-}
-    */
-
 
 // Preparar consulta
 $sql = "INSERT INTO users (USER, NAME, LASTNAME, EMAIL, PASSWORD, ROL) VALUES (?, ?, ?, ?, ?, ?)";
@@ -95,16 +69,4 @@ $stmt->close();
 $mysqli->close();
 
 ?>
-if ($stmt->execute()) {
 
-  header("Location: signup-success.html");
-   exit;                
-    } else {
-                    
-        if ($mysqli->errno === 1062) {
-           die("email already taken");
-                } else {
-               die($mysqli->error . " " . $mysqli->errno);
-                    }
-                }
-                  
