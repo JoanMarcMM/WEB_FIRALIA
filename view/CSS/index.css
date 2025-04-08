@@ -343,31 +343,32 @@
 .recomendaciones {
     width: 100%;
     height: auto;
-    overflow: hidden;
+    
 
 }
 
 .container {
     height: 100%;
-    width: 100%;
+   
 
 }
 
 .image-list {
-    height: 100%;
     display: flex;
     gap: 15px;
     padding: 15px 0;
-    overflow-x: auto;
-
+    overflow-x: auto; 
+    white-space: nowrap; 
 }
 
 .image-item {
-    min-width: 300px;
+    
+    width: 600px;
     height: 300px;
     flex: 0 0 auto;
 
 }
+
 
 
 @media (max-width: 768px) {
