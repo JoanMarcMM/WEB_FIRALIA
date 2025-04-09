@@ -99,19 +99,31 @@ session_start();
         </div>
     </div>
     <!-- -------------------------------------------------------------------------- FORM --------------------------------------------------------------------------------->
-    <!-- https://www.youtube.com/watch?v=fIYyemqKR58-->
+
     <section class="support-section">
 
-        <h1>SUPPORT</h1>
+        <h1>SOPORTE</h1>
+        <?php
+                    if (isset($_SESSION["enviado"])) {
+                        echo " <h2>CORREO ENVIADO CORRECTAMENTE!</h2>";
+                        unset($_SESSION["enviado"]);
+                    }
+                    ?>
         <form method="POST" action="../controller/enviarEmail.php">
             <label for="name">Nombre</label>
             <input type="text" name="name" id="name" required>
 
+            <br>
+
             <label for="email">Email</label>
             <input type="email" name="email" id="email" required>
+            
+            <br>
 
             <label for="subject">Asunto</label>
             <input type="text" name="subject" id="subject" required>
+            
+            <br>
 
             <label for="message">Mensaje</label>
             <textarea name="message" id="message" required></textarea>
