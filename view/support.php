@@ -110,22 +110,22 @@ session_start();
                     }
                     ?>
         <form method="POST" action="../controller/enviarEmail.php">
-            <label for="name">Nombre</label>
+            <label for="name">Nombre</label><br>
             <input type="text" name="name" id="name" required>
 
             <br>
 
-            <label for="email">Email</label>
+            <label for="email">Email</label><br>
             <input type="email" name="email" id="email" required>
             
             <br>
 
-            <label for="subject">Asunto</label>
+            <label for="subject">Asunto</label><br>
             <input type="text" name="subject" id="subject" required>
             
             <br>
 
-            <label for="message">Mensaje</label>
+            <label for="message">Mensaje</label><br>
             <textarea name="message" id="message" required></textarea>
 
             <br>
