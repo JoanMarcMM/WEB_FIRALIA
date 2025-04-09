@@ -1,18 +1,31 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrarse</title>
+    <title>Home Page</title>
 
-    <link rel="stylesheet" href="CSS/style.css">
-    <link rel="stylesheet" href="CSS/register.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_forward" />
+
+    <!-- Swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <!-- Archivos CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/register.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
 </head>
 
-<body>
-    
+<body style="background-color: #F2F0EF !important;">
+
     <nav class="main-nav">
         <!-- ------------------------------------------------------------------ SIDE BAR --------------------------------------------------------------------------------->
         <ul class="sidebar">
@@ -85,6 +98,7 @@
             </form>
         </div>
     </div>
+
     <section class="login-section">
         <div class="login-grid">
             <div class="login-container">
@@ -170,18 +184,82 @@
             </div>
         </div>
     </footer>
+     <!-- Scripts -->
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        function showSidebar() {
-            const sidebar = document.querySelector('.sidebar')
-            sidebar.style.display = 'flex'
-        }
-        function hideSidebar() {
-            const sidebar = document.querySelector('.sidebar')
-            sidebar.style.display = 'none'
-        }
+        document.addEventListener('DOMContentLoaded', function() {
+
+            function showSidebar() {
+                const sidebar = document.querySelector('.sidebar');
+                sidebar.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+
+            function hideSidebar() {
+                const sidebar = document.querySelector('.sidebar');
+                sidebar.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+
+
+            function createPopup(id) {
+                let popupNode = document.querySelector(id);
+                let overlay = popupNode.querySelector(".overlay");
+                let closeBtn = popupNode.querySelector(".close-btn");
+
+                function openPopup() {
+                    popupNode.classList.add("active");
+                    document.body.style.overflow = 'hidden';
+                }
+
+                function closePopup() {
+                    popupNode.classList.remove("active");
+                    document.body.style.overflow = '';
+                }
+
+                if (document.querySelector(".error-message")) {
+                    openPopup();
+                }
+
+                overlay.addEventListener("click", closePopup);
+                closeBtn.addEventListener("click", closePopup);
+
+                return openPopup;
+            }
+
+
+            const img = document.getElementById('logo-nav');
+            if (img) {
+                img.addEventListener('mouseenter', () => {
+                    img.src = 'images/logo2.png';
+                });
+
+                img.addEventListener('mouseleave', () => {
+                    img.src = 'images/logo2-modified.png';
+                });
+            }
+
+
+            document.querySelector(".menu-button")?.addEventListener("click", showSidebar);
+            document.querySelector(".sidebar li:first-child")?.addEventListener("click", hideSidebar);
+
+            const openPopupBtn = document.querySelector("#open-popup");
+            if (openPopupBtn) {
+                let popup = createPopup("#popup");
+                openPopupBtn.addEventListener("click", popup);
+            }
+
+
+            if (typeof Swiper !== 'undefined') {
+                new Swiper('.swiper', {
+                    slidesPerView: 'auto',
+                    spaceBetween: 20,
+                    freeMode: true,
+                });
+            }
+        });
     </script>
-
-
 </body>
 
 </html>
