@@ -41,7 +41,13 @@ class UserController
       
         if ($user && password_verify($_POST["password"], $user["PASSWORD"])) {
             $_SESSION["user_id"] = $user["ID"];
-            header("Location: ../view/profile.php");
+            $_SESSION["rol"] = $user["ROL"];
+            if($_SESSION['rol']==1){
+               header("Location: ../view/profileadmin.php");
+            }else{
+               header("Location: ../view/profile.php");
+            }
+            
             exit();
         }
         
