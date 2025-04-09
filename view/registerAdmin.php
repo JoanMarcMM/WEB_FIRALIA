@@ -103,7 +103,7 @@ session_start();
         <div class="login-grid">
             <div class="login-container">
                 <h2>Regístrate</h2>
-                <form action="../controller/processSignup.php" method="POST">
+                <form action="../controller/processSignup.php" method="POST" enctype="multipart/form-data"> 
                     <div class="input-box">
                         <input type="text" name="name" id="name" placeholder="Nombre" required>
                     </div>
@@ -122,17 +122,19 @@ session_start();
 
 
                     <div class="input-box">
-                        <input type="password" name="password" id="password" placeholder="Constraseña" required formnovalidate>
+                        <input type="password" name="password" id="password" placeholder="Contraseña" required formnovalidate>
                     </div>
 
                     <div class="input-box">
-                        <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Confirmación Constraseña" required formnovalidate>
+                        <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Confirmación Contraseña" required formnovalidate>
                     </div>
 
                     <div class="input-box">
-                        <input type="image" name="user_image" id="user_image" placeholder="Imagen Usuario">
+                    <input id="imagen" name="imagen" size="30" type="file">
                     </div>
                     <input type="hidden" name="rol" id="rol" value="1">
+
+                    
 
                     <button type="submit" class="btn-a">Registrarme</button>
 

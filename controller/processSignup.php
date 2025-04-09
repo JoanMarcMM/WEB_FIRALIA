@@ -41,11 +41,34 @@ $username = trim(htmlspecialchars($_POST["user"]));
 $email = trim(htmlspecialchars($_POST["email"]));
 $rol = intval(value: $_POST["rol"]); // Convertir a número entero
 
+// ===================== SUBIDA DE IMAGEN ======================
+$img_name = $_FILES['imagen']['name'];
+$type = $_FILES['imagen']['type'];
+$size = $_FILES['imagen']['size'];
+$user_image = null;
+
+if (!empty($img_name) && ($size <= 2000000)) {
+    if ($type == "image/jpeg" || $type == "image/jpg" || $type == "image/png") {
+        $directory = __DIR__ . "/../imgs/";
+        if (!is_dir($directory)) {
+            mkdir($directory, 0777, true);
+        }
+
+        $file_name = time() . "_" . basename($img_name);
+        $user_image = "imgs/" . $file_name;
+        move_uploaded_file($_FILES['imagen']['tmp_name'], $directory . $file_name);
+    } else {
+        die("Formato de imagen no válido (solo JPG, JPEG o PNG)");
+    }
+} elseif (!empty($img_name)) {
+    die("La imagen es demasiado grande (máx 2MB)");
+}
+
 
 
 
 // Preparar consulta
-$sql = "INSERT INTO users (USER, NAME, LASTNAME, EMAIL, PASSWORD, ROL) VALUES (?, ?, ?, ?, ?, ?)";
+$sql = "INSERT INTO users (USER, NAME, LASTNAME, EMAIL, PASSWORD, ROL, USER_IMAGE) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
 $stmt = $mysqli->prepare($sql);
 
@@ -53,8 +76,8 @@ if (!$stmt) {
     die("Error SQL: " . $mysqli->error);
 }
 
-// Vincular parámetros (sssssi -> string, string, string, string, string, integer)
-$stmt->bind_param("sssssi", $username, $name, $lastname, $email, $password_hash, $rol);
+// Vincular parámetros (sssssi -> string, string, string, string, string, integer, blob)
+$stmt->bind_param("sssssib", $username, $name, $lastname, $email, $password_hash, $rol, $user_image);
 
 // Ejecutar consulta
 if ($stmt->execute()) {
