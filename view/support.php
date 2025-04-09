@@ -101,7 +101,7 @@ session_start();
     <!-- -------------------------------------------------------------------------- FORM --------------------------------------------------------------------------------->
 
     <section class="support-section">
-
+        <div class="support-form">
         <h1>SOPORTE</h1>
         <?php
                     if (isset($_SESSION["enviado"])) {
@@ -132,7 +132,7 @@ session_start();
 
             <button>ENVIAR</button>
         </form>
-
+        </div>
 
 
     </section>
