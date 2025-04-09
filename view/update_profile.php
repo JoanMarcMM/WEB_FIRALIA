@@ -3,14 +3,12 @@
 session_start();
 $mysqli = require '../controller/database.php';
 
-// Verifica si el usuario está autenticado
 if (!isset($_SESSION["user_id"])) {
     header("Location: ../view/index.php");
 }
 
 $id = $_SESSION["user_id"];
 
-// Consulta segura con `prepare()`
 $select = $mysqli->prepare("SELECT * FROM users WHERE id = ?");
 $select->bind_param("i", $id);
 $select->execute();
@@ -19,7 +17,6 @@ $result = $select->get_result();
 $fetch = $result->fetch_assoc();
 $select->close();
 
-// Si no encuentra usuario, muestra un mensaje
 if (!$fetch) {
     die("Error: Usuario no encontrado en la base de datos.");
 }
@@ -127,11 +124,7 @@ if (!$fetch) {
         <a href="#"><img src="images/icons/estandarPfp.jpg" alt="Pfp" class="pfp"></a>
         <div class="profile">
             <?php if ($fetch): ?>
-                <h3><?php if($fetch['ROL']==1){
-                    echo "PERFIL ADMINISTRADOR";
-                 }else{
-                    echo "PERFIL USUARIO";
-                 }?></h3>
+                <h2 style="font-style: italic; margin-bottom: 5%;"> PERFIL USUARIO </h2>
                 <h3><?php echo "Usuario: " . htmlspecialchars($fetch['USER']); ?></h3>
                 <h3><?php echo "Nombre: " . htmlspecialchars($fetch['NAME']); ?></h3>
                 <h3><?php echo "Apellidos: " . htmlspecialchars($fetch['LASTNAME']); ?></h3>

@@ -56,19 +56,17 @@ if (!$fetch) {
     <nav class="main-nav">
         <!-- ------------------------------------------------------------------ SIDE BAR --------------------------------------------------------------------------------->
         <ul class="sidebar">
-            <li onclick="hideSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
-                        viewBox="0 -960 960 960" width="24px" fill="#">
-                        <path
-                            d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+            <li onclick="hideSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#">
+                        <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
                     </svg></a></li>
             <li><a href="concerts.php">Conciertos</a></li>
-            <li><a href="events.php">Eventos</a></li>
+            <li><a href="event.php">Eventos</a></li>
             <li><a href="support.php">Soporte</a></li>
             <?php if (isset($_SESSION["user_id"])): ?>
-            <li><a href="login.php">Perfil</a></li>
+                <li><a href="login.php">Perfil</a></li>
             <?php else: ?>
-            <li><a href="login.php">Iniciar Sesión</a></li>
-            <li><a href="register.php">Registrarse</a></li>
+                <li><a href="login.php">Iniciar Sesión</a></li>
+                <li><a href="register.php">Registrarse</a></li>
             <?php endif; ?>
         </ul>
         <!-- ------------------------------------------------------------------ MAIN MENU --------------------------------------------------------------------------------->
@@ -76,25 +74,12 @@ if (!$fetch) {
             <li>
                 <a href="index.php">
                     <img class="logo-nav" src="images/logo2-modified.png" alt="logo" id="logo-nav">
-                    <script>
-                        const img = document.getElementById('logo-nav');
-
-                        img.addEventListener('mouseenter', () => {
-                            img.src = 'images/logo2.png';
-                        });
-
-                        img.addEventListener('mouseleave', () => {
-                            img.src = 'images/logo2-modified.png';
-                        });
-                    </script>
-
-
                 </a>
-
             </li>
-            <li class="hideOnMobile"><a href="concerts.php">CONCIERTOS</a></li>
-            <li class="hideOnMobile"><a href="events.php">EVENTOS</a></li>
-            <li class="hideOnMobile"><a href="support.php">SOPORTE</a></li>
+            <li class="hideOnMobile link"><a href="concerts.php">CONCIERTOS</a></li>
+            <li class="hideOnMobile link"><a href="event.php">EVENTOS</a></li>
+            <li class="hideOnMobile link"><a href="support.php">SOPORTE</a></li>
+
             <li>
                 <form class="nav-form">
                     <input type="text" class="search-bx" placeholder="">
@@ -102,14 +87,9 @@ if (!$fetch) {
                 </form>
             </li>
             <?php if (isset($_SESSION["user_id"])): ?>
-
-            <li><a href="login.php">foto</a></li>
-
+                <li><a href="profile.php"><img src="images/icons/estandarPfp.jpg" alt="Pfp" class="pfpNav"></a></li>
             <?php else: ?>
-
-            <li class="hideOnMobile"><a href="login.php">INICIAR SESIÓN</a></li>
-            <li class="hideOnMobile"><a href="register.php">REGISTRARSE</a></li>
-
+                <li class="hideOnMobile"><button id="open-popup">LOG IN</button></li>
             <?php endif; ?>
 
             <li class="menu-button" onclick="showSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg"
@@ -118,6 +98,33 @@ if (!$fetch) {
                     </svg></a></li>
         </ul>
     </nav>
+        <!-- -------------------------------------------------------------------------- LOG IN  --------------------------------------------------------------------------------->
+        <div class="popup" id="popup">
+        <div class="overlay"></div>
+        <div class="popup-content">
+            <h2>Login</h2>
+            <form method="POST" action="../controller/UserController.php">
+                <div class="login-box">
+                    <?php
+                    if (isset($_SESSION["error_message"])) {
+                        echo "<p class='error-message'>" . $_SESSION["error_message"] . "</p>";
+                        unset($_SESSION["error_message"]);
+                    }
+                    ?>
+                    <input type="text" name="user" id="user" placeholder="Username" required>
+                    <input type="hidden" name="login" value="login">
+                    <input type="password" name="password" id="password" placeholder="Password" required>
+                    <input type="hidden" name="redirect" value="<?php echo basename($_SERVER['PHP_SELF']); ?>">
+                    <a href="register.php" class="atext">Problemas con la contraseña?</a>
+                    <a href="register.php" class="atext">No tienes cuenta? Registrate!</a>
+                </div>
+                <div class="controls">
+                    <button class="close-btn">Cancelar</button>
+                    <button class="submit-btn" type="submit">Iniciar Sesión</button>
+                </div>
+            </form>
+        </div>
+    </div>
     <!-- ------------------------------------------------------------------ Profile body --------------------------------------------------------------------------------->
     <!-- https://www.youtube.com/watch?v=KZHF2FKJtK8 -->
    
@@ -129,7 +136,7 @@ if (!$fetch) {
         
         <div class="profile">
             <?php if ($fetch): ?>
-                <h2 style="font-style: italic; ">ADMINISTRADOR</h2>
+                <h2 style="font-style: italic; margin-bottom: 5%;">ADMINISTRADOR</h2>
                 <h3><?php echo "Usuario: " . htmlspecialchars($fetch['USER']); ?></h3>
                 <h3><?php echo "Nombre: " . htmlspecialchars($fetch['NAME']); ?></h3>
                 <h3><?php echo "Apellidos: " . htmlspecialchars($fetch['LASTNAME']); ?></h3>
