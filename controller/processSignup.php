@@ -41,7 +41,7 @@ $username = trim(htmlspecialchars($_POST["user"]));
 $email = trim(htmlspecialchars($_POST["email"]));
 $rol = intval(value: $_POST["rol"]); // Convertir a número entero
 
-// ===================== SUBIDA DE IMAGEN ======================
+// Subida de imagen
 $img_name = $_FILES['imagen']['name'];
 $type = $_FILES['imagen']['type'];
 $size = $_FILES['imagen']['size'];
