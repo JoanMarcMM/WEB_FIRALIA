@@ -41,37 +41,34 @@ $username = trim(htmlspecialchars($_POST["user"]));
 $email = trim(htmlspecialchars($_POST["email"]));
 $rol = intval(value: $_POST["rol"]); // Convertir a número entero
 
-
-
-/* esto es Chat
+// ===================== SUBIDA DE IMAGEN ======================
+$img_name = $_FILES['imagen']['name'];
+$type = $_FILES['imagen']['type'];
+$size = $_FILES['imagen']['size'];
 $user_image = null;
 
-if (isset($_FILES["user_image"]) && $_FILES["user_image"]["error"]== 0){
-    $image = $_FILES["user_image"];
+if (!empty($img_name) && ($size <= 2000000)) {
+    if ($type == "image/jpeg" || $type == "image/jpg" || $type == "image/png") {
+        $directory = __DIR__ . "/../imgs/";
+        if (!is_dir($directory)) {
+            mkdir($directory, 0777, true);
+        }
 
-    $allowed_types = ["image/jpeg", "image/png", "image/gif"];
-    $max_size = 5 * 1024 * 1024;
-
-    if (!in_array($image["type"], $allowed_types)) {
-        die("Formato de imagen no permitido (solo JPG, PNG, GIF)");
+        $file_name = time() . "_" . basename($img_name);
+        $user_image = "imgs/" . $file_name;
+        move_uploaded_file($_FILES['imagen']['tmp_name'], $directory . $file_name);
+    } else {
+        die("Formato de imagen no válido (solo JPG, JPEG o PNG)");
     }
-
-    if ($image["size"] > $max_size) {
-        die("La imagen excede el tamaño máximo permitido (5MB)");
-    }
-
-    $upload_dir = __DIR__ . "/../uploads/"; // Ruta donde se guardarán las imágenes
-    if (!is_dir($upload_dir)) {
-        mkdir($upload_dir, 0777, true); // Crear directorio si no existe
-    }
-
-
+} elseif (!empty($img_name)) {
+    die("La imagen es demasiado grande (máx 2MB)");
 }
-    */
+
+
 
 
 // Preparar consulta
-$sql = "INSERT INTO users (USER, NAME, LASTNAME, EMAIL, PASSWORD, ROL) VALUES (?, ?, ?, ?, ?, ?)";
+$sql = "INSERT INTO users (USER, NAME, LASTNAME, EMAIL, PASSWORD, ROL, USER_IMAGE) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
 $stmt = $mysqli->prepare($sql);
 
@@ -79,8 +76,8 @@ if (!$stmt) {
     die("Error SQL: " . $mysqli->error);
 }
 
-// Vincular parámetros (sssssi -> string, string, string, string, string, integer)
-$stmt->bind_param("sssssi", $username, $name, $lastname, $email, $password_hash, $rol);
+// Vincular parámetros (sssssi -> string, string, string, string, string, integer, blob)
+$stmt->bind_param("sssssib", $username, $name, $lastname, $email, $password_hash, $rol, $user_image);
 
 // Ejecutar consulta
 if ($stmt->execute()) {
@@ -95,16 +92,4 @@ $stmt->close();
 $mysqli->close();
 
 ?>
-if ($stmt->execute()) {
 
-  header("Location: signup-success.html");
-   exit;                
-    } else {
-                    
-        if ($mysqli->errno === 1062) {
-           die("email already taken");
-                } else {
-               die($mysqli->error . " " . $mysqli->errno);
-                    }
-                }
-                  

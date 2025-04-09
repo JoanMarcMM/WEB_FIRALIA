@@ -109,7 +109,7 @@
                         <input type="hidden" name="rol" id="rol" value="2">
 
                     <div class="input-box">
-                        <input type="password" name="password" id="password" placeholder="Constraseña" required formnovalidate>
+                        <input type="password" name="password" id="password" placeholder="Contraseña" required formnovalidate>
                     </div>
 
                     <div class="input-box">
