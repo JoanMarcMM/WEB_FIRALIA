@@ -47,7 +47,7 @@ if (!$fetch) {
 
     <!-- Archivos CSS -->
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/updateUser.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 </head>
 
@@ -129,32 +129,31 @@ if (!$fetch) {
     <!-- https://www.youtube.com/watch?v=KZHF2FKJtK8 -->
    
    
-    <section class="grid">
-    <div class="profile-container">
-        <a href="#"><img src="images/icons/estandarPfp.jpg" alt="Pfp" class="pfp"></a>
-        <div class="profile">
-            <?php if ($fetch): ?>
-                <h2 style="font-style: italic; margin-bottom: 5%;"> PERFIL USUARIO</h2>
-                <h3><?php echo "Usuario: " . htmlspecialchars($fetch['USER']); ?></h3>
-                <h3><?php echo "Nombre: " . htmlspecialchars($fetch['NAME']); ?></h3>
-                <h3><?php echo "Apellidos: " . htmlspecialchars($fetch['LASTNAME']); ?></h3>
-                <h3><?php echo "Correo: " . htmlspecialchars($fetch['EMAIL']); ?></h3>
-                <a href="../controller/logout.php" class="delete-btn">Logout</a>    
-            <?php else: ?>
-                <h3>Usuario no encontrado</h3>
-            <?php endif; ?>
-        </div>
-    </div>
-    <div class="option-container">
-       <form action="../controller/UserController.php" method="POST">
-       <input type="hidden" name="deleteUser" value="deleteUser">
-       <button class="submit-btn" type="submit">Eliminar Usuario</button>
-       </form>
-       <form action="updateUser.php" method="POST">
-       <button class="submit-btn" type="submit">Editar Usuario</button>
-       </form>       
-    </div>
-</section>
+    <section class="update-section">
+    <form action="../controller/UserController.php" method="POST">
+                    <div class="input-box">
+                    <input type="text" name="name" id="name" placeholder="Nombre" value="<?php echo $fetch['NAME']; ?>" required>
+                    </div>
+
+                    <div class="input-box">
+                        <input type="text" name="lastname" id="lastname" placeholder="Apellidos" value="<?php echo $fetch['LASTNAME']; ?>" required>
+                    </div>
+
+                    <div class="input-box">
+                        <input type="text" name="email" id="email" placeholder="Email" value="<?php echo $fetch['EMAIL']; ?>" required formnovalidate>
+                    </div>
+
+                    <div class="input-box">
+                        <input type="text" name="user" id="user" placeholder="Username" value="<?php echo $fetch['USER']; ?>" required>
+                    </div>
+                    <input type="hidden" name="updateUser" value="updateUser">
+                    <button type="submit" class="btn-a">Actualizar</button>
+
+                    
+                </form>
+                <a href="profile.php" class="">Volver</a>   
+    </section>
+    
   
 
     <!-- --------------------------------------------------------------------- Footer  --------------------------------------------------------------------------------->
