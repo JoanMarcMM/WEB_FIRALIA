@@ -127,34 +127,42 @@ if (!$fetch) {
     </div>
     <!-- ------------------------------------------------------------------ Profile body --------------------------------------------------------------------------------->
     <!-- https://www.youtube.com/watch?v=KZHF2FKJtK8 -->
-   
-   
+
+
     <section class="update-section">
-    <form action="../controller/UserController.php" method="POST">
-                    <div class="input-box">
+        <div class="update-form">
+            <form action="../controller/UserController.php" method="POST" class="form-update">
+                <div class="input-box">
+                    <label>Nombre</label><br>
                     <input type="text" name="name" id="name" placeholder="Nombre" value="<?php echo $fetch['NAME']; ?>" required>
-                    </div>
+                </div>
 
-                    <div class="input-box">
-                        <input type="text" name="lastname" id="lastname" placeholder="Apellidos" value="<?php echo $fetch['LASTNAME']; ?>" required>
-                    </div>
+                <div class="input-box">
+                <label>Apellidos</label><br>
+                    <input type="text" name="lastname" id="lastname" placeholder="Apellidos" value="<?php echo $fetch['LASTNAME']; ?>" required>
+                </div>
 
-                    <div class="input-box">
-                        <input type="text" name="email" id="email" placeholder="Email" value="<?php echo $fetch['EMAIL']; ?>" required formnovalidate>
-                    </div>
+                <div class="input-box">
+                <label>Email</label><br>
+                    <input type="text" name="email" id="email" placeholder="Email" value="<?php echo $fetch['EMAIL']; ?>" required formnovalidate>
+                </div>
 
-                    <div class="input-box">
-                        <input type="text" name="user" id="user" placeholder="Username" value="<?php echo $fetch['USER']; ?>" required>
-                    </div>
-                    <input type="hidden" name="updateUser" value="updateUser">
-                    <button type="submit" class="btn-a">Actualizar</button>
+                <div class="input-box">
+                <label>Nombre de usuario</label><br>
+                    <input type="text" name="user" id="user" placeholder="Username" value="<?php echo $fetch['USER']; ?>" required>
+                </div>
+                <input type="hidden" name="updateUser" value="updateUser">
+                <div class="actions">
+                <a href="profile.php" style="color:white;">Volver</a>
+                <button type="submit" class="btn-a">Actualizar</button>
+                </div>
 
-                    
-                </form>
-                <a href="profile.php" class="">Volver</a>   
+            </form>
+            
+        </div>
     </section>
-    
-  
+
+
 
     <!-- --------------------------------------------------------------------- Footer  --------------------------------------------------------------------------------->
 
@@ -205,7 +213,7 @@ if (!$fetch) {
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-           
+
             function showSidebar() {
                 const sidebar = document.querySelector('.sidebar');
                 sidebar.style.display = 'flex';
@@ -218,7 +226,7 @@ if (!$fetch) {
                 document.body.style.overflow = '';
             }
 
-           
+
             function createPopup(id) {
                 let popupNode = document.querySelector(id);
                 let overlay = popupNode.querySelector(".overlay");
@@ -244,7 +252,7 @@ if (!$fetch) {
                 return openPopup;
             }
 
-            
+
             const img = document.getElementById('logo-nav');
             if (img) {
                 img.addEventListener('mouseenter', () => {
@@ -256,7 +264,7 @@ if (!$fetch) {
                 });
             }
 
-            
+
             document.querySelector(".menu-button")?.addEventListener("click", showSidebar);
             document.querySelector(".sidebar li:first-child")?.addEventListener("click", hideSidebar);
 
@@ -266,7 +274,7 @@ if (!$fetch) {
                 openPopupBtn.addEventListener("click", popup);
             }
 
-            
+
             if (typeof Swiper !== 'undefined') {
                 new Swiper('.swiper', {
                     slidesPerView: 'auto',
