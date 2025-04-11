@@ -139,7 +139,11 @@ if (!$fetch) {
                 <h3><?php echo "Nombre: " . htmlspecialchars($fetch['NAME']); ?></h3>
                 <h3><?php echo "Apellidos: " . htmlspecialchars($fetch['LASTNAME']); ?></h3>
                 <h3><?php echo "Correo: " . htmlspecialchars($fetch['EMAIL']); ?></h3><br>  
-                <a href="../controller/logout.php" class="delete-btn">Logout</a>  
+                
+                <form action="../controller/UserController.php" method="POST">
+                <input type="hidden" name="logout" value="logout">
+                <button class="submit-btn" type="submit">Log Out</button> 
+                </form>
             <?php else: ?>
                 <h3>Usuario no encontrado</h3>
             <?php endif; ?>
