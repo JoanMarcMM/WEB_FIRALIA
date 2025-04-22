@@ -1,34 +1,6 @@
 <?php
-
 session_start();
-$mysqli = require '../controller/database.php';
-
-// Verifica si el usuario está autenticado
-if (!isset($_SESSION["user_id"])) {
-    header("Location: ../view/index.php");
-}
-
-$id = $_SESSION["user_id"];
-
-// Consulta segura con `prepare()`
-$select = $mysqli->prepare("SELECT * FROM users WHERE id = ?");
-$select->bind_param("i", $id);
-$select->execute();
-$result = $select->get_result();
-
-$fetch = $result->fetch_assoc();
-$select->close();
-
-// Si no encuentra usuario, muestra un mensaje
-if (!$fetch) {
-    die("Error: Usuario no encontrado en la base de datos.");
-}
 ?>
-
-
-
-
-
 
 <!DOCTYPE html>
 <html lang="es">
@@ -47,7 +19,7 @@ if (!$fetch) {
 
     <!-- Archivos CSS -->
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 </head>
 
@@ -125,43 +97,13 @@ if (!$fetch) {
             </form>
         </div>
     </div>
-    <!-- ------------------------------------------------------------------ Profile body --------------------------------------------------------------------------------->
-    <!-- https://www.youtube.com/watch?v=KZHF2FKJtK8 -->
-   
-   
-    <section class="grid">
-    <div class="profile-container">
-        <a href="#"><img src="images/icons/estandarPfp.jpg" alt="Pfp" class="pfp"></a>
-        <div class="profile">
-            <?php if ($fetch): ?>
-                <h2 style="font-style: italic; margin-bottom: 5%;"> PERFIL USUARIO</h2>
-                <h3><?php echo "Usuario: " . htmlspecialchars($fetch['USER']); ?></h3>
-                <h3><?php echo "Nombre: " . htmlspecialchars($fetch['NAME']); ?></h3>
-                <h3><?php echo "Apellidos: " . htmlspecialchars($fetch['LASTNAME']); ?></h3>
-                <h3><?php echo "Correo: " . htmlspecialchars($fetch['EMAIL']); ?></h3><br>  
-                
-                <form action="../controller/UserController.php" method="POST">
-                <input type="hidden" name="logout" value="logout">
-                <button class="submit-btn" type="submit">Log Out</button> 
-                </form>
-            <?php else: ?>
-                <h3>Usuario no encontrado</h3>
-            <?php endif; ?>
-        </div>
-    </div>
-    <div class="option-container">
-       <form action="../controller/UserController.php" method="POST">
-       <input type="hidden" name="deleteUser" value="deleteUser">
-       <button class="submit-btn" type="submit">Eliminar Usuario</button>
-       </form>
-       <form action="updateUser.php" method="POST">
-       <button class="submit-btn" type="submit">Editar Usuario</button>
-       </form>       
-    </div>
-</section>
-  
 
-    <!-- --------------------------------------------------------------------- Footer  --------------------------------------------------------------------------------->
+    <!-- ------------------------------------------------------------------ MAIN carrousel  --------------------------------------------------------------------------------->
+    <section class="main-section">
+        
+    </section>
+
+    
 
     <footer class="footer">
         <div class="footer-container">
@@ -281,7 +223,6 @@ if (!$fetch) {
             }
         });
     </script>
-
 </body>
 
 </html>
