@@ -156,7 +156,10 @@ if (!$fetch) {
             </div>
         </div>
         <div class="option-container">
-
+        <form action="../controller/UserController.php" method="POST">
+        <input type="hidden" name="deleteUser" value="deleteUser">
+        <button class="submit-btn" type="submit">Eliminar Usuario</button>
+        </form>
             <form action="updateUser.php" method="POST">
                 <button class="submit-btn" type="submit">Editar Usuario</button>
             </form>
