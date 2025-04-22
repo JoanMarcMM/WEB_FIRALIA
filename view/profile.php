@@ -23,6 +23,9 @@ $select->close();
 if (!$fetch) {
     die("Error: Usuario no encontrado en la base de datos.");
 }
+
+
+
 ?>
 
 
@@ -56,17 +59,19 @@ if (!$fetch) {
     <nav class="main-nav">
         <!-- ------------------------------------------------------------------ SIDE BAR --------------------------------------------------------------------------------->
         <ul class="sidebar">
-            <li onclick="hideSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#">
-                        <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+            <li onclick="hideSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
+                        viewBox="0 -960 960 960" width="24px" fill="#">
+                        <path
+                            d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
                     </svg></a></li>
             <li><a href="aboutus.php">NOSOTROS</a></li>
             <li><a href="event.php">Eventos</a></li>
             <li><a href="support.php">Soporte</a></li>
             <?php if (isset($_SESSION["user_id"])): ?>
-                <li><a href="login.php">Perfil</a></li>
+            <li><a href="login.php">Perfil</a></li>
             <?php else: ?>
-                <li><a href="login.php">Iniciar Sesión</a></li>
-                <li><a href="register.php">Registrarse</a></li>
+            <li><a href="login.php">Iniciar Sesión</a></li>
+            <li><a href="register.php">Registrarse</a></li>
             <?php endif; ?>
         </ul>
         <!-- ------------------------------------------------------------------ MAIN MENU --------------------------------------------------------------------------------->
@@ -87,9 +92,9 @@ if (!$fetch) {
                 </form>
             </li>
             <?php if (isset($_SESSION["user_id"])): ?>
-                <li><a href="profile.php"><img src="images/icons/estandarPfp.jpg" alt="Pfp" class="pfpNav"></a></li>
+            <li><a href="profile.php"><img src="images/icons/estandarPfp.jpg" alt="Pfp" class="pfpNav"></a></li>
             <?php else: ?>
-                <li class="hideOnMobile"><button id="open-popup">LOG IN</button></li>
+            <li class="hideOnMobile"><button id="open-popup">LOG IN</button></li>
             <?php endif; ?>
 
             <li class="menu-button" onclick="showSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg"
@@ -127,39 +132,37 @@ if (!$fetch) {
     </div>
     <!-- ------------------------------------------------------------------ Profile body --------------------------------------------------------------------------------->
     <!-- https://www.youtube.com/watch?v=KZHF2FKJtK8 -->
-   
-   
+
+
     <section class="grid">
-    <div class="profile-container">
-        <a href="#"><img src="images/icons/estandarPfp.jpg" alt="Pfp" class="pfp"></a>
-        <div class="profile">
-            <?php if ($fetch): ?>
-                <h2 style="font-style: italic; margin-bottom: 5%;"> PERFIL USUARIO</h2>
-                <h3><?php echo "Usuario: " . htmlspecialchars($fetch['USER']); ?></h3>
-                <h3><?php echo "Nombre: " . htmlspecialchars($fetch['NAME']); ?></h3>
-                <h3><?php echo "Apellidos: " . htmlspecialchars($fetch['LASTNAME']); ?></h3>
-                <h3><?php echo "Correo: " . htmlspecialchars($fetch['EMAIL']); ?></h3><br>  
-                
-                <form action="../controller/UserController.php" method="POST">
-                <input type="hidden" name="logout" value="logout">
-                <button class="submit-btn" type="submit">Log Out</button> 
-                </form>
-            <?php else: ?>
-                <h3>Usuario no encontrado</h3>
-            <?php endif; ?>
+        <div class="profile-container">
+            <a href="#"><img src="images/icons/estandarPfp.jpg" alt="Pfp" class="pfp"></a>
+            <div class="profile">
+                <?php if ($fetch): ?>
+                    <h2 style="font-style: italic; margin-bottom: 5%;"> PERFIL USUARIO</h2>
+                    <h3><?php echo "Usuario: " . htmlspecialchars($fetch['USER']); ?></h3>
+                    <h3><?php echo "Nombre: " . htmlspecialchars($fetch['NAME']); ?></h3>
+                    <h3><?php echo "Apellidos: " . htmlspecialchars($fetch['LASTNAME']); ?></h3>
+                    <h3><?php echo "Correo: " . htmlspecialchars($fetch['EMAIL']); ?></h3><br>
+
+                    <form action="../controller/UserController.php" method="POST">
+                        <input type="hidden" name="logout" value="1">
+                        <button class="submit-btn" type="submit">Log Out</button>
+                    </form>
+
+                <?php else: ?>
+                    <h3>Usuario no encontrado</h3>
+                <?php endif; ?>
+            </div>
         </div>
-    </div>
-    <div class="option-container">
-       <form action="../controller/UserController.php" method="POST">
-       <input type="hidden" name="deleteUser" value="deleteUser">
-       <button class="submit-btn" type="submit">Eliminar Usuario</button>
-       </form>
-       <form action="updateUser.php" method="POST">
-       <button class="submit-btn" type="submit">Editar Usuario</button>
-       </form>       
-    </div>
-</section>
-  
+        <div class="option-container">
+
+            <form action="updateUser.php" method="POST">
+                <button class="submit-btn" type="submit">Editar Usuario</button>
+            </form>
+        </div>
+    </section>
+
 
     <!-- --------------------------------------------------------------------- Footer  --------------------------------------------------------------------------------->
 
@@ -209,8 +212,8 @@ if (!$fetch) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-           
+        document.addEventListener('DOMContentLoaded', function () {
+
             function showSidebar() {
                 const sidebar = document.querySelector('.sidebar');
                 sidebar.style.display = 'flex';
@@ -223,7 +226,7 @@ if (!$fetch) {
                 document.body.style.overflow = '';
             }
 
-           
+
             function createPopup(id) {
                 let popupNode = document.querySelector(id);
                 let overlay = popupNode.querySelector(".overlay");
@@ -249,7 +252,7 @@ if (!$fetch) {
                 return openPopup;
             }
 
-            
+
             const img = document.getElementById('logo-nav');
             if (img) {
                 img.addEventListener('mouseenter', () => {
@@ -261,7 +264,7 @@ if (!$fetch) {
                 });
             }
 
-            
+
             document.querySelector(".menu-button")?.addEventListener("click", showSidebar);
             document.querySelector(".sidebar li:first-child")?.addEventListener("click", hideSidebar);
 
@@ -271,7 +274,7 @@ if (!$fetch) {
                 openPopupBtn.addEventListener("click", popup);
             }
 
-            
+
             if (typeof Swiper !== 'undefined') {
                 new Swiper('.swiper', {
                     slidesPerView: 'auto',
