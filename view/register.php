@@ -103,7 +103,7 @@ session_start();
         <div class="login-grid">
             <div class="login-container">
                 <h2>Regístrate</h2>
-                <form action="../controller/processSignup.php" method="POST">
+                <form method="POST" action="../controller/UserController.php" >
                     <div class="input-box">
                         <input type="text" name="name" id="name" placeholder="Nombre" required>
                     </div>
