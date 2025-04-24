@@ -73,6 +73,115 @@ class UserController
     function register()
     {
         // Lógica para registrar usuarios (no implementada)
+        // Validar email
+        if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+            $_SESSION["error_message"] = "Email no válido";
+            header("Location: ../view/register.php");
+            exit();
+        }
+
+        // Validar rol (1, 2 o 3)
+        if (!preg_match("/^[1-3]$/", $_POST["rol"])) {
+            $_SESSION["error_message"] = "El rol debe ser 1, 2 o 3";
+            header("Location: ../view/register.php");
+            exit();
+        }
+
+        // Validar contraseña
+        $password = $_POST["password"];
+        if (strlen($password) < 8) {
+            $_SESSION["error_message"] = "La contraseña debe contener al menos 8 caracteres";
+            header("Location: ../view/register.php");
+            exit();
+        }
+
+        if (!preg_match("/[a-z]/i", $password)) {
+            $_SESSION["error_message"] = "La contraseña debe contener al menos una letra";
+            header("Location: ../view/register.php");
+            exit();
+        }
+
+        if (!preg_match("/[0-9]/", $password)) {
+            $_SESSION["error_message"] = "La contraseña debe contener al menos un número";
+            header("Location: ../view/register.php");
+            exit();
+        }
+
+        if ($password !== $_POST["password_confirmation"]) {
+            $_SESSION["error_message"] = "Las contraseñas deben coincidir";
+            header("Location: ../view/register.php");
+            exit();
+        }
+
+        // Hashear la contraseña
+        $password_hash = password_hash($password, PASSWORD_DEFAULT);
+
+        // Conectar con la base de datos
+        $mysqli = require __DIR__ . "/database.php";
+
+        // Sanitizar entradas
+        $name = trim(htmlspecialchars($_POST["name"]));
+        $lastname = trim(htmlspecialchars($_POST["lastname"]));
+        $username = trim(htmlspecialchars($_POST["user"]));
+        $email = trim(htmlspecialchars($_POST["email"]));
+        $rol = intval($_POST["rol"]);
+
+        // Subida de imagen
+        $user_image = null;
+        if (!empty($_FILES['imagen']['name'])) {
+            $img_name = $_FILES['imagen']['name'];
+            $type = $_FILES['imagen']['type'];
+            $size = $_FILES['imagen']['size'];
+
+            if ($size <= 2000000) {
+                if ($type == "image/jpeg" || $type == "image/jpg" || $type == "image/png") {
+                    $directory = __DIR__ . "/../controller/imgs/";
+                    if (!is_dir($directory)) {
+                        mkdir($directory, 0777, true);
+                    }
+
+                    $file_name = time() . "_" . basename($img_name);
+                    $user_image = "imgs/" . $file_name;
+                    move_uploaded_file($_FILES['imagen']['tmp_name'], $directory . $file_name);
+                } else {
+                    $_SESSION["error_message"] = "Formato de imagen no válido (solo JPG, JPEG o PNG)";
+                    header("Location: ../view/register.php");
+                    exit();
+                }
+            } else {
+                $_SESSION["error_message"] = "La imagen es demasiado grande (máx 2MB)";
+                header("Location: ../view/register.php");
+                exit();
+            }
+        }
+
+        // Preparar consulta
+        $sql = "INSERT INTO users (USER, NAME, LASTNAME, EMAIL, PASSWORD, ROL, USER_IMAGE) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $mysqli->prepare($sql);
+
+        if (!$stmt) {
+            $_SESSION["error_message"] = "Error SQL: " . $mysqli->error;
+            header("Location: ../view/register.php");
+            exit();
+        }
+
+        // Vincular parámetros
+        $stmt->bind_param("sssssis", $username, $name, $lastname, $email, $password_hash, $rol, $user_image);
+
+        // Ejecutar consulta
+        if ($stmt->execute()) {
+            $_SESSION["success_message"] = "Registro exitoso";
+            header("Location: ../view/login.php");
+        } else {
+            $_SESSION["error_message"] = "Error en el registro: " . $stmt->error;
+            header("Location: ../view/register.php");
+        }
+
+        // Cerrar conexión
+        $stmt->close();
+        $mysqli->close();
+    }
+
     }
 
     function deleteUser()
