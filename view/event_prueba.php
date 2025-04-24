@@ -1,16 +1,20 @@
 <?php
 session_start();
 
+
 $conexion = new mysqli("localhost", "root", "", "firalia");
-$evento_id = 1;
+$conexion->set_charset("utf8");
 
-$evento = $conexion->query("SELECT * FROM EVENTOS WHERE ID = $evento_id")->fetch_assoc();
-$fechas = $conexion->query("SELECT * FROM FECHAS_EVENTOS WHERE ID_EVENTO = $evento_id");
-$galeria = $conexion->query("SELECT * FROM GALERIA_EVENTOS WHERE ID_EVENTO = $evento_id");
+// Obtener evento principal (BLACKPINK)
+$id_evento = 1; // puedes cambiarlo dinámicamente si quieres
+$evento_query = $conexion->query("SELECT * FROM EVENTOS WHERE ID = $id_evento");
+$evento = $evento_query->fetch_assoc();
 
-function convertirImagen($blob) {
-    return 'data:image/jpeg;base64,' . base64_encode($blob);
-}
+// Obtener fechas del evento
+$fechas_query = $conexion->query("SELECT * FROM FECHAS_EVENTOS WHERE ID_EVENTO = $id_evento");
+
+// Obtener galería del evento
+$galeria_query = $conexion->query("SELECT * FROM GALERIA_EVENTOS WHERE ID_EVENTO = $id_evento");
 ?>
 
 
@@ -109,92 +113,94 @@ function convertirImagen($blob) {
    
 <!-- MAIN IMAGE -->
 <section class="main-image">
-    <img src="<?= convertirImagen($evento['MAIN_IMAGE']) ?>" alt="main image">
-    <div class="caption">
-        <h1><?= htmlspecialchars($evento['NOMBRE']) ?></h1>
-        <p></p>
-    </div>
-</section>
+        <img src="<?= $evento['MAIN_IMAGE_PATH'] ?>" alt="main image">
+        <div class="caption">
+            <h1><?= htmlspecialchars($evento['NOMBRE']) ?></h1>
+        </div>
+    </section>
 
-<!-- NAV -->
-<nav class="page-nav">
-    <ul>
-        <li><a href="#events">EVENTS</a></li>
-        <li><a href="#gallery">GALLERY</a></li>
-        <li><a href="#about">ABOUT</a></li>
-    </ul>
-</nav>
+    <!-- PAGE NAV -->
+    <nav class="page-nav">
+        <ul>
+            <li><a href="#events">EVENTS</a></li>
+            <li><a href="#gallery">GALLERY</a></li>
+            <li><a href="#about">ABOUT</a></li>
+        </ul>
+    </nav>
 
-<!-- BODY -->
-<section class="main-body">
-    <div class="sections-container">
-
-        <!-- EVENTS -->
-        <div class="events">
-            <h1>EVENTS</h1>
-            <div class="upcoming">
-                <div class="upcoming-events">
-                    <p>Upcoming Events</p>
-                </div>
-                <div class="events-container">
-                    <ul style="list-style-type: none;">
-                        <?php while($fecha = $fechas->fetch_assoc()): ?>
-                        <li>
-                            <div class="entry">
-                                <div class="date">
-                                    <p><?= $fecha['NUM_DIA'] ?></p>
-                                    <p><?= $fecha['MES'] ?></p>
-                                </div>
-                                <div class="description">
-                                    <p class="p4"><?= $fecha['NOMBRE_DIA'] ?> · <?= str_pad($fecha['HORA'], 2, '0', STR_PAD_LEFT) ?>:<?= str_pad($fecha['MINUTO'], 2, '0', STR_PAD_LEFT) ?></p>
-                                    <p class="p5"><?= $fecha['CIUDAD'] ?> · <?= $fecha['LOCALIZACION'] ?></p>
-                                    <p class="p4"><?= htmlspecialchars($evento['NOMBRE']) ?></p>
-                                </div>
-                                <div class="ticket-btn-container">
-                                    <button class="ticket-btn" href="#">COMPRAR TICKETS</button>
-                                </div>
-                            </div>
-                        </li>
-                        <?php endwhile; ?>
-                    </ul>
+    <!-- BODY -->
+    <section class="main-body">
+        <div class="sections-container">
+            <!-- EVENTS -->
+            <div class="events" id="events">
+                <h1>EVENTS</h1>
+                <div class="upcoming">
+                    <div class="upcoming-events">
+                        <p>Upcoming Events</p>
+                    </div>
+                    <div class="events-container">
+                        <div class="subtitle">
+                            <p class="p1">Barcelona</p>
+                            <p class="p2"><?= $fechas_query->num_rows ?> Eventos</p>
+                        </div>
+                        <ul style="list-style-type: none;">
+                            <?php while ($fecha = $fechas_query->fetch_assoc()): ?>
+                                <li>
+                                    <div class="entry">
+                                        <div class="date">
+                                            <p><?= $fecha['NUM_DIA'] ?></p>
+                                            <p><?= $fecha['MES'] ?></p>
+                                        </div>
+                                        <div class="description">
+                                            <p class="p4"><?= $fecha['NOMBRE_DIA'] ?> · <?= sprintf('%02d:%02d', $fecha['HORA'], $fecha['MINUTO']) ?></p>
+                                            <p class="p5"><?= $fecha['CIUDAD'] ?> · <?= $fecha['LOCALIZACION'] ?></p>
+                                            <p class="p4"><?= htmlspecialchars($evento['NOMBRE']) ?></p>
+                                        </div>
+                                        <div class="ticket-btn-container">
+                                            <button class="ticket-btn" href="#">COMPRAR TICKETS</button>
+                                        </div>
+                                    </div>
+                                </li>
+                            <?php endwhile; ?>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- GALLERY -->
-        <div class="gallery" id="gallery">
-            <h1>GALLERY</h1>
-            <div class="container">
-                <div class="slider-wrapper">
-                    <div class="image-list">
-                        <?php while($item = $galeria->fetch_assoc()): ?>
-                            <?php if (!empty($item['VIDEO'])): ?>
-                                <iframe class="image-item" width="560" height="315" src="<?= htmlspecialchars($item['VIDEO']) ?>" frameborder="0" allowfullscreen></iframe>
-                            <?php elseif (!empty($item['IMAGEN'])): ?>
-                                <img class="image-item" src="<?= convertirImagen($item['IMAGEN']) ?>" width="560" height="315" />
-                            <?php endif; ?>
-                        <?php endwhile; ?>
+            <!-- GALLERY -->
+            <div class="gallery" id="gallery">
+                <h1>GALLERY</h1>
+                <div class="container">
+                    <div class="slider-wrapper">
+                        <div class="image-list">
+                            <?php while ($item = $galeria_query->fetch_assoc()): ?>
+                                <?php if (!empty($item['VIDEO'])): ?>
+                                    <iframe class="image-item" width="560" height="315" src="<?= $item['VIDEO'] ?>" title="YouTube video" frameborder="0" allowfullscreen></iframe>
+                                <?php elseif (!empty($item['IMAGEN_PATH'])): ?>
+                                    <img class="image-item" src="<?= $item['IMAGEN_PATH'] ?>" alt="gallery image">
+                                <?php endif; ?>
+                            <?php endwhile; ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ABOUT -->
+            <div class="about" id="about">
+                <h1>ABOUT</h1>
+                <div class="about-container">
+                    <div class="text">
+                        <p>
+                            <?= nl2br(htmlspecialchars($evento['TEXT1'])) ?>
+                        </p>
+                    </div>
+                    <div class="image">
+                        <img src="<?= $evento['IMAGE_TEXT_PATH'] ?>" alt="foto artista">
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- ABOUT -->
-        <div class="about" id="about">
-            <h1>ABOUT</h1>
-            <div class="about-container">
-                <div class="text">
-                    <p><?= nl2br(htmlspecialchars($evento['TEXT1'])) ?></p>
-                </div>
-                <div class="image">
-                    <img src="<?= convertirImagen($evento['IMAGE_TEXT']) ?>" alt="foto artista">
-                </div>
-            </div>
-        </div>
-
-    </div>
-</section>
-
+    </section>
     <!-- ------------------------------------------------------------------ FOOTER  --------------------------------------------------------------------------------->
 
 
