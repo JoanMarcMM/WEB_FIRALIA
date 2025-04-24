@@ -76,8 +76,8 @@ if (!$stmt) {
     die("Error SQL: " . $mysqli->error);
 }
 
-// Vincular parámetros (sssssi -> string, string, string, string, string, integer, blob)
-$stmt->bind_param("sssssib", $username, $name, $lastname, $email, $password_hash, $rol, $user_image);
+// Vincular parámetros (sssssi -> string, string, string, string, string, integer, string)
+$stmt->bind_param("sssssis", $username, $name, $lastname, $email, $password_hash, $rol, $user_image);
 
 // Ejecutar consulta
 if ($stmt->execute()) {

@@ -42,6 +42,12 @@ class UserController
         if ($user && password_verify($_POST["password"], $user["PASSWORD"])) {
             $_SESSION["user_id"] = $user["ID"];
             $_SESSION["rol"] = $user["ROL"];
+            $_SESSION["name"] = $user["NAME"];
+            $_SESSION["lastname"] = $user["LASTNAME"];
+            $_SESSION["email"] = $user["EMAIL"];
+            $_SESSION["username"] = $user["USER"];
+            $_SESSION["user_image"] = $user["USER_IMAGE"];
+
             if ($_SESSION['rol'] == 1) {
                 header("Location: ../view/profileadmin.php");
             } else {
@@ -59,14 +65,14 @@ class UserController
 
     function logout()
     {
-        session_start();  
-                
+        session_start();
+
         session_unset();
-              
+
         session_destroy();
-        
+
         if (!headers_sent()) {
-            header("Location: ../view/index.php");  
+            header("Location: ../view/index.php");
             exit();
         } else {
             echo "Error: Las cabeceras ya han sido enviadas. No se puede redirigir.";
@@ -79,67 +85,68 @@ class UserController
     }
 
     function deleteUser()
-{
-    session_start(); 
+    {
+        session_start();
 
-    $mysqli = conn();
+        $mysqli = conn();
 
-    if(isset($_SESSION["user_id"])){
-    $sql = "DELETE FROM users WHERE ID = ?";
-    $stmt = $mysqli->prepare($sql);
+        if (isset($_SESSION["user_id"])) {
+            $sql = "DELETE FROM users WHERE ID = ?";
+            $stmt = $mysqli->prepare($sql);
 
-    if (!$stmt) {
-        die("Error en la preparación de la consulta: " . $mysqli->error);
+            if (!$stmt) {
+                die("Error en la preparación de la consulta: " . $mysqli->error);
+            }
+
+            $stmt->bind_param("i", $_SESSION["user_id"]);
+            $stmt->execute();
+
+            $stmt->close();
+            $mysqli->close();
+
+            session_destroy();
+
+            if (!headers_sent()) {
+                header("Location: ../view/index.php");
+                exit;
+            } else {
+                echo "Error: Las cabeceras ya han sido enviadas. No se puede redirigir.";
+            }
+        }
     }
-
-    $stmt->bind_param("i", $_SESSION["user_id"]);
-    $stmt->execute();
-
-    $stmt->close();
-    $mysqli->close();
-
-    session_destroy();
-
-    if (!headers_sent()) {
-        header("Location: ../view/index.php");
-        exit;
-    } else {
-        echo "Error: Las cabeceras ya han sido enviadas. No se puede redirigir.";
-    }
-}
-}
 
     function updateUser()
-    {session_start(); // Asegúrate de que la sesión esté iniciada
+    {
+        session_start(); // Asegúrate de que la sesión esté iniciada
 
         // Validar email
         if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
             die("Email no válido");
         }
-        
+
         // Conectar con la base de datos
         $mysqli = require __DIR__ . "/database.php";
-        
+
         // Sanitizar entradas
         $name = trim(htmlspecialchars($_POST["name"]));
         $lastname = trim(htmlspecialchars($_POST["lastname"]));
         $username = trim(htmlspecialchars($_POST["user"]));
         $email = trim(htmlspecialchars($_POST["email"]));
-        
+
         // Obtener ID del usuario desde la sesión
         $userId = $_SESSION["user_id"]; // ⚠️ Asegúrate de que esté definida la sesión y este valor
-        
+
         // Preparar consulta
         $sql = "UPDATE users SET USER = ?, NAME = ?, LASTNAME = ?, EMAIL = ? WHERE ID = ?";
         $stmt = $mysqli->prepare($sql);
-        
+
         if (!$stmt) {
             die("Error SQL: " . $mysqli->error);
         }
-        
+
         // Vincular parámetros
         $stmt->bind_param("ssssi", $username, $name, $lastname, $email, $userId);
-        
+
         // Ejecutar consulta
         if ($stmt->execute()) {
             header("Location: ../view/profile.php");
@@ -147,13 +154,14 @@ class UserController
         } else {
             echo "Error en el update: " . $stmt->error;
         }
-        
+
         // Cerrar conexión
         $stmt->close();
         $mysqli->close();
 
 
     }
+
 }
 
 
