@@ -157,6 +157,10 @@ session_start();
                         <div class="content">
                             <h2>BLACKPINK</h2>
                             <p>World Tour 2024</p>
+                            <form action="event_prueba.php" method="POST">
+                                <input type="hidden" name="event" value="1">
+                                <input type="submit">
+                            </form>
                         </div>
                     </div>
                 </div>
