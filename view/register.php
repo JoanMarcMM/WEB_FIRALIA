@@ -76,7 +76,7 @@ session_start();
         <div class="overlay"></div>
         <div class="popup-content">
             <h2>Login</h2>
-            <form method="POST" action="../controller/processSignup.php">
+            <form method="POST" action="../controller/UserController.php">
                 <div class="login-box">
                     <?php
                     if (isset($_SESSION["error_message"])) {
@@ -103,7 +103,7 @@ session_start();
         <div class="login-grid">
             <div class="login-container">
                 <h2>Regístrate</h2>
-                <form action="../controller/UserController.php" method="POST">
+                <form method="POST" action="../controller/UserController.php" >
                     <div class="input-box">
                         <input type="text" name="name" id="name" placeholder="Nombre" required>
                     </div>
