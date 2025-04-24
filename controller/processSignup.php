@@ -49,7 +49,7 @@ $user_image = null;
 
 if (!empty($img_name) && ($size <= 2000000)) {
     if ($type == "image/jpeg" || $type == "image/jpg" || $type == "image/png") {
-        $directory = __DIR__ . "/../controller/imgs/";
+        $directory = __DIR__ . "/../controller/images/";
         if (!is_dir($directory)) {
             mkdir($directory, 0777, true);
         }
