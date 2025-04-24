@@ -140,6 +140,7 @@ $email = $_SESSION["email"];
 
 
             <div class="profile">
+                
                 <h2 style="font-style: italic; margin-bottom: 5%;">ADMINISTRADOR</h2>
                 <h3><?php echo "Usuario: " . $username; ?></h3>
                 <h3><?php echo "Nombre: " . $name ?></h3>
