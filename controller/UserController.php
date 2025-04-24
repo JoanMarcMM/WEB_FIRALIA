@@ -59,12 +59,15 @@ class UserController
 
     function logout()
     {
+        session_start();  
+                
+        session_unset();
+              
         session_destroy();
-
-
+        
         if (!headers_sent()) {
-            header("Location: ../view/index.php");
-            exit;
+            header("Location: ../view/index.php");  
+            exit();
         } else {
             echo "Error: Las cabeceras ya han sido enviadas. No se puede redirigir.";
         }
@@ -278,6 +281,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $user->updateUser();
     }
 }
+
 
 function conn()
 {

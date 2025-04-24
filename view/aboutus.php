@@ -19,9 +19,8 @@ session_start();
 
     <!-- Archivos CSS -->
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/register.css">
+    <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-
 </head>
 
 <body style="background-color: #F2F0EF !important;">
@@ -76,7 +75,7 @@ session_start();
         <div class="overlay"></div>
         <div class="popup-content">
             <h2>Login</h2>
-            <form method="POST" action="../controller/processSignup.php">
+            <form method="POST" action="../controller/UserController.php">
                 <div class="login-box">
                     <?php
                     if (isset($_SESSION["error_message"])) {
@@ -99,50 +98,13 @@ session_start();
         </div>
     </div>
 
-    <section class="login-section">
-        <div class="login-grid">
-            <div class="login-container">
-                <h2>Regístrate</h2>
-                <form action="../controller/UserController.php" method="POST">
-                    <div class="input-box">
-                        <input type="text" name="name" id="name" placeholder="Nombre" required>
-                    </div>
-
-                    <div class="input-box">
-                        <input type="text" name="lastname" id="lastname" placeholder="Apellidos" required>
-                    </div>
-
-                    <div class="input-box">
-                        <input type="text" name="email" id="email" placeholder="Email" required formnovalidate>
-                    </div>
-
-                    <div class="input-box">
-                        <input type="text" name="user" id="user" placeholder="Username" required>
-                    </div>
-
-                        <input type="hidden" name="rol" id="rol" value="2">
-
-                    <div class="input-box">
-                        <input type="password" name="password" id="password" placeholder="Contraseña" required formnovalidate>
-                    </div>
-
-                    <div class="input-box">
-                        <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Confirmación Contraseña" required formnovalidate>
-                    </div>
-                    
-                    
-
-
-                    <button type="submit" class="btn-a">Registrarme</button>
-
-                    <div class="register-box">
-                        <p>Eres un administrador? <a href="registerAdmin.php">Registro para administradores</a></p> 
-                    </div>
-                </form>
-            </div>
-        </div>
-
+    <!-- ------------------------------------------------------------------ MAIN carrousel  --------------------------------------------------------------------------------->
+    <section class="main-section">
+        
     </section>
+
+    
+
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-container-1-1">
@@ -174,7 +136,7 @@ session_start();
                 <ul>
                     <li><a href="#">Política de Privacidad</a></li>
                     <li><a href="#">Política de Compra</a></li>
-                    <li><a href="#">Terminos de Uso</a></li>
+                    <li><a href="#">Términos de Uso</a></li>
                     <li><a href="#">Política de Cookies</a></li>
                     <li><a href="#">Control de Cookies</a></li>
                     <li>
@@ -184,12 +146,13 @@ session_start();
             </div>
         </div>
     </footer>
-     <!-- Scripts -->
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-
+           
             function showSidebar() {
                 const sidebar = document.querySelector('.sidebar');
                 sidebar.style.display = 'flex';
@@ -202,7 +165,7 @@ session_start();
                 document.body.style.overflow = '';
             }
 
-
+           
             function createPopup(id) {
                 let popupNode = document.querySelector(id);
                 let overlay = popupNode.querySelector(".overlay");
@@ -228,7 +191,7 @@ session_start();
                 return openPopup;
             }
 
-
+            
             const img = document.getElementById('logo-nav');
             if (img) {
                 img.addEventListener('mouseenter', () => {
@@ -240,7 +203,7 @@ session_start();
                 });
             }
 
-
+            
             document.querySelector(".menu-button")?.addEventListener("click", showSidebar);
             document.querySelector(".sidebar li:first-child")?.addEventListener("click", hideSidebar);
 
@@ -250,7 +213,7 @@ session_start();
                 openPopupBtn.addEventListener("click", popup);
             }
 
-
+            
             if (typeof Swiper !== 'undefined') {
                 new Swiper('.swiper', {
                     slidesPerView: 'auto',

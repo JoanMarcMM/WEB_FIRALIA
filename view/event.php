@@ -27,7 +27,7 @@ session_start();
             <li onclick="hideSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#">
                         <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
                     </svg></a></li>
-            <li><a href="concerts.php">Conciertos</a></li>
+            <li><a href="aboutus.php">NOSOTROS</a></li>
             <li><a href="event.php">Eventos</a></li>
             <li><a href="support.php">Soporte</a></li>
             <?php if (isset($_SESSION["user_id"])): ?>
@@ -44,7 +44,7 @@ session_start();
                     <img class="logo-nav" src="images/logo2-modified.png" alt="logo" id="logo-nav">
                 </a>
             </li>
-            <li class="hideOnMobile link"><a href="concerts.php">CONCIERTOS</a></li>
+            <li class="hideOnMobile link"><a href="aboutus.php">NOSOTROS</a></li>
             <li class="hideOnMobile link"><a href="event.php">EVENTOS</a></li>
             <li class="hideOnMobile link"><a href="support.php">SOPORTE</a></li>
 
