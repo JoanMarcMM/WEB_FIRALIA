@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (isset($_SESSION["user_image"])) {
+    $user_image = $_SESSION["user_image"];
+}
 ?>
 
 <!DOCTYPE html>
@@ -60,9 +63,18 @@ session_start();
                 </form>
             </li>
             <?php if (isset($_SESSION["user_id"])): ?>
-                <li><a href="profile.php"><img src="images/icons/estandarPfp.jpg" alt="Pfp" class="pfpNav"></a></li>
+            <li>
+                <?php if ($_SESSION["rol"] == 1): ?>
+                <a href="profileadmin.php">
+                    <img src="../controller/<?= $user_image ?>" alt="Pfp" class="pfpNav">
+                    <?php else: ?>
+                    <a href="profile.php">
+                        <img src="images/icons/estandarPfp.jpg" alt="Pfp" class="pfpNav">
+                        <?php endif; ?>
+                    </a>
+            </li>
             <?php else: ?>
-                <li class="hideOnMobile"><button id="open-popup">LOG IN</button></li>
+            <li class="hideOnMobile"><button id="open-popup">LOG IN</button></li>
             <?php endif; ?>
 
             <li class="menu-button" onclick="showSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg"

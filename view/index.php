@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (isset($_SESSION["user_image"])) {
+    $user_image = $_SESSION["user_image"];
+}
 ?>
 
 <!DOCTYPE html>
@@ -28,17 +31,19 @@ session_start();
     <nav class="main-nav">
         <!-- ------------------------------------------------------------------ SIDE BAR --------------------------------------------------------------------------------->
         <ul class="sidebar">
-            <li onclick="hideSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#">
-                        <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+            <li onclick="hideSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
+                        viewBox="0 -960 960 960" width="24px" fill="#">
+                        <path
+                            d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
                     </svg></a></li>
             <li><a href="aboutus.php">NOSOTROS</a></li>
             <li><a href="event.php">Eventos</a></li>
             <li><a href="support.php">Soporte</a></li>
             <?php if (isset($_SESSION["user_id"])): ?>
-                <li><a href="login.php">Perfil</a></li>
+            <li><a href="login.php">Perfil</a></li>
             <?php else: ?>
-                <li><a href="login.php">Iniciar Sesión</a></li>
-                <li><a href="register.php">Registrarse</a></li>
+            <li><a href="login.php">Iniciar Sesión</a></li>
+            <li><a href="register.php">Registrarse</a></li>
             <?php endif; ?>
         </ul>
         <!-- ------------------------------------------------------------------ MAIN MENU --------------------------------------------------------------------------------->
@@ -59,9 +64,18 @@ session_start();
                 </form>
             </li>
             <?php if (isset($_SESSION["user_id"])): ?>
-                <li><a href="profile.php"><img src="images/icons/estandarPfp.jpg" alt="Pfp" class="pfpNav"></a></li>
+            <li>
+                <?php if ($_SESSION["rol"] == 1): ?>
+                <a href="profileadmin.php">
+                    <img src="../controller/<?= $user_image ?>" alt="Pfp" class="pfpNav">
+                    <?php else: ?>
+                    <a href="profile.php">
+                        <img src="images/icons/estandarPfp.jpg" alt="Pfp" class="pfpNav">
+                        <?php endif; ?>
+                    </a>
+            </li>
             <?php else: ?>
-                <li class="hideOnMobile"><button id="open-popup">LOG IN</button></li>
+            <li class="hideOnMobile"><button id="open-popup">LOG IN</button></li>
             <?php endif; ?>
 
             <li class="menu-button" onclick="showSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg"
@@ -227,9 +241,9 @@ session_start();
                     </div>
                 </div>
                 <div class="queda-poco-img">
-                    
+
                     <div class="image-to-overlay">
-                    <img src="images/blackpink.jpg" alt="BLACKPINK concert">
+                        <img src="images/blackpink.jpg" alt="BLACKPINK concert">
                         <div class="content">
                             <h2>MWC</h2>
                             <p>Tech Conference</p>
@@ -237,24 +251,24 @@ session_start();
                     </div>
                 </div>
                 <div class="queda-poco-img">
-                <div class="image-to-overlay">
-                <img src="images/championsburguer.jpg" alt="Champions Burger event">
+                    <div class="image-to-overlay">
+                        <img src="images/championsburguer.jpg" alt="Champions Burger event">
                         <div class="content">
                             <h2>MWC</h2>
                             <p>Tech Conference</p>
                         </div>
                     </div>
-                    
+
                 </div>
                 <div class="queda-poco-img">
-                <div class="image-to-overlay">
-                <img src="images/postmalone.jpg" alt="Champions Burger event">
+                    <div class="image-to-overlay">
+                        <img src="images/postmalone.jpg" alt="Champions Burger event">
                         <div class="content">
                             <h2>MWC</h2>
                             <p>Tech Conference</p>
                         </div>
                     </div>
-                    
+
                 </div>
 
             </div>
@@ -270,7 +284,7 @@ session_start();
             <div class="container">
 
                 <div class="image-list">
-                    
+
                     <img class="image-item" width="560" height="315" src="images/circodusolei.jpg"></img>
                     <img class="image-item" width="560" height="315" src="images/marcicel.jpg"></img>
                     <img class="image-item" width="560" height="315" src="images/reyleon.jpg"></img>
@@ -369,8 +383,8 @@ session_start();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-           
+        document.addEventListener('DOMContentLoaded', function () {
+
             function showSidebar() {
                 const sidebar = document.querySelector('.sidebar');
                 sidebar.style.display = 'flex';
@@ -383,7 +397,7 @@ session_start();
                 document.body.style.overflow = '';
             }
 
-           
+
             function createPopup(id) {
                 let popupNode = document.querySelector(id);
                 let overlay = popupNode.querySelector(".overlay");
@@ -409,7 +423,7 @@ session_start();
                 return openPopup;
             }
 
-            
+
             const img = document.getElementById('logo-nav');
             if (img) {
                 img.addEventListener('mouseenter', () => {
@@ -421,7 +435,7 @@ session_start();
                 });
             }
 
-            
+
             document.querySelector(".menu-button")?.addEventListener("click", showSidebar);
             document.querySelector(".sidebar li:first-child")?.addEventListener("click", hideSidebar);
 
@@ -431,7 +445,7 @@ session_start();
                 openPopupBtn.addEventListener("click", popup);
             }
 
-            
+
             if (typeof Swiper !== 'undefined') {
                 new Swiper('.swiper', {
                     slidesPerView: 'auto',
