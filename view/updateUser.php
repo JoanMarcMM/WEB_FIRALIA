@@ -14,6 +14,7 @@ $name = $_SESSION["username"];
 $lastname = $_SESSION["lastname"];
 $username = $_SESSION["username"];
 $email = $_SESSION["email"];
+$rol = $_SESSION["rol"];
 ?>
 
 
@@ -79,7 +80,7 @@ $email = $_SESSION["email"];
             </li>
             <?php if (isset($_SESSION["user_id"])): ?>
             <li>
-                <?php if ($_SESSION["rol"] == 1): ?>
+                <?php if ($rol == 1): ?>
                 <a href="profileadmin.php">
                     <img src="../controller/<?= $user_image ?>" alt="Pfp" class="pfpNav">
                     <?php else: ?>
@@ -153,10 +154,10 @@ $email = $_SESSION["email"];
                 </div>
                 <input type="hidden" name="updateUser" value="updateUser">
                 <div class="actions">
-                    <?php if($_SESSION["rol"]==1):?>
+                    <?php if($rol==1):?>
                         
                         <a href="profileAdmin.php" style="color:white;">Volver</a>
-                        <?php else: ?> 
+                        <?php elseif($rol == 2 ): ?> 
                             <a href="profile.php" style="color:white;">Volver</a>
                             <?php endif;?>
                 <button type="submit" class="btn-a">Actualizar</button>
