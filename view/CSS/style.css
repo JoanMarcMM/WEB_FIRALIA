@@ -13,9 +13,7 @@ html {
     scrollbar-width: none;
 }
 
-body::-webkit-scrollbar {
-    display: none;
-}
+
 
 
 *,
@@ -236,12 +234,12 @@ body {
 }
 
 .search-icon {
-    width: 10%;
-    height: 40%;
+    width: 10% ;
+    height: 40% ;
 }
 
 .search-icon:hover {
-    filter: invert(48%) sepia(17%) saturate(880%) hue-rotate(236deg) brightness(90%) contrast(90%);
+    filter: invert(48%) sepia(17%) saturate(880%) hue-rotate(236deg) brightness(90%) contrast(90%) ;
 }
 
 .main-menu li:nth-child(5) {

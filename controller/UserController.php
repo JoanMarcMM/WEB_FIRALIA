@@ -59,6 +59,13 @@ class UserController
         if ($user && password_verify($_POST["password"], $user["PASSWORD"])) {
             $_SESSION["user_id"] = $user["ID"];
             $_SESSION["rol"] = $user["ROL"];
+            $_SESSION["name"] = $user["NAME"];
+            $_SESSION["lastname"] = $user["LASTNAME"];
+            $_SESSION["email"] = $user["EMAIL"];
+            $_SESSION["username"] = $user["USER"];
+            $_SESSION["user_image"] = $user["USER_IMAGE"];
+        
+
             if ($_SESSION['rol'] == 1) {
                 header("Location: ../view/profileadmin.php");
             } else {
@@ -257,8 +264,13 @@ class UserController
 
         // Ejecutar consulta
         if ($stmt->execute()) {
-            header("Location: ../view/profile.php");
-            exit;
+            if($_SESSION["rol"] == 1){
+                header("Location: ../view/profileAdmin.php");
+                exit;
+            }else{
+                header("Location: ../view/profile.php");
+                exit;
+            }
         } else {
             echo "Error en el update: " . $stmt->error;
         }

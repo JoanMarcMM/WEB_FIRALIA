@@ -9,20 +9,12 @@ if (!isset($_SESSION["user_id"])) {
 }
 
 $id = $_SESSION["user_id"];
-
-// Consulta segura con `prepare()`
-$select = $mysqli->prepare("SELECT * FROM users WHERE id = ?");
-$select->bind_param("i", $id);
-$select->execute();
-$result = $select->get_result();
-
-$fetch = $result->fetch_assoc();
-$select->close();
-
-// Si no encuentra usuario, muestra un mensaje
-if (!$fetch) {
-    die("Error: Usuario no encontrado en la base de datos.");
-}
+$user_image = $_SESSION["user_image"];
+$name = $_SESSION["username"];
+$lastname = $_SESSION["lastname"];
+$username = $_SESSION["username"];
+$email = $_SESSION["email"];
+$rol = $_SESSION["rol"];
 ?>
 
 
@@ -87,9 +79,18 @@ if (!$fetch) {
                 </form>
             </li>
             <?php if (isset($_SESSION["user_id"])): ?>
-                <li><a href="profile.php"><img src="images/icons/estandarPfp.jpg" alt="Pfp" class="pfpNav"></a></li>
+            <li>
+                <?php if ($rol == 1): ?>
+                <a href="profileadmin.php">
+                    <img src="../controller/<?= $user_image ?>" alt="Pfp" class="pfpNav">
+                    <?php else: ?>
+                    <a href="profile.php">
+                        <img src="images/icons/estandarPfp.jpg" alt="Pfp" class="pfpNav">
+                        <?php endif; ?>
+                    </a>
+            </li>
             <?php else: ?>
-                <li class="hideOnMobile"><button id="open-popup">LOG IN</button></li>
+            <li class="hideOnMobile"><button id="open-popup">LOG IN</button></li>
             <?php endif; ?>
 
             <li class="menu-button" onclick="showSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg"
@@ -134,26 +135,31 @@ if (!$fetch) {
             <form action="../controller/UserController.php" method="POST" class="form-update">
                 <div class="input-box">
                     <label>Nombre</label><br>
-                    <input type="text" name="name" id="name" placeholder="Nombre" value="<?php echo $fetch['NAME']; ?>" required>
+                    <input type="text" name="name" id="name" placeholder="Nombre" value="<?php echo $name; ?>" required>
                 </div>
 
                 <div class="input-box">
                 <label>Apellidos</label><br>
-                    <input type="text" name="lastname" id="lastname" placeholder="Apellidos" value="<?php echo $fetch['LASTNAME']; ?>" required>
+                    <input type="text" name="lastname" id="lastname" placeholder="Apellidos" value="<?php echo $lastname; ?>" required>
                 </div>
 
                 <div class="input-box">
                 <label>Email</label><br>
-                    <input type="text" name="email" id="email" placeholder="Email" value="<?php echo $fetch['EMAIL']; ?>" required formnovalidate>
+                    <input type="text" name="email" id="email" placeholder="Email" value="<?php echo $email; ?>" required formnovalidate>
                 </div>
 
                 <div class="input-box">
                 <label>Nombre de usuario</label><br>
-                    <input type="text" name="user" id="user" placeholder="Username" value="<?php echo $fetch['USER']; ?>" required>
+                    <input type="text" name="user" id="user" placeholder="Username" value="<?php echo $username; ?>" required>
                 </div>
                 <input type="hidden" name="updateUser" value="updateUser">
                 <div class="actions">
-                <a href="profile.php" style="color:white;">Volver</a>
+                    <?php if($rol==1):?>
+                        
+                        <a href="profileAdmin.php" style="color:white;">Volver</a>
+                        <?php elseif($rol == 2 ): ?> 
+                            <a href="profile.php" style="color:white;">Volver</a>
+                            <?php endif;?>
                 <button type="submit" class="btn-a">Actualizar</button>
                 </div>
 

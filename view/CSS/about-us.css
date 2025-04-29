@@ -1,0 +1,300 @@
+/* Base styles */
+
+
+.section1 {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+section {
+    padding: 60px 0;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+p {
+    margin-bottom: 1rem;
+    color: #555;
+}
+
+.subtitle {
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    font-size: 1.1rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mission {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background-color: #f3f4f6;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.mission.light {
+    background-color: #fff;
+}
+
+/* Layout */
+.two-column {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.two-column .column {
+    flex: 1;
+    min-width: 300px;
+}
+
+.three-column {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-top: 3rem;
+}
+
+.three-column > * {
+    flex: 1;
+    min-width: 250px;
+}
+
+/* Hero Section */
+.hero {
+    background-color: #f3f4f6;
+    padding: 80px 0;
+}
+
+/* Values Section */
+.values {
+    background-color: #f3f4f6;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.icon-circle {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background-color: #f3f4f6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+}
+
+.icon {
+    font-size: 1.5rem;
+}
+
+/* Team Section */
+.team-member {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.team-photo {
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+.role {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+/* History Section */
+.history {
+    background-color: #f3f4f6;
+}
+
+.timeline {
+    max-width: 800px;
+    margin: 3rem auto 0;
+}
+
+.timeline-item {
+    display: flex;
+    margin-bottom: 2rem;
+}
+
+.timeline-marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+.timeline-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    border: 1px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+}
+
+.timeline-content {
+    flex: 1;
+    padding-bottom: 2rem;
+}
+
+/* Contact Section */
+.contact-info {
+    margin-top: 1.5rem;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.contact-item .icon {
+    margin-right: 0.75rem;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-row {
+    display: flex;
+    gap: 1rem;
+}
+
+.form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+input, textarea {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.375rem;
+    background-color: #fff;
+    font-size: 0.875rem;
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* CTA Section */
+.cta {
+    background-color: #f3f4f6;
+    padding: 80px 0;
+}
+
+.buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.5rem;
+    padding: 0 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 0.375rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-primary {
+    background-color: #2563eb;
+    color: #fff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #1d4ed8;
+}
+
+.btn-secondary {
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #d1d5db;
+}
+
+.btn-secondary:hover {
+    background-color: #f3f4f6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.75rem;
+    }
+    
+    .form-row {
+        flex-direction: column;
+    }
+    
+    .two-column, .three-column {
+        flex-direction: column;
+    }
+}
