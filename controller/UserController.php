@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+
 $user = new UserController();
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -93,97 +94,101 @@ class UserController
     {
         session_start();
         $mysqli = $this->conn();
-        // Validar email
+    
+        // VALIDACIONES
+
         if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
-            die("Email no válido");
+            $_SESSION["register_error_message_email"] = "Email no válido.";
+            header("Location: ../view/register.php");
+            exit();
         }
-
-        // Validar rol (1, 2 o 3)
+    
         if (!preg_match("/^[1-3]$/", $_POST["rol"])) {
-            die("El rol debe ser 1, 2 o 3");
+            $_SESSION["register_error_message_rol"] = "El rol debe ser 1, 2 o 3.";
+            header("Location: ../view/register.php");
+            exit();
         }
-
-        // Validar contraseña
+    
         $password = $_POST["password"];
-        if (strlen($password) < 8) {
-            die("La contraseña debe contener al menos 8 caracteres");
+        if (strlen($password) < 8 || !preg_match("/[a-z]/i", $password) || !preg_match("/[0-9]/", $password)) {
+            $_SESSION["register_error_message_password"] = "La contraseña debe tener al menos 8 caracteres, una letra y un número.";
+            header("Location: ../view/register.php");
+            exit();
         }
-
-        if (!preg_match("/[a-z]/i", $password)) {
-            die("La contraseña debe contener al menos una letra");
-        }
-
-        if (!preg_match("/[0-9]/", $password)) {
-            die("La contraseña debe contener al menos un número");
-        }
-
+    
         if ($password !== $_POST["password_confirmation"]) {
-            die("Las contraseñas deben coincidir");
+            $_SESSION["register_error_message_confirmation"] = "Las contraseñas no coinciden.";
+            header("Location: ../view/register.php");
+            exit();
         }
-
-        // Hashear la contraseña
+    
         $password_hash = password_hash($password, PASSWORD_DEFAULT);
-
-        // Conectar con la base de datos
-        $mysqli = require __DIR__ . "/database.php";
-
-        // Sanitizar entradas
+    
+        // SANITIZAR ENTRADAS
         $name = trim(htmlspecialchars($_POST["name"]));
         $lastname = trim(htmlspecialchars($_POST["lastname"]));
         $username = trim(htmlspecialchars($_POST["user"]));
         $email = trim(htmlspecialchars($_POST["email"]));
-        $rol = intval(value: $_POST["rol"]); // Convertir a número entero
-
-        // Subida de imagen
-        $img_name = $_FILES['imagen']['name'];
-        $type = $_FILES['imagen']['type'];
-        $size = $_FILES['imagen']['size'];
+        $rol = intval($_POST["rol"]);
+    
+        // SUBIDA DE IMAGEN
         $user_image = null;
-
-        if (!empty($img_name) && ($size <= 2000000)) {
+        if (!empty($_FILES['imagen']['name'])) {
+            $img_name = $_FILES['imagen']['name'];
+            $type = $_FILES['imagen']['type'];
+            $size = $_FILES['imagen']['size'];
+    
+            if ($size > 2000000) {
+                $_SESSION["register_error_message_image_size"] = "La imagen es demasiado grande (máx 2MB).";
+                header("Location: ../view/register.php");
+                exit();
+            }
+    
             if ($type == "image/jpeg" || $type == "image/jpg" || $type == "image/png") {
-                $directory = __DIR__ . "/../controller/imgs/";
+                $directory = __DIR__ . "/images/";
                 if (!is_dir($directory)) {
                     mkdir($directory, 0777, true);
                 }
-
+    
                 $file_name = time() . "_" . basename($img_name);
-                $user_image = "imgs/" . $file_name;
+                $user_image = "images/" . $file_name;
                 move_uploaded_file($_FILES['imagen']['tmp_name'], $directory . $file_name);
             } else {
-                die("Formato de imagen no válido (solo JPG, JPEG o PNG)");
+                $_SESSION["register_error_message_image_format"] = "Formato de imagen no válido (solo JPG, JPEG o PNG).";
+                header("Location: ../view/register.php");
+                exit();
             }
-        } elseif (!empty($img_name)) {
-            die("La imagen es demasiado grande (máx 2MB)");
         }
-
-
-
-
-        // Preparar consulta
+    
+        // INSERTAR EN BASE DE DATOS
         $sql = "INSERT INTO users (USER, NAME, LASTNAME, EMAIL, PASSWORD, ROL, USER_IMAGE) VALUES (?, ?, ?, ?, ?, ?, ?)";
-
         $stmt = $mysqli->prepare($sql);
-
+    
         if (!$stmt) {
-            die("Error SQL: " . $mysqli->error);
+            $_SESSION["register_error_message_sql"] = "Error SQL: " . $mysqli->error;
+            header("Location: ../view/register.php");
+            exit();
         }
-
-        // Vincular parámetros (sssssi -> string, string, string, string, string, integer, blob)
-        $stmt->bind_param("sssssib", $username, $name, $lastname, $email, $password_hash, $rol, $user_image);
-
-        // Ejecutar consulta
+    
+        $stmt->bind_param("sssssis", $username, $name, $lastname, $email, $password_hash, $rol, $user_image);
+    
         if ($stmt->execute()) {
-            echo "Registro exitoso";
-            header("Location:../view/login.php");
+            $_SESSION["success_message"] = "Registro exitoso. Ahora puedes iniciar sesión.";
+            $stmt->close();
+            $mysqli->close();
+            header("Location: ../view/login.php");
+            exit();
         } else {
-            echo "Error en el registro: " . $stmt->error;
+            $_SESSION["error_message"] = "Error en el registro: " . $stmt->error;
+            $stmt->close();
+            $mysqli->close();
+            header("Location: ../view/register.php");
+            exit();
         }
-
-        // Cerrar conexión
-        $stmt->close();
-        $mysqli->close();
     }
+    
+    
+    
 
 
 

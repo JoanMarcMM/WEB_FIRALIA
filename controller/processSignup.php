@@ -1,5 +1,6 @@
 <?php
 
+
 // Validar email
 if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
     die("Email no válido");
@@ -55,7 +56,7 @@ if (!empty($img_name) && ($size <= 2000000)) {
         }
 
         $file_name = time() . "_" . basename($img_name);
-        $user_image = "imgs/" . $file_name;
+        $user_image = "images/" . $file_name;
         move_uploaded_file($_FILES['imagen']['tmp_name'], $directory . $file_name);
     } else {
         die("Formato de imagen no válido (solo JPG, JPEG o PNG)");
@@ -76,8 +77,8 @@ if (!$stmt) {
     die("Error SQL: " . $mysqli->error);
 }
 
-// Vincular parámetros (sssssi -> string, string, string, string, string, integer, blob)
-$stmt->bind_param("sssssib", $username, $name, $lastname, $email, $password_hash, $rol, $user_image);
+// Vincular parámetros (sssssi -> string, string, string, string, string, integer, string)
+$stmt->bind_param("sssssis", $username, $name, $lastname, $email, $password_hash, $rol, $user_image);
 
 // Ejecutar consulta
 if ($stmt->execute()) {

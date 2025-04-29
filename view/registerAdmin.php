@@ -103,7 +103,8 @@ session_start();
         <div class="login-grid">
             <div class="login-container">
                 <h2>Regístrate</h2>
-                <form action="../controller/processSignup.php" method="POST" enctype="multipart/form-data"> 
+                <form action="../controller/UserController.php" method="POST" enctype="multipart/form-data"> 
+                <input type="hidden" name="register" value="register">
                     <div class="input-box">
                         <input type="text" name="name" id="name" placeholder="Nombre" required>
                     </div>
@@ -142,6 +143,40 @@ session_start();
                         <p>Eres un Usuario? <a href="register.php">Registro para Usuarios</a></p> 
                     </div>
                 </form>
+                <?php if (isset($_SESSION["register_error_message_email"])): ?>
+                    <div class="register-error-message"><?php echo $_SESSION["register_error_message_email"];
+                                                        unset($_SESSION["register_error_message_email"]); ?></div>
+                <?php endif; ?>
+
+                <?php if (isset($_SESSION["register_error_message_rol"])): ?>
+                    <div class="register-error-message"><?php echo $_SESSION["register_error_message_rol"];
+                                                        unset($_SESSION["register_error_message_rol"]); ?></div>
+                <?php endif; ?>
+
+                <?php if (isset($_SESSION["register_error_message_password"])): ?>
+                    <div class="register-error-message"><?php echo $_SESSION["register_error_message_password"];
+                                                        unset($_SESSION["register_error_message_password"]); ?></div>
+                <?php endif; ?>
+
+                <?php if (isset($_SESSION["register_error_message_confirmation"])): ?>
+                    <div class="register-error-message"><?php echo $_SESSION["register_error_message_confirmation"];
+                                                        unset($_SESSION["register_error_message_confirmation"]); ?></div>
+                <?php endif; ?>
+
+                <?php if (isset($_SESSION["register_error_message_image_size"])): ?>
+                    <div class="register-error-message"><?php echo $_SESSION["register_error_message_image_size"];
+                                                        unset($_SESSION["register_error_message_image_size"]); ?></div>
+                <?php endif; ?>
+
+                <?php if (isset($_SESSION["register_error_message_image_format"])): ?>
+                    <div class="register-error-message"><?php echo $_SESSION["register_error_message_image_format"];
+                                                        unset($_SESSION["register_error_message_image_format"]); ?></div>
+                <?php endif; ?>
+
+                <?php if (isset($_SESSION["register_error_message_sql"])): ?>
+                    <div class="register-error-message"><?php echo $_SESSION["register_error_message_sql"];
+                                                        unset($_SESSION["register_error_message_sql"]); ?></div>
+                <?php endif; ?>
             </div>
         </div>
 

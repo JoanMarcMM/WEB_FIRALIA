@@ -1,5 +1,7 @@
 <?php
 session_start();
+
+
 ?>
 
 <!DOCTYPE html>
@@ -103,7 +105,9 @@ session_start();
         <div class="login-grid">
             <div class="login-container">
                 <h2>Regístrate</h2>
-                <form method="POST" action="../controller/UserController.php" >
+                <form method="POST" action="../controller/UserController.php">
+                    <input type="hidden" name="register" value="register">
+
                     <div class="input-box">
                         <input type="text" name="name" id="name" placeholder="Nombre" required>
                     </div>
@@ -113,14 +117,14 @@ session_start();
                     </div>
 
                     <div class="input-box">
-                        <input type="text" name="email" id="email" placeholder="Email" required formnovalidate>
+                        <input type="text" name="email" id="email" placeholder="Email" value="<?php echo isset($_POST['email']) ? $_POST['email'] : ''; ?>" required formnovalidate>
                     </div>
 
                     <div class="input-box">
                         <input type="text" name="user" id="user" placeholder="Username" required>
                     </div>
 
-                        <input type="hidden" name="rol" id="rol" value="2">
+                    <input type="hidden" name="rol" id="rol" value="2">
 
                     <div class="input-box">
                         <input type="password" name="password" id="password" placeholder="Contraseña" required formnovalidate>
@@ -129,16 +133,49 @@ session_start();
                     <div class="input-box">
                         <input type="password" name="password_confirmation" id="password_confirmation" placeholder="Confirmación Contraseña" required formnovalidate>
                     </div>
-                    
-                    
+
 
 
                     <button type="submit" class="btn-a">Registrarme</button>
 
                     <div class="register-box">
-                        <p>Eres un administrador? <a href="registerAdmin.php">Registro para administradores</a></p> 
+                        <p>Eres un administrador? <a href="registerAdmin.php">Registro para administradores</a></p>
                     </div>
                 </form>
+                <?php if (isset($_SESSION["register_error_message_email"])): ?>
+                    <div class="register-error-message"><?php echo $_SESSION["register_error_message_email"];
+                                                        unset($_SESSION["register_error_message_email"]); ?></div>
+                <?php endif; ?>
+
+                <?php if (isset($_SESSION["register_error_message_rol"])): ?>
+                    <div class="register-error-message"><?php echo $_SESSION["register_error_message_rol"];
+                                                        unset($_SESSION["register_error_message_rol"]); ?></div>
+                <?php endif; ?>
+
+                <?php if (isset($_SESSION["register_error_message_password"])): ?>
+                    <div class="register-error-message"><?php echo $_SESSION["register_error_message_password"];
+                                                        unset($_SESSION["register_error_message_password"]); ?></div>
+                <?php endif; ?>
+
+                <?php if (isset($_SESSION["register_error_message_confirmation"])): ?>
+                    <div class="register-error-message"><?php echo $_SESSION["register_error_message_confirmation"];
+                                                        unset($_SESSION["register_error_message_confirmation"]); ?></div>
+                <?php endif; ?>
+
+                <?php if (isset($_SESSION["register_error_message_image_size"])): ?>
+                    <div class="register-error-message"><?php echo $_SESSION["register_error_message_image_size"];
+                                                        unset($_SESSION["register_error_message_image_size"]); ?></div>
+                <?php endif; ?>
+
+                <?php if (isset($_SESSION["register_error_message_image_format"])): ?>
+                    <div class="register-error-message"><?php echo $_SESSION["register_error_message_image_format"];
+                                                        unset($_SESSION["register_error_message_image_format"]); ?></div>
+                <?php endif; ?>
+
+                <?php if (isset($_SESSION["register_error_message_sql"])): ?>
+                    <div class="register-error-message"><?php echo $_SESSION["register_error_message_sql"];
+                                                        unset($_SESSION["register_error_message_sql"]); ?></div>
+                <?php endif; ?>
             </div>
         </div>
 
@@ -184,8 +221,8 @@ session_start();
             </div>
         </div>
     </footer>
-     <!-- Scripts -->
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
