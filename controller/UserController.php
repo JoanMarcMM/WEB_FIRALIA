@@ -131,14 +131,12 @@ class UserController
     
         $password_hash = password_hash($password, PASSWORD_DEFAULT);
     
-        // SANITIZAR ENTRADAS
         $name = trim(htmlspecialchars($_POST["name"]));
         $lastname = trim(htmlspecialchars($_POST["lastname"]));
         $username = trim(htmlspecialchars($_POST["user"]));
         $email = trim(htmlspecialchars($_POST["email"]));
         $rol = intval($_POST["rol"]);
-    
-        // SUBIDA DE IMAGEN
+  
         $user_image = null;
         if (!empty($_FILES['imagen']['name'])) {
             $img_name = $_FILES['imagen']['name'];
@@ -166,8 +164,7 @@ class UserController
                 exit();
             }
         }
-    
-        // INSERTAR EN BASE DE DATOS
+
         $sql = "INSERT INTO users (USER, NAME, LASTNAME, EMAIL, PASSWORD, ROL, USER_IMAGE) VALUES (?, ?, ?, ?, ?, ?, ?)";
         $stmt = $mysqli->prepare($sql);
     

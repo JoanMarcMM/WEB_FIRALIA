@@ -121,6 +121,10 @@ if (isset($_SESSION["user_image"])) {
                     <div class="carousel-caption">
                         <h1>BLACKPINK</h1>
                         <p> Icono global del K-pop con potentes coreografías y una presencia audaz.</p>
+                        <form action="event.php" method="POST">
+                                <input type="hidden" name="nombre_evento" value="BLACKPINK">
+                                <input type="submit">
+                            </form>
                     </div>
                 </div>
 
@@ -129,6 +133,10 @@ if (isset($_SESSION["user_image"])) {
                     <div class="carousel-caption">
                         <h1>SABRINA CARPENTER</h1>
                         <p>Cantante pop con letras profundas y estilo juvenil.</p>
+                        <form action="event.php" method="POST">
+                                <input type="hidden" name="nombre_evento" value="SABRINA CARPENTER">
+                                <input type="submit">
+                            </form>
                     </div>
                 </div>
 
@@ -137,6 +145,10 @@ if (isset($_SESSION["user_image"])) {
                     <div class="carousel-caption">
                         <h1>POST MALONE</h1>
                         <p>Artista que fusiona rap, rock y pop con una voz única y melancólica.</p>
+                        <form action="event.php" method="POST">
+                                <input type="hidden" name="nombre_evento" value="POST MALONE">
+                                <input type="submit">
+                            </form>
                     </div>
                 </div>
             </div>
@@ -182,8 +194,12 @@ if (isset($_SESSION["user_image"])) {
                     <div class="image-to-overlay">
                         <img class="cont-img" src="images/salomanga.jpg" alt="Salomanga event">
                         <div class="content">
-                            <h2>Salomanga</h2>
-                            <p>Food Festival</p>
+                            <h2>Salo del Manga</h2>
+                            <p>Culture Festival</p>
+                            <form action="event.php" method="POST">
+                                <input type="hidden" name="nombre_evento" value="SALO DEL MANGA">
+                                <input type="submit">
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -193,6 +209,10 @@ if (isset($_SESSION["user_image"])) {
                         <div class="content">
                             <h2>Champions Burger</h2>
                             <p>Food Competition</p>
+                            <form action="event.php" method="POST">
+                                <input type="hidden" name="nombre_evento" value="CHAMPIONS BURGUER">
+                                <input type="submit">
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -215,6 +235,10 @@ if (isset($_SESSION["user_image"])) {
                         <div class="content">
                             <h2>Sabrina Carpenter</h2>
                             <p>Emails I Can't Send Tour</p>
+                            <form action="event.php" method="POST">
+                                <input type="hidden" name="nombre_evento" value="SABRINA CARPENTER">
+                                <input type="submit">
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -224,6 +248,10 @@ if (isset($_SESSION["user_image"])) {
                         <div class="content">
                             <h2>MWC</h2>
                             <p>Tech Conference</p>
+                            <form action="event.php" method="POST">
+                                <input type="hidden" name="nombre_evento" value="MWC">
+                                <input type="submit">
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -241,6 +269,10 @@ if (isset($_SESSION["user_image"])) {
                         <div class="content">
                             <h2>MWC</h2>
                             <p>Tech Conference</p>
+                            <form action="event.php" method="POST">
+                                <input type="hidden" name="nombre_evento" value="MWC">
+                                <input type="submit">
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -251,6 +283,10 @@ if (isset($_SESSION["user_image"])) {
                         <div class="content">
                             <h2>MWC</h2>
                             <p>Tech Conference</p>
+                            <form action="event.php" method="POST">
+                                <input type="hidden" name="nombre_evento" value="BLACKPINK">
+                                <input type="submit">
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -260,6 +296,10 @@ if (isset($_SESSION["user_image"])) {
                         <div class="content">
                             <h2>MWC</h2>
                             <p>Tech Conference</p>
+                            <form action="event.php" method="POST">
+                                <input type="hidden" name="nombre_evento" value="CHAMPIONS BURGUER">
+                                <input type="submit">
+                            </form>
                         </div>
                     </div>
 
@@ -270,6 +310,10 @@ if (isset($_SESSION["user_image"])) {
                         <div class="content">
                             <h2>MWC</h2>
                             <p>Tech Conference</p>
+                            <form action="event.php" method="POST">
+                                <input type="hidden" name="nombre_evento" value="POST MALONE">
+                                <input type="submit">
+                            </form>
                         </div>
                     </div>
 
