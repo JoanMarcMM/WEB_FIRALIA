@@ -27,8 +27,9 @@ class UserController
     function login()
     {
         session_start();
+        //Guardo el PDO q vamos a usar y lo creamos con conn
         $pdo = $this->conn();
-
+        //Redireccion basica
         $redirect = "../view/index.php";
         if (isset($_POST["redirect"]) && preg_match("/^[a-zA-Z0-9\/\-_]+\.php$/", $_POST["redirect"])) {
             $redirect = "../view/" . $_POST["redirect"];
@@ -39,12 +40,15 @@ class UserController
             header("Location: $redirect");
             exit();
         }
-
+        //Query, el statement q usamos para enviarlo a la bbdd con pdo.
         $sql = "SELECT * FROM users WHERE user = ?";
         $stmt = $pdo->prepare($sql);
+        //Ejecutamos stmt i con fetch cojemos los resultados y lo guardamos en variable array usuario
         $stmt->execute([$_POST["user"]]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
+        //Importante: verificamos con password verify, esto solo es possible si hemos encriptado la password. Ponemos los datos en 
+        //el array de sesion asi lo podemos usar en todas las paginas
         if ($user && password_verify($_POST["password"], $user["PASSWORD"])) {
             $_SESSION["user_id"] = $user["ID"];
             $_SESSION["rol"] = $user["ROL"];
@@ -54,6 +58,7 @@ class UserController
             $_SESSION["username"] = $user["USER"];
             $_SESSION["user_image"] = $user["USER_IMAGE"];
 
+            //Identificamos q tipo de usuario es, dependiendo de cual sea lo enviamos a un profile u otro.
             if ($_SESSION['rol'] == 1) {
                 header("Location: ../view/profileadmin.php");
             } else {
@@ -62,12 +67,13 @@ class UserController
 
             exit();
         }
-
+        //Establecemos mensaje de error en caso que no se haya podido logear
         $_SESSION["error_message"] = "Usuario o contraseña incorrectos.";
         header("Location: $redirect");
         exit();
     }
 
+    //El login con pdo sigue igual
     function logout()
     {
         session_start();
@@ -84,10 +90,11 @@ class UserController
 
     function register()
     {
+        //Iniciamos sesion i creamos objeto conn y lo guardamos en pdo
         session_start();
         $pdo = $this->conn();
 
-        // VALIDACIONES
+        // VALIDACIONES (Ya hechas por Mario anteriormente)
         if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
             $_SESSION["register_error_message_email"] = "Email no válido.";
             header("Location: ../view/register.php");
@@ -112,7 +119,7 @@ class UserController
             header("Location: ../view/register.php");
             exit();
         }
-
+        //Una vez se ha validado todo , encriptamos la password con hash 
         $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
         $name = trim(htmlspecialchars($_POST["name"]));
