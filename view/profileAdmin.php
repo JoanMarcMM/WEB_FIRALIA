@@ -162,6 +162,9 @@ $email = $_SESSION["email"];
             <form action="updateUser.php" method="POST">
                 <button class="submit-btn" type="submit">Editar Usuario</button>
             </form>
+            <form action="eventManager.php" method="POST">
+                <button class="submit-btn" type="submit">Event Manager</button>
+            </form>
         </div>
     </section>
 
