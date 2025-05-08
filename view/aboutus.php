@@ -119,7 +119,7 @@ if (isset($_SESSION["user_image"])) {
                 <div class="text-center">
                     <h1>About Our Company</h1>
                     <p class="subtitle">
-                        We're a team of passionate individuals dedicated to creating exceptional products and services that make
+                        We're a team of passionate individuals dedicated to creating exceptional experience and services that make
                         a difference.
                     </p>
                 </div>
@@ -134,7 +134,7 @@ if (isset($_SESSION["user_image"])) {
                         <div class="mission light">Our Mission</div>
                         <h2>Empowering businesses through innovative solutions</h2>
                         <p>
-                            We strive to create products that solve real problems and make a positive impact on our customers'
+                            We strive to create experiences that solve real problems and make a positive impact on our customers'
                             lives. Our mission is to continuously innovate and provide solutions that help businesses grow and
                             succeed in an ever-changing digital landscape.
                         </p>
@@ -224,7 +224,7 @@ if (isset($_SESSION["user_image"])) {
                             
                     </div>
                     <div class="team-member">
-                        <img src=" " alt="Joan Marc" class="team-photo">
+                        <img src="images/Motis2.png " alt="Joan Marc" class="team-photo">
                         <h3>Joan Marc Martínez Motis</h3>
                         <p class="role">Product manager</p>
                         <p class="subtitle">Joan Marc, one of the founders of Firalia —the world’s leading ticket-selling platform— has always had a natural talent for sales. 
@@ -255,7 +255,13 @@ if (isset($_SESSION["user_image"])) {
                         <div class="timeline-content">
                             <h3>2010 - Founded</h3>
                             <p>
-                                Our company was founded with a vision to revolutionize the industry with innovative solutions.
+                            It all started in a small corner of Barcelona. Three friends locked in a room were playing a ticket sales simulator. 
+                            At first, it was just a simple game, but each of them quickly became interested in different aspects of it. 
+                            Joan was focused on finding the most efficient and effective way to sell tickets, always ensuring it was easy for the customer. 
+                            Meanwhile, Mario wanted to make the company known within the game—starting with flyers, then newspaper ads, and eventually reaching television.
+                            Marvin, on the other hand, took charge of making the store's design and operations pleasant, accessible, and sustainable.
+                            That casual day awakened in these young guys an unknown passion—a motivation for something they didn’t fully understand yet, but that would soon become Firalia.
+
                             </p>
                         </div>
                     </div>
@@ -266,7 +272,13 @@ if (isset($_SESSION["user_image"])) {
                         <div class="timeline-content">
                             <h3>2015 - Expansion</h3>
                             <p>
-                                We expanded our operations to three new countries and doubled our team size.
+                            The beginning wasn’t easy or smooth, but the motivation they felt drove these teenagers to chase their dream.
+                            With a mediocre computer and little time, everything was difficult and felt like an uphill battle. 
+                            No one knew them, and even fewer talked about them. Until one day, when no one expected it—BOOM!
+                            No artist wanted to be part of the project at first. Technology was still unfamiliar to many people, and even fewer actually used it. 
+                            But as technology became a daily part of people’s lives and accessible to the majority, many artists who had previously refused to collaborate with this small company came knocking at the door.
+                            The teenagers seized this momentum, and that's how we got to what is now today’s Firalia.
+
                             </p>
                         </div>
                     </div>
@@ -275,9 +287,12 @@ if (isset($_SESSION["user_image"])) {
                             <div class="timeline-icon">🕒</div>
                         </div>
                         <div class="timeline-content">
-                            <h3>2023 - Today</h3>
+                            <h3>2025 - Today</h3>
                             <p>
-                                Today, we serve thousands of customers worldwide and continue to innovate and grow.
+                            Today, Firalia holds over 40,000 contracts with artists all around the world—from hidden gems that are still unknown, 
+                            to world-renowned artists like Malu, Justin Bieber, Melendi, Pedro Peña, and more. But most importantly, we never forget where we came from.
+                            We support both small businesses and emerging artists. And we’re proud to say that 50% of Firalia’s profits go to the organization Food For The World, which works tirelessly to eradicate hunger across the globe.
+
                             </p>
                         </div>
                     </div>
