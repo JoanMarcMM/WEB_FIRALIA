@@ -133,7 +133,7 @@ if (isset($_SESSION["user_image"])) {
                     <div class="column">
                         <div class="mission light">Our Mission</div>
                         <h2>Empowering businesses through innovative solutions</h2>
-                        <p>
+                        <p style="text-align: justify;">
                             We strive to create experiences that solve real problems and make a positive impact on our customers'
                             lives. Our mission is to continuously innovate and provide solutions that help businesses grow and
                             succeed in an ever-changing digital landscape.
