@@ -22,14 +22,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 class UserController
 {
-    
-
     function login()
     {
         session_start();
-        //Guardo el PDO q vamos a usar y lo creamos con conn
-        $pdo = $this->conn();
-        //Redireccion basica
+        $mysqli = $this->conn();
+
         $redirect = "../view/index.php";
         if (isset($_POST["redirect"]) && preg_match("/^[a-zA-Z0-9\/\-_]+\.php$/", $_POST["redirect"])) {
             $redirect = "../view/" . $_POST["redirect"];
@@ -40,15 +37,25 @@ class UserController
             header("Location: $redirect");
             exit();
         }
-        //Query, el statement q usamos para enviarlo a la bbdd con pdo.
-        $sql = "SELECT * FROM users WHERE user = ?";
-        $stmt = $pdo->prepare($sql);
-        //Ejecutamos stmt i con fetch cojemos los resultados y lo guardamos en variable array usuario
-        $stmt->execute([$_POST["user"]]);
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        //Importante: verificamos con password verify, esto solo es possible si hemos encriptado la password. Ponemos los datos en 
-        //el array de sesion asi lo podemos usar en todas las paginas
+        $sql = "SELECT * FROM users WHERE user = ?";
+        $stmt = $mysqli->prepare($sql);
+
+        if (!$stmt) {
+            die("Error en la preparación de la consulta: " . $mysqli->error);
+        }
+
+        $stmt->bind_param("s", $_POST["user"]);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if (!$result) {
+            die("Error en la ejecución de la consulta: " . $stmt->error);
+        }
+
+        $user = $result->fetch_assoc();
+
+
         if ($user && password_verify($_POST["password"], $user["PASSWORD"])) {
             $_SESSION["user_id"] = $user["ID"];
             $_SESSION["rol"] = $user["ROL"];
@@ -57,8 +64,8 @@ class UserController
             $_SESSION["email"] = $user["EMAIL"];
             $_SESSION["username"] = $user["USER"];
             $_SESSION["user_image"] = $user["USER_IMAGE"];
+        
 
-            //Identificamos q tipo de usuario es, dependiendo de cual sea lo enviamos a un profile u otro.
             if ($_SESSION['rol'] == 1) {
                 header("Location: ../view/profileadmin.php");
             } else {
@@ -67,17 +74,19 @@ class UserController
 
             exit();
         }
-        //Establecemos mensaje de error en caso que no se haya podido logear
+
+
         $_SESSION["error_message"] = "Usuario o contraseña incorrectos.";
         header("Location: $redirect");
         exit();
     }
 
-    //El login con pdo sigue igual
     function logout()
     {
         session_start();
+
         session_unset();
+
         session_destroy();
 
         if (!headers_sent()) {
@@ -90,62 +99,62 @@ class UserController
 
     function register()
     {
-        //Iniciamos sesion i creamos objeto conn y lo guardamos en pdo
         session_start();
-        $pdo = $this->conn();
+        $mysqli = $this->conn();
+    
+        // VALIDACIONES
 
-        // VALIDACIONES (Ya hechas por Mario anteriormente)
         if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
             $_SESSION["register_error_message_email"] = "Email no válido.";
             header("Location: ../view/register.php");
             exit();
         }
-
+    
         if (!preg_match("/^[1-3]$/", $_POST["rol"])) {
             $_SESSION["register_error_message_rol"] = "El rol debe ser 1, 2 o 3.";
             header("Location: ../view/register.php");
             exit();
         }
-
+    
         $password = $_POST["password"];
         if (strlen($password) < 8 || !preg_match("/[a-z]/i", $password) || !preg_match("/[0-9]/", $password)) {
             $_SESSION["register_error_message_password"] = "La contraseña debe tener al menos 8 caracteres, una letra y un número.";
             header("Location: ../view/register.php");
             exit();
         }
-
+    
         if ($password !== $_POST["password_confirmation"]) {
             $_SESSION["register_error_message_confirmation"] = "Las contraseñas no coinciden.";
             header("Location: ../view/register.php");
             exit();
         }
-        //Una vez se ha validado todo , encriptamos la password con hash 
+    
         $password_hash = password_hash($password, PASSWORD_DEFAULT);
-
+    
         $name = trim(htmlspecialchars($_POST["name"]));
         $lastname = trim(htmlspecialchars($_POST["lastname"]));
         $username = trim(htmlspecialchars($_POST["user"]));
         $email = trim(htmlspecialchars($_POST["email"]));
         $rol = intval($_POST["rol"]);
-
+  
         $user_image = null;
         if (!empty($_FILES['imagen']['name'])) {
             $img_name = $_FILES['imagen']['name'];
             $type = $_FILES['imagen']['type'];
             $size = $_FILES['imagen']['size'];
-
+    
             if ($size > 2000000) {
                 $_SESSION["register_error_message_image_size"] = "La imagen es demasiado grande (máx 2MB).";
                 header("Location: ../view/register.php");
                 exit();
             }
-
+    
             if ($type == "image/jpeg" || $type == "image/jpg" || $type == "image/png") {
                 $directory = __DIR__ . "/images/";
                 if (!is_dir($directory)) {
                     mkdir($directory, 0777, true);
                 }
-
+    
                 $file_name = time() . "_" . basename($img_name);
                 $user_image = "images/" . $file_name;
                 move_uploaded_file($_FILES['imagen']['tmp_name'], $directory . $file_name);
@@ -156,22 +165,32 @@ class UserController
             }
         }
 
-        $sql = "INSERT INTO users (USER, NAME, LASTNAME, EMAIL, PASSWORD, ROL, USER_IMAGE) 
-                VALUES (?, ?, ?, ?, ?, ?, ?)";
-
-        try {
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute([$username, $name, $lastname, $email, $password_hash, $rol, $user_image]);
-
+        $sql = "INSERT INTO users (USER, NAME, LASTNAME, EMAIL, PASSWORD, ROL, USER_IMAGE) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $mysqli->prepare($sql);
+    
+        if (!$stmt) {
+            $_SESSION["register_error_message_sql"] = "Error SQL: " . $mysqli->error;
+            header("Location: ../view/register.php");
+            exit();
+        }
+    
+        $stmt->bind_param("sssssis", $username, $name, $lastname, $email, $password_hash, $rol, $user_image);
+    
+        if ($stmt->execute()) {
             $_SESSION["success_message"] = "Registro exitoso. Ahora puedes iniciar sesión.";
+            $stmt->close();
+            $mysqli->close();
             header("Location: ../view/login.php");
             exit();
-        } catch (PDOException $e) {
-            $_SESSION["error_message"] = "Error en el registro: " . $e->getMessage();
+        } else {
+            $_SESSION["error_message"] = "Error en el registro: " . $stmt->error;
+            $stmt->close();
+            $mysqli->close();
             header("Location: ../view/register.php");
             exit();
         }
     }
+    
     
     
 
@@ -258,6 +277,12 @@ class UserController
         $mysqli->close();
     }
 
+
+
+
+
+
+
     function conn()
     {
         $host = "localhost";
@@ -265,18 +290,12 @@ class UserController
         $username = "root";
         $password = "";
 
-        try {
-            $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            return $pdo;
-        } catch (PDOException $e) {
-            die("Error de conexión: " . $e->getMessage());
+        $mysqli = new mysqli($host, $username, $password, $dbname);
+
+        if ($mysqli->connect_errno) {
+            die("Error de conexión: " . $mysqli->connect_error);
         }
+
+        return $mysqli;
     }
-
-
-
-
-
-    
 }
