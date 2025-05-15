@@ -213,8 +213,8 @@ class UserController
             die("Email no válido");
         }
 
-        // Conectar con la base de datos
-        $mysqli = require __DIR__ . "/database.php";
+        // Conectar con PDO usando el método conn()
+        $pdo = $this->conn();
 
         // Sanitizar entradas
         $name = trim(htmlspecialchars($_POST["name"]));
@@ -226,32 +226,32 @@ class UserController
         $userId = $_SESSION["user_id"]; // ⚠️ Asegúrate de que esté definida la sesión y este valor
 
         // Preparar consulta
-        $sql = "UPDATE users SET USER = ?, NAME = ?, LASTNAME = ?, EMAIL = ? WHERE ID = ?";
-        $stmt = $mysqli->prepare($sql);
+        $sql = "UPDATE users SET USER = :username, NAME = :name, LASTNAME = :lastname, EMAIL = :email WHERE ID = :id";
+        
 
-        if (!$stmt) {
-            die("Error SQL: " . $mysqli->error);
-        }
+        try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+            ':username' => $username,
+            ':name' => $name,
+            ':lastname' => $lastname,
+            ':email' => $email,
+            ':id' => $userId
+        ]);
 
-        // Vincular parámetros
-        $stmt->bind_param("ssssi", $username, $name, $lastname, $email, $userId);
+        
 
-        // Ejecutar consulta
-        if ($stmt->execute()) {
-            if($_SESSION["rol"] == 1){
-                header("Location: ../view/profileAdmin.php");
-                exit;
-            }else{
-                header("Location: ../view/profile.php");
-                exit;
-            }
+        if ($_SESSION["rol"] == 1) {
+            header("Location: ../view/profileAdmin.php");
+            exit;
         } else {
-            echo "Error en el update: " . $stmt->error;
+            header("Location: ../view/profile.php");
+            exit;
         }
+    } catch (PDOException $e) {
+        echo "Error en el update: " . $e->getMessage();
+    }
 
-        // Cerrar conexión
-        $stmt->close();
-        $mysqli->close();
     }
 
     function conn()
