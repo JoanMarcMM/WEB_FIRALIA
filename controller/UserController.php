@@ -173,10 +173,6 @@ class UserController
         }
     }
     
-    
-
-
-
     function deleteUser()
     {
         session_start();
