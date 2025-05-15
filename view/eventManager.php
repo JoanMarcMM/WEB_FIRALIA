@@ -10,3 +10,4 @@
 <form action="deleteEvent.php" method="POST">
 <button class="submit-btn" type="submit">Delete Event</button>
 </form>
+<a href="profileAdmin.php">Salir</a>
