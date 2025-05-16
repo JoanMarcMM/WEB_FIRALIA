@@ -1,5 +1,9 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 session_start();
+
 
 $event = new EventController();
 
@@ -14,8 +18,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $event->DeleteEvent();
     } elseif (isset($_POST["date"])) {
         $event->AddDateEvent();
-    } elseif (isset($_POST["galleryImage"])) {
-        $event->AddGalleryImageEvent();
     } elseif (isset($_POST["galleryVideo"])) {
         $event->AddGalleryVideoEvent();
     }
@@ -139,86 +141,6 @@ class EventController
             exit();
         }
     }
-
-    function AddGalleryImageEvent()
-    {
-
-       
-    $pdo = $this->conn();
-
-    $id = $_POST["evento-video"] ?? null;
-
-    if (!filter_var($id, FILTER_VALIDATE_INT)) {
-        $_SESSION["error_message"] = "ID de evento inválido.";
-        header("Location: ../view/addGalleryEvent.php");
-        exit();
-    }
-
-    // Obtener el nombre del evento
-    $stmt = $pdo->prepare("SELECT NOMBRE FROM eventos WHERE ID = ?");
-    $stmt->execute([$id]);
-    $nombre = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if (!$nombre) {
-        $_SESSION["error_message"] = "Evento no encontrado.";
-        header("Location: ../view/addGalleryEvent.php");
-        exit();
-    }
-
-    $nombreEvento = $nombre["NOMBRE"];
-
-    if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
-        $imagen_name = $_FILES['imagen']['name'];
-        $imagen_type = $_FILES['imagen']['type'];
-        $imagen_tmp = $_FILES['imagen']['tmp_name'];
-
-        $allowed_types = ["image/jpeg", "image/jpg", "image/png"];
-        if (!in_array($imagen_type, $allowed_types)) {
-            $_SESSION["register_error_message_image_format"] = "Formato de imagen no válido (solo JPG, JPEG o PNG).";
-            header("Location: ../view/createEvent.php");
-            exit();
-        }
-
-        $directory = dirname(__DIR__) . "/view/events/" . $nombreEvento . "/galleria/";
-        if (!is_dir($directory)) {
-            if (!mkdir($directory, 0777, true)) {
-                $_SESSION["register_error_message"] = "Error al crear el directorio.";
-                header("Location: ../view/addGalleryEvent.php");
-                exit();
-            }
-        }
-
-        if (!move_uploaded_file($imagen_tmp, $directory . basename($imagen_name))) {
-            $_SESSION["register_error_message"] = "Error al mover el archivo de imagen.";
-            header("Location: ../view/addGalleryEvent.php");
-            exit();
-        }
-
-        $imagen_path = "events/$nombreEvento/galleria/" . basename($imagen_name);
-
-        // Guardar en la base de datos
-        $sql = "INSERT INTO galeria_eventos (IMAGEN_PATH, ID_EVENTO) VALUES (?, ?)";
-
-        try {
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute([$imagen_path, $id]);
-
-            $_SESSION["success_message"] = "Imagen añadida correctamente a la galería.";
-            header("Location: ../view/addGalleryEvent.php");
-            exit();
-        } catch (PDOException $e) {
-            $_SESSION["error_message"] = "Error al guardar en base de datos: " . $e->getMessage();
-            header("Location: ../view/addGalleryEvent.php");
-            exit();
-        }
-
-    } else {
-        $_SESSION["register_error_message"] = "Error al subir la imagen.";
-        header("Location: ../view/addGalleryEvent.php");
-        exit();
-    }
-    }
-
     function AddGalleryVideoEvent()
     {
 
