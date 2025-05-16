@@ -1,6 +1,12 @@
 <form action="createEvent.php" method="POST">
 <button class="submit-btn" type="submit">Create Event</button>
 </form>
+<form action="addDateEvent.php" method="POST">
+<button class="submit-btn" type="submit">Add Date To Event</button>
+</form>
+<form action="addGalleryEvent.php" method="POST">
+<button class="submit-btn" type="submit">Add Image/Video To Event</button>
+</form>
 <form action="readEvent.php" method="POST">
 <button class="submit-btn" type="submit">Read Event</button>
 </form>
