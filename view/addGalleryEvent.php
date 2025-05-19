@@ -10,33 +10,27 @@ if ($pdo) {
     $eventos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 ?>
+<!DOCTYPE html>
+<html lang="es">
 
-<style>
-    .form-container {
-        display: flex;
-        gap: 40px;
-        align-items: flex-start;
-    }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
 
-    form {
-        border: 1px solid #ccc;
-        padding: 20px;
-        width: 300px;
-        box-sizing: border-box;
-        border-radius: 6px;
-        background-color: #f9f9f9;
-    }
+    <!-- Google Fonts -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_forward" />
 
-    label {
-        font-weight: bold;
-    }
+    <!-- Swiper -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-    .submit-btn {
-        margin-top: 10px;
-        padding: 8px 12px;
-        cursor: pointer;
-    }
-</style>
+    <!-- Archivos CSS, hemos puesto class less css pq es una parte que solo accedera la gente de la empresa -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+
+</head>
+
+
 
 <p><?php if (isset($_SESSION["error_message"])) {
         echo $_SESSION["error_message"];
