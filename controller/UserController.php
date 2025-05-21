@@ -177,32 +177,33 @@ class UserController
     
     function deleteUser()
     {
-        session_start();
-
-        $mysqli = $this->conn();
+        $pdo = $this->conn();
 
         if (isset($_SESSION["user_id"])) {
-            $sql = "DELETE FROM users WHERE ID = ?";
-            $stmt = $mysqli->prepare($sql);
+            
+            try{
+                $sql = "DELETE FROM users WHERE ID = :id";
+                $stmt = $pdo->prepare($sql);
+                
+                if (!$stmt) {
+                    die("Error en la preparación de la consulta.");
+                }
+                $id = $_SESSION["user_id"];
+                $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+                $stmt->execute();
+    
+                session_destroy();
 
-            if (!$stmt) {
-                die("Error en la preparación de la consulta: " . $mysqli->error);
+                if (!headers_sent()) {
+                    header("Location: ../view/index.php");
+                    exit;
+                } else {
+                    echo "Error: Las cabeceras ya han sido enviadas. No se puede redirigir.";
+                }
+            }catch(PDOException $e){
+                die("Error en la consulta: " . $e->getMessage());
             }
-
-            $stmt->bind_param("i", $_SESSION["user_id"]);
-            $stmt->execute();
-
-            $stmt->close();
-            $mysqli->close();
-
-            session_destroy();
-
-            if (!headers_sent()) {
-                header("Location: ../view/index.php");
-                exit;
-            } else {
-                echo "Error: Las cabeceras ya han sido enviadas. No se puede redirigir.";
-            }
+        
         }
     }
 
