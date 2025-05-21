@@ -9,23 +9,12 @@ if (!isset($_SESSION["user_id"])) {
 }
 
 $id = $_SESSION["user_id"];
-
-// Consulta segura con `prepare()`
-$select = $mysqli->prepare("SELECT * FROM users WHERE id = ?");
-$select->bind_param("i", $id);
-$select->execute();
-$result = $select->get_result();
-
-$fetch = $result->fetch_assoc();
-$select->close();
-
-// Si no encuentra usuario, muestra un mensaje
-if (!$fetch) {
-    die("Error: Usuario no encontrado en la base de datos.");
-}
-
-
-
+$user_image = $_SESSION["user_image"];
+$name = $_SESSION["name"];
+$lastname = $_SESSION["lastname"];
+$username = $_SESSION["username"];
+$email = $_SESSION["email"];
+$rol = $_SESSION["rol"];
 ?>
 
 
@@ -50,7 +39,7 @@ if (!$fetch) {
 
     <!-- Archivos CSS -->
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="css/updateUser.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 </head>
 
@@ -59,19 +48,17 @@ if (!$fetch) {
     <nav class="main-nav">
         <!-- ------------------------------------------------------------------ SIDE BAR --------------------------------------------------------------------------------->
         <ul class="sidebar">
-            <li onclick="hideSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
-                        viewBox="0 -960 960 960" width="24px" fill="#">
-                        <path
-                            d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+            <li onclick="hideSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#">
+                        <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
                     </svg></a></li>
             <li><a href="aboutus.php">NOSOTROS</a></li>
             <li><a href="event.php">Eventos</a></li>
             <li><a href="support.php">Soporte</a></li>
             <?php if (isset($_SESSION["user_id"])): ?>
-            <li><a href="login.php">Perfil</a></li>
+                <li><a href="login.php">Perfil</a></li>
             <?php else: ?>
-            <li><a href="login.php">Iniciar Sesión</a></li>
-            <li><a href="register.php">Registrarse</a></li>
+                <li><a href="login.php">Iniciar Sesión</a></li>
+                <li><a href="register.php">Registrarse</a></li>
             <?php endif; ?>
         </ul>
         <!-- ------------------------------------------------------------------ MAIN MENU --------------------------------------------------------------------------------->
@@ -92,9 +79,18 @@ if (!$fetch) {
                 </form>
             </li>
             <?php if (isset($_SESSION["user_id"])): ?>
-            <li><a href="profile.php"><img src="images/icons/estandarPfp.jpg" alt="Pfp" class="pfpNav"></a></li>
+                <li>
+                    <?php if ($rol == 1): ?>
+                        <a href="profileadmin.php">
+                            <img src="../controller/<?= $user_image ?>" alt="Pfp" class="pfpNav">
+                        <?php else: ?>
+                            <a href="profile.php">
+                                <img src="images/icons/estandarPfp.jpg" alt="Pfp" class="pfpNav">
+                            <?php endif; ?>
+                            </a>
+                </li>
             <?php else: ?>
-            <li class="hideOnMobile"><button id="open-popup">LOG IN</button></li>
+                <li class="hideOnMobile"><button id="open-popup">LOG IN</button></li>
             <?php endif; ?>
 
             <li class="menu-button" onclick="showSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg"
@@ -134,40 +130,55 @@ if (!$fetch) {
     <!-- https://www.youtube.com/watch?v=KZHF2FKJtK8 -->
 
 
-    <section class="grid">
-        <div class="profile-container">
-            <a href="#"><img src="images/icons/estandarPfp.jpg" alt="Pfp" class="pfp"></a>
-            <div class="profile">
-                <?php if ($fetch): ?>
-                    <h2 style="font-style: italic; margin-bottom: 5%;"> PERFIL USUARIO</h2>
-                    <h3><?php echo "Usuario: " . htmlspecialchars($fetch['USER']); ?></h3>
-                    <h3><?php echo "Nombre: " . htmlspecialchars($fetch['NAME']); ?></h3>
-                    <h3><?php echo "Apellidos: " . htmlspecialchars($fetch['LASTNAME']); ?></h3>
-                    <h3><?php echo "Correo: " . htmlspecialchars($fetch['EMAIL']); ?></h3><br>
+    <section class="update-section">
+        <div class="update-form">
+            <form action="../controller/UserController.php" method="POST" class="form-update">
 
-                    <form action="../controller/UserController.php" method="POST">
-                        <input type="hidden" name="logout" value="1">
-                        <button class="submit-btn" type="submit">Log Out</button>
-                    </form>
+                <div class="input-box">
+                    <label>Contraseña Actual</label><br>
+                    <input type="password" name="currentPassword" id="currentPassword" placeholder="Contraseña Actual" required>
+                </div>
 
-                <?php else: ?>
-                    <h3>Usuario no encontrado</h3>
+                <div class="input-box">
+                    <label>Contraseña Nueva</label><br>
+                    <input type="password" name="newPassword" id="newPassword" placeholder="Contraseña Nueva" required>
+                </div>
+
+                <div class="input-box">
+                    <label>Confirmar Contraseña Nueva</label><br>
+                    <input type="password" name="confirmNewPassword" id="confirmNewPassword" placeholder="Confirmar Contraseña" required>
+                </div>
+
+                <input type="hidden" name="changePassword" value="changePassword">
+                <div class="actions">
+                    <?php if ($rol == 1): ?>
+
+                        <a href="profileAdmin.php" style="color:white;">Volver</a>
+                    <?php elseif ($rol == 2): ?>
+                        <a href="profile.php" style="color:white;">Volver</a>
+                    <?php endif; ?>
+                    <button type="submit" class="btn-a">Actualizar</button>
+                </div>
+
+            </form>
+            <?php if (isset($_SESSION["error_message_current_password"])): ?>
+                    <div class="register-error-message"><?php echo $_SESSION["error_message_current_password"];
+                                                        unset($_SESSION["error_message_current_password"]); ?></div>
                 <?php endif; ?>
-            </div>
-        </div>
-        <div class="option-container">
-        <form action="../controller/UserController.php" method="POST">
-        <input type="hidden" name="deleteUser" value="deleteUser">
-        <button class="submit-btn" type="submit">Eliminar Usuario</button>
-        </form>
-            <form action="updateUser.php" method="POST">
-                <button class="submit-btn" type="submit">Editar Usuario</button>
-            </form>
-            <form action="updatePassword.php" method="POST">
-                <button class="submit-btn" type="submit">Contraseña</button>
-            </form>
+                
+            <?php if (isset($_SESSION["error_message_newpassword"])): ?>
+                    <div class="register-error-message"><?php echo $_SESSION["error_message_newpassword"];
+                                                        unset($_SESSION["error_message_newpassword"]); ?></div>
+                <?php endif; ?>
+            
+            <?php if (isset($_SESSION["error_message_password"])): ?>
+                    <div class="register-error-message"><?php echo $_SESSION["error_message_password"];
+                                                        unset($_SESSION["error_message_password"]); ?></div>
+                <?php endif; ?>    
+
         </div>
     </section>
+
 
 
     <!-- --------------------------------------------------------------------- Footer  --------------------------------------------------------------------------------->
@@ -218,7 +229,7 @@ if (!$fetch) {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
 
             function showSidebar() {
                 const sidebar = document.querySelector('.sidebar');

@@ -15,7 +15,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $user->deleteUser();
     } elseif (isset($_POST["updateUser"])) {
         $user->updateUser();
-    }
+    } elseif (isset($_POST["changePassword"])) {
+        $user->changePassword();
+}
 }
 
 
@@ -212,6 +214,7 @@ class UserController
         if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
             die("Email no válido");
         }
+       
 
         // Conectar con PDO usando el método conn()
         $pdo = $this->conn();
@@ -253,6 +256,72 @@ class UserController
     }
 
     }
+
+
+
+
+
+function changePassword()
+{
+    session_start();
+    $pdo = $this->conn();
+    
+    $userId = $_SESSION["user_id"];
+    $currentPassword = $_POST["currentPassword"];
+    $newPassword = $_POST["newPassword"];
+    $confirmNewPassword = $_POST["confirmNewPassword"];
+    
+    // Validaciones básicas
+
+    if ($newPassword !== $confirmNewPassword) {
+        $_SESSION["error_message_newpassword"] = "Las contraseñas nuevas no coinciden.";
+        header("Location: ../view/updatePassword.php");
+        exit();
+    }
+    
+    if (strlen($newPassword) < 8 || !preg_match("/[a-z]/i", $newPassword) || !preg_match("/[0-9]/", $newPassword)) {
+        $_SESSION["error_message_password"] = "La nueva contraseña debe tener al menos 8 caracteres y una letra.";
+        header("Location: ../view/updatePassword.php");
+        exit();
+    }
+    
+    // Obtener la contraseña actual del usuario
+    $sql = "SELECT PASSWORD FROM users WHERE ID = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$userId]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    if (!$user || !password_verify($currentPassword, $user["PASSWORD"])) {
+        $_SESSION["error_message_current_password"] = "La contraseña actual es incorrecta.";
+        header("Location: ../view/updatePassword.php");
+        exit();
+    }
+    
+    // Hashear la nueva contraseña
+    $newPasswordHash = password_hash($newPassword, PASSWORD_DEFAULT);
+    
+    // Actualizar la contraseña en la base de datos
+    $sql = "UPDATE users SET PASSWORD = ? WHERE ID = ?";
+    $stmt = $pdo->prepare($sql);
+    
+    try {
+        $stmt->execute([$newPasswordHash, $userId]);
+        $_SESSION["success_message"] = "Contraseña actualizada correctamente.";
+        $_SESSION["password"] = $newPasswordHash; // Actualizar en sesión
+        
+        // Redirigir según el rol
+        if ($_SESSION["rol"] == 1) {
+            header("Location: ../view/profileAdmin.php");
+        } else {
+            header("Location: ../view/profile.php");
+        }
+        exit();
+    } catch (PDOException $e) {
+        $_SESSION["error_message"] = "Error al actualizar la contraseña: " . $e->getMessage();
+        header("Location: ../view/updatePassword.php");
+        exit();
+    }
+}
 
     function conn()
     {
