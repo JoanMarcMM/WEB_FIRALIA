@@ -24,7 +24,7 @@
 <button class="submit-btn" type="submit">Add Date To Event</button>
 </form>
 <form action="addGalleryEvent.php" method="POST">
-<button class="submit-btn" type="submit">Add Image/Video To Event</button>
+<button class="submit-btn" type="submit">Add Video To Event</button>
 </form>
 <form action="readEvent.php" method="POST">
 <button class="submit-btn" type="submit">Read Event</button>
