@@ -97,16 +97,105 @@ class EventController
     }
     function ReadEvent()
     {
-        echo "<p>Read Event</p>";
+       $pdo = $this->conn();
+    
+    try {
+        $sql = "SELECT ID, NOMBRE, MAIN_IMAGE_PATH FROM eventos ORDER BY NOMBRE ASC";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+        
+        $eventos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        $_SESSION['eventos'] = $eventos;
+        
+        header("Location: ../view/readEvent.php");
+        exit();
+        
+    } catch (PDOException $e) {
+        $_SESSION["error_message"] = "Error al leer eventos: " . $e->getMessage();
+        header("Location: ../view/readEvent.php");
+        exit();
+    }
     }
     function UpdateEvent()
     {
         echo "<p>Update Event</p>";
     }
-    function DeleteEvent()
-    {
-        echo "<p>Delete Event</p>";
+  function DeleteEvent()
+{
+    $pdo = $this->conn();
+    
+    $id = $_POST["id"] ?? null;
+    
+    if (!filter_var($id, FILTER_VALIDATE_INT)) {
+        $_SESSION["error_message"] = "ID de evento inválido.";
+        header("Location: ../view/deleteEvent.php");
+        exit();
     }
+
+    try {
+        // Iniciamos una transacción para asegurar la integridad de los datos
+        $pdo->beginTransaction();
+
+        // 1. Obtenemos los datos del evento
+        $stmt = $pdo->prepare("SELECT NOMBRE, MAIN_IMAGE_PATH, IMAGE_TEXT_PATH FROM eventos WHERE ID = ?");
+        $stmt->execute([$id]);
+        $evento = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$evento) {
+            throw new Exception("Evento no encontrado.");
+        }
+
+        // 2. Eliminamos registros relacionados primero (claves foráneas)
+        $pdo->prepare("DELETE FROM fechas_eventos WHERE ID_EVENTO = ?")->execute([$id]);
+        $pdo->prepare("DELETE FROM galeria_eventos WHERE ID_EVENTO = ?")->execute([$id]);
+
+        // 3. Eliminamos el evento
+        $pdo->prepare("DELETE FROM eventos WHERE ID = ?")->execute([$id]);
+
+        // 4. Eliminamos archivos físicos
+        $mainImagePath = dirname(__DIR__) . "/view/" . $evento['MAIN_IMAGE_PATH'];
+        $textImagePath = dirname(__DIR__) . "/view/" . $evento['IMAGE_TEXT_PATH'];
+        $eventDir = dirname($mainImagePath);
+
+        if (file_exists($mainImagePath)) unlink($mainImagePath);
+        if (file_exists($textImagePath)) unlink($textImagePath);
+
+        // Intentamos eliminar el directorio si está vacío
+        if (is_dir($eventDir)) {
+            @rmdir($eventDir); // @ suprime warnings si no está vacío
+        }
+
+        $pdo->commit();
+        
+        $_SESSION["success_message"] = "Evento eliminado correctamente.";
+    } catch (Exception $e) {
+        $pdo->rollBack();
+        $_SESSION["error_message"] = "Error al eliminar el evento: " . $e->getMessage();
+    }
+    
+    header("Location: ../view/deleteEvent.php");
+    exit();
+}
+
+// Nueva función solo para obtener eventos para el formulario de eliminación
+function GetEventsForDeletion()
+{
+    $pdo = $this->conn();
+    
+    try {
+        $sql = "SELECT ID, NOMBRE FROM eventos ORDER BY NOMBRE ASC";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+        
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        $_SESSION["error_message"] = "Error al cargar eventos: " . $e->getMessage();
+        return [];
+    }
+}
+    
+
 
     function AddDateEvent()
     {
@@ -189,6 +278,7 @@ class EventController
     }
 
 
+
     function conn()
     {
         $dbname = "firalia";
@@ -200,7 +290,7 @@ class EventController
             $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            echo "Connected successfully";
+            //echo "Connected successfully";
             return $conn;
         } catch (PDOException $e) {
             echo "Not connected successfully";
@@ -208,3 +298,4 @@ class EventController
         }
     }
 }
+

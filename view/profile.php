@@ -164,7 +164,7 @@ if (!$fetch) {
                 <button class="submit-btn" type="submit">Editar Usuario</button>
             </form>
             <form action="updatePassword.php" method="POST">
-                <button class="submit-btn" type="submit">Contraseña</button>
+                <button class="submit-btn" type="submit">Editar Contraseña</button>
             </form>
         </div>
     </section>
