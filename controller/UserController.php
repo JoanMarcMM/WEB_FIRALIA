@@ -221,25 +221,25 @@ class UserController
         $pdo = $this->conn();
 
         // Sanitizar entradas
-        $name = trim(htmlspecialchars($_POST["name"]));
-        $lastname = trim(htmlspecialchars($_POST["lastname"]));
-        $username = trim(htmlspecialchars($_POST["user"]));
-        $email = trim(htmlspecialchars($_POST["email"]));
+        $_SESSION["name"] = trim(htmlspecialchars($_POST["name"]));
+        $_SESSION["lastname"] = trim(htmlspecialchars( $_POST["lastname"]));
+        $_SESSION["username"] = trim(htmlspecialchars($_POST["user"]));
+        $_SESSION["email"] = trim(htmlspecialchars($_POST["email"]));
 
         // Obtener ID del usuario desde la sesión
         $userId = $_SESSION["user_id"]; // ⚠️ Asegúrate de que esté definida la sesión y este valor
 
         // Preparar consulta
-        $sql = "UPDATE users SET USER = :username, NAME = :name, LASTNAME = :lastname, EMAIL = :email WHERE ID = :id";
+        $sql = "UPDATE users SET USER = :username, `NAME` = :name, LASTNAME = :lastname, EMAIL = :email WHERE ID = :id";
         
 
         try {
         $stmt = $pdo->prepare($sql);
         $stmt->execute([
-            ':username' => $username,
-            ':name' => $name,
-            ':lastname' => $lastname,
-            ':email' => $email,
+            ':username' => $_SESSION["username"],
+            ':name' => $_SESSION["name"],
+            ':lastname' =>  $_SESSION["lastname"],
+            ':email' =>  $_SESSION["email"],
             ':id' => $userId
         ]);
 

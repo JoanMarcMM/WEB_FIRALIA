@@ -13,7 +13,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } elseif (isset($_POST["read"])) {
         $event->ReadEvent();
     } elseif (isset($_POST["update"])) {
-        $event->UpdateEvent();
+        $id = $_POST['id'] ?? null;
+        if ($id) {
+            $event->UpdateEvent($id);
+        }
+        $event->UpdateEvent($id);
     } elseif (isset($_POST["delete"])) {
         $event->DeleteEvent();
     } elseif (isset($_POST["date"])) {
@@ -99,9 +103,78 @@ class EventController
     {
         echo "<p>Read Event</p>";
     }
-    function UpdateEvent()
+    function UpdateEvent($id)
     {
-        echo "<p>Update Event</p>";
+        $pdo = $this->conn();
+
+        $nombre = strtoupper(trim(htmlspecialchars($_POST["nombre"])));
+        $text1 = trim(htmlspecialchars($_POST["text1"]));
+
+        $stmt = $pdo->prepare("SELECT MAIN_IMAGE_PATH, IMAGE_TEXT_PATH, NOMBRE FROM eventos WHERE ID = ?");
+        $stmt->execute([$id]);
+        $evento = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$evento) {
+            $_SESSION["error_message"] = "Evento no encontrado.";
+            header("Location: ../view/updateEvent.php?id=$id");
+            exit();
+        }
+
+        $main_image_path = $evento['MAIN_IMAGE_PATH'];
+        $image_text_path = $evento['IMAGE_TEXT_PATH'];
+        $old_nombre = $evento['NOMBRE'];
+
+        $directory = dirname(__DIR__) . "/view/events/" . $nombre . "/";
+        if (!is_dir($directory)) {
+            mkdir($directory, 0777, true);
+        }
+
+        $allowed_types = ["image/jpeg", "image/jpg", "image/png"];
+
+        if (isset($_FILES['main_image']) && $_FILES['main_image']['error'] === UPLOAD_ERR_OK) {
+            $main_image_type = $_FILES['main_image']['type'];
+            if (!in_array($main_image_type, $allowed_types)) {
+                $_SESSION["register_error_message_image_format"] = "Formato de imagen principal no válido.";
+                header("Location: ../view/updateEvent.php?id=$id");
+                exit();
+            }
+
+            $main_image_name = $_FILES['main_image']['name'];
+            $main_image_tmp = $_FILES['main_image']['tmp_name'];
+            move_uploaded_file($main_image_tmp, $directory . basename($main_image_name));
+            $main_image_path = "events/$nombre/" . basename($main_image_name);
+        }
+
+        if (isset($_FILES['image_text']) && $_FILES['image_text']['error'] === UPLOAD_ERR_OK) {
+            $image_text_type = $_FILES['image_text']['type'];
+            if (!in_array($image_text_type, $allowed_types)) {
+                $_SESSION["register_error_message_image_format"] = "Formato de imagen de texto no válido.";
+                header("Location: ../view/updateEvent.php?id=$id");
+                exit();
+            }
+
+            $image_text_name = $_FILES['image_text']['name'];
+            $image_text_tmp = $_FILES['image_text']['tmp_name'];
+            move_uploaded_file($image_text_tmp, $directory . basename($image_text_name));
+            $image_text_path = "events/$nombre/" . basename($image_text_name);
+        }
+
+        $sql = "UPDATE eventos 
+            SET NOMBRE = ?, MAIN_IMAGE_PATH = ?, TEXT1 = ?, IMAGE_TEXT_PATH = ?
+            WHERE ID = ?";
+
+        try {
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([$nombre, $main_image_path, $text1, $image_text_path, $id]);
+
+            header("Location: ../view/updateSuccess.php?id=$id");
+            exit();
+        } catch (PDOException $e) {
+            $_SESSION["error_message"] = "Error al actualizar en base de datos: " . $e->getMessage();
+            header("Location: ../view/updateEvent.php?id=$id");
+            exit();
+        }
+
     }
     function DeleteEvent()
     {
@@ -144,48 +217,48 @@ class EventController
     function AddGalleryVideoEvent()
     {
 
-         $pdo = $this->conn();
+        $pdo = $this->conn();
 
-    $id = $_POST["evento-video"] ?? null;
-    $video = $_POST["link"] ?? null;
+        $id = $_POST["evento-video"] ?? null;
+        $video = $_POST["link"] ?? null;
 
-    if (!filter_var($id, FILTER_VALIDATE_INT)) {
-        $_SESSION["error_message"] = "ID de evento inválido.";
-        header("Location: ../view/addGalleryEvent.php");
-        exit();
-    }
+        if (!filter_var($id, FILTER_VALIDATE_INT)) {
+            $_SESSION["error_message"] = "ID de evento inválido.";
+            header("Location: ../view/addGalleryEvent.php");
+            exit();
+        }
 
-    if (empty($video)) {
-        $_SESSION["error_message"] = "El enlace del video está vacío.";
-        header("Location: ../view/addGalleryEvent.php");
-        exit();
-    }
+        if (empty($video)) {
+            $_SESSION["error_message"] = "El enlace del video está vacío.";
+            header("Location: ../view/addGalleryEvent.php");
+            exit();
+        }
 
-    $stmt = $pdo->prepare("SELECT NOMBRE FROM eventos WHERE ID = ?");
-    $stmt->execute([$id]);
-    $nombre = $stmt->fetch(PDO::FETCH_ASSOC);
+        $stmt = $pdo->prepare("SELECT NOMBRE FROM eventos WHERE ID = ?");
+        $stmt->execute([$id]);
+        $nombre = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if (!$nombre) {
-        $_SESSION["error_message"] = "Evento no encontrado.";
-        header("Location: ../view/addGalleryEvent.php");
-        exit();
-    }
+        if (!$nombre) {
+            $_SESSION["error_message"] = "Evento no encontrado.";
+            header("Location: ../view/addGalleryEvent.php");
+            exit();
+        }
 
-    // Insertar en la base de datos
-    $sql = "INSERT INTO galeria_eventos (VIDEO, ID_EVENTO) VALUES (?, ?)";
+        // Insertar en la base de datos
+        $sql = "INSERT INTO galeria_eventos (VIDEO, ID_EVENTO) VALUES (?, ?)";
 
-    try {
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([$video, $id]);
+        try {
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([$video, $id]);
 
-        $_SESSION["success_message"] = "Video añadido correctamente a la galería.";
-        header("Location: ../view/addGalleryEvent.php");
-        exit();
-    } catch (PDOException $e) {
-        $_SESSION["error_message"] = "Error al guardar en base de datos: " . $e->getMessage();
-        header("Location: ../view/addGalleryEvent.php");
-        exit();
-    }
+            $_SESSION["success_message"] = "Video añadido correctamente a la galería.";
+            header("Location: ../view/addGalleryEvent.php");
+            exit();
+        } catch (PDOException $e) {
+            $_SESSION["error_message"] = "Error al guardar en base de datos: " . $e->getMessage();
+            header("Location: ../view/addGalleryEvent.php");
+            exit();
+        }
     }
 
 

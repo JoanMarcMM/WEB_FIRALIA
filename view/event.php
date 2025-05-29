@@ -13,7 +13,7 @@ if (isset($_POST['nombre_evento'])) {
 
     // Buscar el ID del evento según el nombre
     $id_query = $conexion->query("SELECT ID FROM EVENTOS WHERE NOMBRE = '$nombre_evento'");
-    
+
     if ($id_query && $id_query->num_rows > 0) {
         $id_row = $id_query->fetch_assoc();
         $id_evento = $id_row['ID'];
@@ -44,7 +44,7 @@ $galeria_query = $conexion->query("SELECT * FROM GALERIA_EVENTOS WHERE ID_EVENTO
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
 
-    
+
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_forward" />
 
@@ -58,17 +58,19 @@ $galeria_query = $conexion->query("SELECT * FROM GALERIA_EVENTOS WHERE ID_EVENTO
     <nav class="main-nav">
         <!-- ------------------------------------------------------------------ SIDE BAR --------------------------------------------------------------------------------->
         <ul class="sidebar">
-            <li onclick="hideSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#">
-                        <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+            <li onclick="hideSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
+                        viewBox="0 -960 960 960" width="24px" fill="#">
+                        <path
+                            d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
                     </svg></a></li>
             <li><a href="aboutus.php">NOSOTROS</a></li>
             <li><a href="event.php">Eventos</a></li>
             <li><a href="support.php">Soporte</a></li>
             <?php if (isset($_SESSION["user_id"])): ?>
-                <li><a href="login.php">Perfil</a></li>
+            <li><a href="login.php">Perfil</a></li>
             <?php else: ?>
-                <li><a href="login.php">Iniciar Sesión</a></li>
-                <li><a href="register.php">Registrarse</a></li>
+            <li><a href="login.php">Iniciar Sesión</a></li>
+            <li><a href="register.php">Registrarse</a></li>
             <?php endif; ?>
         </ul>
         <!-- ------------------------------------------------------------------ MAIN MENU --------------------------------------------------------------------------------->
@@ -137,9 +139,9 @@ $galeria_query = $conexion->query("SELECT * FROM GALERIA_EVENTOS WHERE ID_EVENTO
         </div>
     </div>
 
-   
-<!-- MAIN IMAGE -->
-<section class="main-image">
+
+    <!-- MAIN IMAGE -->
+    <section class="main-image">
         <img src="<?= $evento['MAIN_IMAGE_PATH'] ?>" alt="main image">
         <div class="caption">
             <h1><?= htmlspecialchars($evento['NOMBRE']) ?></h1>
@@ -179,7 +181,8 @@ $galeria_query = $conexion->query("SELECT * FROM GALERIA_EVENTOS WHERE ID_EVENTO
                                             <p><?= $fecha['MES'] ?></p>
                                         </div>
                                         <div class="description">
-                                            <p class="p4"><?= $fecha['NOMBRE_DIA'] ?> · <?= sprintf('%02d:%02d', $fecha['HORA'], $fecha['MINUTO']) ?></p>
+                                            <p class="p4"><?= $fecha['NOMBRE_DIA'] ?> ·
+                                                <?= sprintf('%02d:%02d', $fecha['HORA'], $fecha['MINUTO']) ?></p>
                                             <p class="p5"><?= $fecha['CIUDAD'] ?> · <?= $fecha['LOCALIZACION'] ?></p>
                                             <p class="p4"><?= htmlspecialchars($evento['NOMBRE']) ?></p>
                                         </div>
@@ -202,7 +205,10 @@ $galeria_query = $conexion->query("SELECT * FROM GALERIA_EVENTOS WHERE ID_EVENTO
                         <div class="image-list">
                             <?php while ($item = $galeria_query->fetch_assoc()): ?>
                                 <?php if (!empty($item['VIDEO'])): ?>
-                                    <iframe class="image-item" width="560" height="315" src="<?= $item['VIDEO'] ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                                    <iframe class="image-item" width="560" height="315" src="<?= $item['VIDEO'] ?>"
+                                        title="YouTube video player" frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                                 <?php elseif (!empty($item['IMAGEN_PATH'])): ?>
                                     <img class="image-item" src="<?= $item['IMAGEN_PATH'] ?>" alt="gallery image">
                                 <?php endif; ?>
@@ -218,8 +224,9 @@ $galeria_query = $conexion->query("SELECT * FROM GALERIA_EVENTOS WHERE ID_EVENTO
                 <div class="about-container">
                     <div class="text">
                         <p>
-                            <?= nl2br(htmlspecialchars($evento['TEXT1'])) ?>
+                            <?= nl2br(html_entity_decode($evento['TEXT1'])) ?>
                         </p>
+
                     </div>
                     <div class="image">
                         <img src="<?= $evento['IMAGE_TEXT_PATH'] ?>" alt="foto artista">
@@ -278,8 +285,8 @@ $galeria_query = $conexion->query("SELECT * FROM GALERIA_EVENTOS WHERE ID_EVENTO
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-           
+        document.addEventListener('DOMContentLoaded', function () {
+
             function showSidebar() {
                 const sidebar = document.querySelector('.sidebar');
                 sidebar.style.display = 'flex';
@@ -292,7 +299,7 @@ $galeria_query = $conexion->query("SELECT * FROM GALERIA_EVENTOS WHERE ID_EVENTO
                 document.body.style.overflow = '';
             }
 
-            
+
             function createPopup(id) {
                 let popupNode = document.querySelector(id);
                 let overlay = popupNode.querySelector(".overlay");
@@ -318,7 +325,7 @@ $galeria_query = $conexion->query("SELECT * FROM GALERIA_EVENTOS WHERE ID_EVENTO
                 return openPopup;
             }
 
-            
+
             const img = document.getElementById('logo-nav');
             if (img) {
                 img.addEventListener('mouseenter', () => {
@@ -330,7 +337,7 @@ $galeria_query = $conexion->query("SELECT * FROM GALERIA_EVENTOS WHERE ID_EVENTO
                 });
             }
 
-            
+
             document.querySelector(".menu-button")?.addEventListener("click", showSidebar);
             document.querySelector(".sidebar li:first-child")?.addEventListener("click", hideSidebar);
 
